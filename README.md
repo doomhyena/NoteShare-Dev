@@ -1,2 +1,2 @@
 # NoteShare
-NoteShare is a project which is an end-of-year project for Balazs Hujber backend class
+NoteShare egy év végi projekt Hujber Balázs backend órájára.
