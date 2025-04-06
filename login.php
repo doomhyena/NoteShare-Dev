@@ -40,6 +40,7 @@
    </head>
    <body>
         <h1>Bejelentkezés</h1>
+        <p>Elfelejtett jelszó? <a href="forgotpass.php">Kérj másikat!</a></p>
         <form method="post">
              <label for="username">Felhasználónév:</label><br>
              <input type="text" id="username" name="username"><br><br>
