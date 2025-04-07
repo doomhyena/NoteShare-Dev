@@ -29,7 +29,7 @@
                     
                 } else {
                     
-                    echo "Nincs ilyen felhasználó!";
+                    echo "<script>alert('Nincs ilyen felhasználó!')</script>";
                     
                 }
                 
@@ -48,15 +48,15 @@
                         $password = $_POST['password1'];
                         $conn->query("UPDATE users SET password='$password' WHERE id=$userid");
                         
-                        echo "A jelszavad sikeresen megváltozott!";
+                        echo "<script>alert('A jelszavad sikeresen megváltozott!')</script>";
                         echo "<a href='login.php'>Bejelentkezés</a>";
                         
                     } else {
-                        echo "Az új jelszavad nem egyezhet a régivel.";
+                        echo "<script>alert('Az új jelszavad nem egyezhet a régivel.')</script>";
                     }
                 
                 } else {
-                    echo "A két jelszó nem egyezik!";
+                    echo "<script>alert('A két jelszó nem egyezik!')</script>";
                 }
             } else {
                 echo '<h1>Add meg a felhasználónevedet!</h1>';

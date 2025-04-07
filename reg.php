@@ -16,12 +16,20 @@
 			if($password == $passwordtwo){
                 $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
 				$conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '$titkositott_jelszo')");
-				header("Location: login.php");
+                $folder = getcwd();
+			
+                $path = $folder."\\assets\\users\\".$username;
+                
+                if(mkdir($path, 7777)){
+                    echo "<script>alert('Tárhely sikeresen létrehozva!')</script>";
+                } else {
+                    echo "<script>alert('Nem sikerült létrehozni a tárhelyet!')</script>";
+                }
 			} else {
-				echo "A jelszavak nem egyeznek!";
+				echo "<script>alert('A jelszavak nem egyeznek!')</script>";
 			}
 		} else {
-			echo "Már létezik ilyen felhasználó!";
+			echo "<script>alert('Már létezik ilyen felhasználó!')</script>";
 		}
 	}
 ?>
