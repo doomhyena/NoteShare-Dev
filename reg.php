@@ -54,7 +54,7 @@
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username"><br><br>
             <label for="password">Jelszó:</label><br>
-            <input type="password" name="password"><br><br>
+            <input type="password" name="password1"><br><br>
             <label for="password">Jelszó újra:</label><br>
             <input type="password" name="password2"><br><br>
             <input type="submit" name="reg-btn" value="Regisztráció!">
