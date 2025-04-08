@@ -18,14 +18,19 @@
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
    </head>
    <body>
-    <nav>
+   <nav>
         <ul>
             <li><a href="index.php">Főoldal</a></li>
-            <li><a href="reg.php">Regisztráció</a></li>
-            <li><a href="login.php">Bejelentkezés</a></li>
+			<li><a href="upload.php">Feltöltés</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
+    <div>
+        <h1>Üdvözöljük a Jegyzetmegosztó oldalon!</h1>
+        <p>Itt megoszthatja és letöltheti az iskolai jegyzeteket.</p>
+        <p>Feltöltött jegyzetek:</p>
+        <!-- PHP kód a jegyzetek megjelenítésére -->
+    </div>
     <script src="assets/js/script.js"></script>
    </body>
 </html>
