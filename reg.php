@@ -15,7 +15,7 @@
 		if(mysqli_num_rows($found_user) == 0){
 			if($password == $passwordtwo){
                 $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-				$conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '$titkositott_jelszo')");
+				$conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '', '$titkositott_jelszo')");
                 $folder = getcwd();
 			
                 $path = $folder."\\assets\\users\\".$username;

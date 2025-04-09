@@ -32,23 +32,23 @@
                 $folder = getcwd();
                 $target_dir = $folder."\\assets\\users\\".$user['username']."\\";
                 $file_name = $_FILES['profile_picture']['name'];
+                $tmp_name = $_FILES['profile_picture']['tmp_name'];
                 $target_file = $target_dir . $file_name;
 
                 if (!is_dir($target_dir)) {
-                    if (mkdir($target_dir, 0777, true)) {
-                        $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
-                    } else {
-                        echo "<p>Hiba történt a fájl feltöltésekor.</p>";
-                    }
-                } else {
+                    mkdir($target_dir, 0777, true); 
+                }
+                if (move_uploaded_file($tmp_name, $target_file)) {
                     $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
+                } else {
+                    echo "<p>Hiba történt a fájl feltöltésekor.</p>";
                 }
             }
             $folder = getcwd();
             $profile_picture_path = $folder."\\assets\\users\\".$user['username']."\\".$user['profile_picture'];
 
                 if (!empty($user['profile_picture'])) {
-                    "<img src='" . $profile_picture_path . "' alt='Profilkép'>";
+                    "<img src='".$profile_picture_path ."' alt='Profilkép'>";
                 } else {
                     echo "<p>Nincs profilkép feltöltve.</p>";
                 }
@@ -71,10 +71,10 @@
                    echo "<div>";
                    if(!empty($file)) {
                     $folder = getcwd();
-                    $file_path = $folder."\\assets\\users\\".$user['username']."\\".$file['name'];
+                    $file_path = $folder."\\assets\\users\\".$user['username']."\\".$file['tn_name'];
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='".$file_path."' width='600' height='400'></iframe>";
+                    echo "<iframe src='assets/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
                     echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                     echo "</div>";
