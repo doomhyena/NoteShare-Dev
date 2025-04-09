@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 06. 17:22
+-- Létrehozás ideje: 2025. Ápr 09. 22:32
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -29,10 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `files` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `filepath` varchar(255) NOT NULL
+  `userid` int(11) NOT NULL,
+  `name` varchar(1000) NOT NULL,
+  `file_name` varchar(1000) NOT NULL,
+  `tn_name` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `files`
+--
+
+INSERT INTO `files` (`id`, `userid`, `name`, `file_name`, `tn_name`) VALUES
+(1, 3, 'C Jegyzetek', 'CNotesForProfessionals.pdf', 'C:xampp	mpphpAD22.tmp'),
+(2, 3, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'C:xampp	mpphp4B64.tmp'),
+(3, 4, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', 'C:xampp	mpphp925D.tmp');
 
 -- --------------------------------------------------------
 
@@ -45,6 +55,7 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -52,8 +63,9 @@ CREATE TABLE `users` (
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `password`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '$2y$10$P1mO5BCE8VX6stxDNSKTLeAsyHvIN82p602xhjwSAhmfbEEw05aJ2');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`) VALUES
+(3, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm'),
+(4, 'Teszt', 'User', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -63,8 +75,7 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `password`) VALU
 -- A tábla indexei `files`
 --
 ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `users`
@@ -81,23 +92,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Megkötések a kiírt táblákhoz
---
-
---
--- Megkötések a táblához `files`
---
-ALTER TABLE `files`
-  ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
