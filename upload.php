@@ -26,7 +26,7 @@
             echo "<script>alert('A fájl feltöltése sikertelen!')</script>"; 
         }
 	}
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -43,6 +43,8 @@
         <ul>
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
+            <li><a href="myfiles.php">Saját fájlok</a></li>
+            <li><a href="myprofile.php">Profil</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>

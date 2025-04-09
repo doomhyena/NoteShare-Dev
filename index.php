@@ -26,33 +26,32 @@
         <ul>
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
+            <li><a href="myfiles.php">Saját fájlok</a></li>
+            <li><a href="myprofile.php">Profil</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
     <div>
         <?php
-        
             echo "<h2>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h2>";
-        
         ?>
         <h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>
-        <h3>Feltöltött jegyzetek:</h3>
+        <h3>Jegyzetek:</h3>
         <?php
-        
             $sql = "SELECT * FROM files ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $sql = "SELECT * FROM users WHERE id='" . $row['userid'] . "'";
+                while ($file = $result->fetch_assoc()) {
+                    $sql = "SELECT * FROM users WHERE id='" . $file['userid'] . "'";
                     $found_user = $conn->query($sql);
                     $user = $found_user->fetch_assoc();
                     echo "<div>";
-                    echo "<h4>" . htmlspecialchars($row['name']) . "</h4>";
-                    if (pathinfo($row['name'], PATHINFO_EXTENSION) === 'pdf') {
-                        echo "<iframe src='assets/users/".$user['username']."/".$row['name']."' width='600' height='400'></iframe>";
+                    echo "<h4>" . htmlspecialchars($file['name']) . "</h4>";
+                    if (pathinfo($file['name'], PATHINFO_EXTENSION) === 'pdf') {
+                        echo "<iframe src='assets/users/".$user['username']."/".$file['name']."' width='600' height='400'></iframe>";
                     }
-                    echo "<a href='download.php?id=" . $row['id'] . "'>Letöltés</a>";
+                    echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "</div>";
                 }
             } else {
