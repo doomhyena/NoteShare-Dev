@@ -14,7 +14,6 @@
         <ul>
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
-            <li><a href="myfiles.php">Saját fájlok</a></li>
             <li><a href="myprofile.php">Profil</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
@@ -28,10 +27,65 @@
             $sql = "SELECT * FROM users WHERE id='$userid'";
             $found_user = $conn->query($sql);
             $user = $found_user->fetch_assoc();
+
+            if (isset($_POST['pfp-btn'])) {
+                $folder = getcwd();
+                $target_dir = $folder."\\assets\\users\\".$user['username']."\\";
+                $file_name = $_FILES['profile_picture']['name'];
+                $target_file = $target_dir . $file_name;
+
+                if (!is_dir($target_dir)) {
+                    if (mkdir($target_dir, 0777, true)) {
+                        $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
+                    } else {
+                        echo "<p>Hiba történt a fájl feltöltésekor.</p>";
+                    }
+                } else {
+                    $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
+                }
+            }
+            $folder = getcwd();
+            $profile_picture_path = $folder."\\assets\\users\\".$user['username']."\\".$user['profile_picture'];
+
+                if (!empty($user['profile_picture'])) {
+                    "<img src='" . $profile_picture_path . "' alt='Profilkép'>";
+                } else {
+                    echo "<p>Nincs profilkép feltöltve.</p>";
+                }
+
+            echo "<form method='POST' enctype='multipart/form-data'>
+                    <label for='profile_picture'>Profilkép feltöltése:</label>
+                    <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
+                    <input type='submit' name='pfp-btn' value='Feltöltés!'>
+                  </form>";
             
             echo "<h2>Profilod</h2>";
-            echo "<p>Név: " . htmlspecialchars($user['firstname']) . " " . htmlspecialchars($user['lastname']) . "</p>";
-            echo "<p>Felhasználónév: " . htmlspecialchars($user['username']) . "</p>";
+            echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
+            echo "<p>Felhasználónév: " .$user['username']. "</p>";
+
+            $sql = "SELECT * FROM files WHERE userid='$userid' ORDER BY id DESC";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+             while ($file = $result->fetch_assoc()) {
+                   echo "<div>";
+                   if(!empty($file)) {
+                    $folder = getcwd();
+                    $file_path = $folder."\\assets\\users\\".$user['username']."\\".$file['name'];
+                    echo "<div>";
+                    echo "<h4>" .$file['name']. "</h4>";
+                    echo "<iframe src='".$file_path."' width='600' height='400'></iframe>";
+                    echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
+                    echo "</div>";
+                } else {
+                    echo "<p>Nem található a fájl!.</p>";
+                }
+                   echo "</div>";
+               }
+            } else {
+                echo "<p>Nincsenek feltöltött fájlok.</p>";
+           }
         ?>
    <script src="assets/js/script.js"></script>
    </body>
