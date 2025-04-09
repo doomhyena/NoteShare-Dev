@@ -43,23 +43,22 @@
 
             if ($result->num_rows > 0) {
                 while ($file = $result->fetch_assoc()) {
-                    $sql = "SELECT * FROM users WHERE id='" . $file['userid'] . "'";
-                    $found_user = $conn->query($sql);
-                    $user = $found_user->fetch_assoc();
-                    if(!empty($file)) {
-                        $folder = getcwd();
-                        $file_path = $folder."\\assets\\users\\".$user['username']."\\".$file['name'];
-                        echo "<div>";
-                        echo "<h4>" .$file['name']. "</h4>";
-                        echo '<iframe src='.$file_path.' width="600" height="400"></iframe>';
-                        echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                        echo "</div>";
-                    } else {
-                        echo "<p>Nem található a fájl!.</p>";
-                    }
-                }
-            } else {
-                echo "<p>Nincsenek feltöltött jegyzetek.</p>";
+                      echo "<div>";
+                      if(!empty($file)) {
+                       $folder = getcwd();
+                       echo "<div>";
+                       echo "<h4>" .$file['name']. "</h4>";
+                       echo "<iframe src='assets/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
+                       echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                       echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
+                       echo "</div>";
+                   } else {
+                       echo "<p>Nem található a fájl!</p>";
+                   }
+                      echo "</div>";
+                  }
+               } else {
+                   echo "<p>Nincsenek feltöltött fájlok.</p>";
             }
         ?>
     </div>

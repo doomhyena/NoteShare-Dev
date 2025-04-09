@@ -71,7 +71,6 @@
                    echo "<div>";
                    if(!empty($file)) {
                     $folder = getcwd();
-                    $file_path = $folder."\\assets\\users\\".$user['username']."\\".$file['tn_name'];
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
                     echo "<iframe src='assets/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
@@ -79,7 +78,7 @@
                     echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                     echo "</div>";
                 } else {
-                    echo "<p>Nem található a fájl!.</p>";
+                    echo "<p>Nem található a fájl!</p>";
                 }
                    echo "</div>";
                }
