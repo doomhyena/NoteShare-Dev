@@ -26,8 +26,7 @@
             echo "<script>alert('A fájl feltöltése sikertelen!')</script>"; 
         }
 	}
-
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="hu">
