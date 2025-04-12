@@ -14,6 +14,7 @@
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
             <li><a href="myprofile.php">Profilom</a></li>
+            <li><a href="search.php">Keresés</a></li>
             <?php
                 if ($user['admin'] == 1) {
                     echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
