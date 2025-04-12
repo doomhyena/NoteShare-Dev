@@ -9,6 +9,14 @@
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
    </head>
    <body>
+        <nav>
+            <ul>
+                <li><a href="index.php">Főoldal</a></li>
+                <li><a href="upload.php">Feltöltés</a></li>
+                <li><a href="myprofile.php">Profilom</a></li>
+                <li><a href="logout.php">Kijelentkezés</a></li>
+            </ul>
+        </nav>
         <?php 
             require "cfg.php";
 

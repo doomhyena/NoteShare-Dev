@@ -27,7 +27,7 @@
         <ul>
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
-            <li><a href="myprofile.php">Profil</a></li>
+            <li><a href="myprofile.php">Profilom</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
@@ -50,7 +50,6 @@
                        echo "<h4>" .$file['name']. "</h4>";
                        echo "<iframe src='assets/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
                        echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                       echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                        echo "</div>";
                    } else {
                        echo "<p>Nem található a fájl!</p>";
