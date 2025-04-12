@@ -126,7 +126,6 @@ NoteShare/
 
 ## Biztonsági Szempontok
 - **Jelszó Hash-elés**: A jelszavak `password_hash()` segítségével kerülnek tárolásra a biztonság érdekében.
-- **Bemenet Ellenőrzés**: Minden felhasználói bemenet ellenőrzése a SQL injekciók elkerülése érdekében.
 - **Fájl Feltöltések**: A fájltípusok ellenőrzése és korlátozása a rosszindulatú feltöltések elkerülése érdekében.
 - **Munkamenet Kezelés**: Sütik használata a munkamenet kezeléséhez, biztonságos süti gyakorlatokkal.
 
