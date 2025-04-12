@@ -150,7 +150,7 @@ NoteShare/
 ---
 
 ## Felhasznált tervezői környezetek és program nyelvek
-- **Backend**: PHP (7.4+)
+- **Backend**: PHP (8.2+)
 - **Adatbázis**: MySQL
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Fejlesztői környezet**: XAMPP (PHP és MySQL támogatással)
@@ -159,7 +159,7 @@ NoteShare/
 ---
 
 ## Ki mit készített?
-- **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat és API-k implementálása - *[Csontos Kincső]*.
+- **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat - *[Csontos Kincső]*.
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn - *[Szekeres Levente]*.
 - **Adatbázis Tervezés**: Adatbázis struktúra és SQL szkriptek - *[Csontos Kincső]*.
 - **Dokumentáció**: Projekt dokumentáció elkészítése - *[Csontos Kincső]*.

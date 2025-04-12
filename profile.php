@@ -22,6 +22,7 @@
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
        <meta name='author' content='Csontos Kincső, Szekeres Levente'>
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+       <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel='stylesheet' href='assets/css/styles.css'>
    </head>
    <body>

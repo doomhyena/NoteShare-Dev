@@ -19,6 +19,7 @@
        <meta name='author' content='Csontos Kincső, Szekeres Levente'>
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
        <script src="http://code.jquery.com/jquery-latest.js"></script>
+       <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
