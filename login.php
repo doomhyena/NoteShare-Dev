@@ -47,6 +47,7 @@
              <input type="submit" name="login-btn" value="Bejelentkezés">
         </form>
         <p>Még nincs fiókod? <a href="reg.php">Regisztrálj itt!</a></p>
+        <p>Elfelejtett jelszó? <a href="forgotpass.php">Kérj újat!</a></p>
     <script src="assets/js/script.js"></script>
    </body>
 </html>
