@@ -150,5 +150,3 @@ NoteShare/
 
 ## Licenc
 Ez a projekt az MIT Licenc alatt érhető el.
-
----
