@@ -10,6 +10,8 @@
 7. [Biztonsági Szempontok](#biztonsági-szempontok)
 8. [Ismert Hibák](#ismert-hibák)
 9. [Jövőbeli Fejlesztések](#jövőbeli-fejlesztések)
+10. [Felhasznált tervezői környezetek és program nyelvek](#felhasznált-tervezői-környezetek-és-program-nyelvek)
+11. [Ki mit készített?](#Ki-mit-készített)
 
 ---
 
@@ -133,8 +135,8 @@ NoteShare/
 
 ## Ismert Hibák
 1. **Fájlútvonal Kezelés**: A hardkódolt fájlútvonalak problémákat okozhatnak nem Windows rendszereken.
-2. **Jelszó Visszaállítás**: A jelszó visszaállítási funkció nem hash-eli az új jelszót.
 3. **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
+4. **Meg nem jelenő pdf fájlok**: A *Forbidden You don't have permission to access this resource.* hibaüzenet jelenik meg a pdf fájl
 
 ---
 
@@ -144,6 +146,25 @@ NoteShare/
 3. **Fájl Előnézetek**: A fájl előnézet támogatásának bővítése több fájltípusra.
 4. **Szerepkör Kezelés**: Adminisztrátori szerepkörök bevezetése a jobb platformkezelés érdekében.
 5. **Fejlettebb Biztonság**: CSRF tokenek és HTTPS támogatás implementálása.
+
+---
+
+## Felhasznált tervezői környezetek és program nyelvek
+- **Backend**: PHP (7.4+)
+- **Adatbázis**: MySQL
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Fejlesztői környezet**: XAMPP (PHP és MySQL támogatással)
+- **Egyéb eszközök**: phpMyAdmin, Git
+
+---
+
+## Ki mit készített?
+- **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat és API-k implementálása - *[Csontos Kincső]*.
+- **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn - *[Szekeres Levente]*.
+- **Adatbázis Tervezés**: Adatbázis struktúra és SQL szkriptek - *[Csontos Kincső]*.
+- **Dokumentáció**: Projekt dokumentáció elkészítése - *[Csontos Kincső]*.
+- **Tesztelés**: Funkcionális és biztonsági tesztek végrehajtása - *[Csontos Kincső] & Szekeres Levente]*.
+- **Projekt Menedzsment**: Feladatok koordinálása és határidők kezelése - *[Csontos Kincső]*.
 
 ---
 

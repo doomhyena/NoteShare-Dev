@@ -46,7 +46,8 @@
                     if($_POST['password1'] != $user['password']){
                         
                         $password = $_POST['password1'];
-                        $conn->query("UPDATE users SET password='$password' WHERE id=$userid");
+                        $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
+                        $conn->query("UPDATE users SET password='$titkositott_jelszo' WHERE id=$userid");
                         
                         echo "<script>alert('A jelszavad sikeresen megváltozott!')</script>";
                         echo "<a href='login.php'>Bejelentkezés</a>";
