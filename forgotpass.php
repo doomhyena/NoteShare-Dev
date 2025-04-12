@@ -9,16 +9,26 @@
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
    </head>
    <body>
-        <nav>
-            <ul>
-                <li><a href="index.php">Főoldal</a></li>
-                <li><a href="upload.php">Feltöltés</a></li>
-                <li><a href="myprofile.php">Profilom</a></li>
-                <li><a href="logout.php">Kijelentkezés</a></li>
-            </ul>
-        </nav>
+   <nav>
+        <ul>
+            <li><a href="index.php">Főoldal</a></li>
+			<li><a href="upload.php">Feltöltés</a></li>
+            <li><a href="myprofile.php">Profilom</a></li>
+            <?php
+                if ($user['admin'] == 1) {
+                    echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
+                }
+            ?>
+            <?php
+                if ($user['teacher'] == 1) {
+                    echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
+                }
+            ?>
+            <li><a href="logout.php">Kijelentkezés</a></li>
+        </ul>
+    </nav>
         <?php 
-            require "cfg.php";
+            require "assets/php/cfg.php";
 
             if(isset($_POST['forg-btn'])){
                 $username = $_POST['username'];

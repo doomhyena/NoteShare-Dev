@@ -1,6 +1,6 @@
 <?php 
 
-	require "cfg.php";
+    require "assets/php/cfg.php";
 	
 	if(isset($_POST['reg-btn'])){
 		
@@ -18,7 +18,7 @@
 				$conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '', '$titkositott_jelszo')");
                 $folder = getcwd();
 			
-                $path = $folder."\\assets\\users\\".$username;
+                $path = $folder."\\roles\\users\\".$username;
                 
                 if(mkdir($path, 7777)){
                     echo "<script>alert('Tárhely sikeresen létrehozva!')</script>";

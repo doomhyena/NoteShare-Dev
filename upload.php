@@ -1,6 +1,6 @@
 <?php 
 
-	require "cfg.php";
+    require "assets/php/cfg.php";
 
 	$userid = $_COOKIE['id'];
     $sql = "SELECT * FROM users WHERE id='$userid'";
@@ -15,7 +15,7 @@
 		
 		$folder = getcwd();
 		
-		$path = $folder."\\assets\\users\\".$user['username']."\\".$file_name;
+		$path = $folder."\\roles\\users\\".$user['username']."\\".$file_name;
 		
 		if(move_uploaded_file($tmp_name, $path)){
 			
@@ -45,6 +45,16 @@
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
             <li><a href="myprofile.php">Profilom</a></li>
+            <?php
+                if ($user['admin'] == 1) {
+                    echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
+                }
+            ?>
+            <?php
+                if ($user['teacher'] == 1) {
+                    echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
+                }
+            ?>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>

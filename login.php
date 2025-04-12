@@ -1,7 +1,6 @@
 <?php 
 
-	require "cfg.php";
-	
+    require "assets/php/cfg.php";
 	session_start();
 	
 	if(isset($_POST['login-btn'])){

@@ -1,6 +1,5 @@
 <?php
-
-    require "cfg.php";
+    require "assets/php/cfg.php";
     session_start();
 
     if (!isset($_COOKIE['id'])) {
@@ -28,6 +27,17 @@
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
             <li><a href="myprofile.php">Profilom</a></li>
+            <li><a href="search.php">Keresés</a></li>
+            <?php
+                if ($user['admin'] == 1) {
+                    echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
+                }
+            ?>
+            <?php
+                if ($user['teacher'] == 1) {
+                    echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
+                }
+            ?>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
@@ -48,8 +58,8 @@
                 $folder = getcwd();
                 echo "<div>";
                 echo "<h4>" . $file['name'] . "</h4>";
-                echo "<iframe src='assets/users/" . $file['username'] . "/" . $file['tn_name'] . "' width='600' height='400'></iframe>";
-                echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                echo "<iframe src='roles/users/" . $file['username'] . "/" . $file['tn_name'] . "' width='600' height='400'></iframe>";
+                echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                 echo "<p>Feltöltötte: <a href='profile.php?id=" . $file['userid'] . "'>" . $file['username'] . "</a></p>";
                 echo "</div>";
                 } else {

@@ -1,5 +1,5 @@
 <?php
-    require "cfg.php";
+    require "cfg.php";    
     session_start();
 
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
