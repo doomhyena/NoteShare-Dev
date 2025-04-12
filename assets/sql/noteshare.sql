@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 09. 22:32
+-- Létrehozás ideje: 2025. Ápr 12. 23:55
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -41,7 +41,6 @@ CREATE TABLE `files` (
 
 INSERT INTO `files` (`id`, `userid`, `name`, `file_name`, `tn_name`) VALUES
 (1, 3, 'C Jegyzetek', 'CNotesForProfessionals.pdf', 'C:xampp	mpphpAD22.tmp'),
-(2, 3, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'C:xampp	mpphp4B64.tmp'),
 (3, 4, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', 'C:xampp	mpphp925D.tmp');
 
 -- --------------------------------------------------------
@@ -56,16 +55,18 @@ CREATE TABLE `users` (
   `firstname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `profile_picture` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `teacher` tinyint(1) NOT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`) VALUES
-(3, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm'),
-(4, 'Teszt', 'User', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `teacher`, `admin`) VALUES
+(3, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 0, 1),
+(4, 'Teszt', 'User', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS', 0, 0);
 
 --
 -- Indexek a kiírt táblákhoz
