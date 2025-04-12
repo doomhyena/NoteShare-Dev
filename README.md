@@ -1,27 +1,154 @@
-# NoteShare Projekt Dokumentáció
+# NoteShare Dokumentáció
 
-## Projekt Áttekintés
-A **NoteShare** projekt egy év végi feladat az Asztali Alkalmazások I./Informatikai és Távközlési Alapok II. tantárgyhoz, amit Hujber Balázs oktat. A feladat célja egy olyan alkalmazás megvalósítása, amely lehetővé teszi a felhasználók számára, hogy könnyedén megoszthassák és kezelhessék a jegyzeteiket. A projektet két fős csapatunk fejleszti, ahol az egyikünk a backend fejlesztésért, a másikunk pedig a frontendért felel.
+## Tartalomjegyzék
+1. [Bevezetés](#bevezetés)
+2. [Funkciók](#funkciók)
+3. [Telepítés](#telepítés)
+4. [Adatbázis Struktúra](#adatbázis-struktúra)
+5. [Fájlstruktúra](#fájlstruktúra)
+6. [Használat](#használat)
+7. [Biztonsági Szempontok](#biztonsági-szempontok)
+8. [Ismert Hibák](#ismert-hibák)
+9. [Jövőbeli Fejlesztések](#jövőbeli-fejlesztések)
 
-## Főbb Funkciók
-- **Felhasználói Hitelesítés**: A felhasználóknak biztonságosan kell tudniuk bejelentkezniük és regisztrálniuk.
-- **Jegyzetkezelés**: A felhasználók jegyzeteket hozhatnak létre, szerkeszthetnek, törölhetnek és rendszerezhetnek.
-- **Megosztás**: Lehetőség van jegyzetek megosztására más felhasználókkal vagy csoportokkal.
-- **Reszponzív Dizájn**: Az alkalmazás felhasználóbarát, és mindenféle eszközön jól működik.
+---
 
-## Csapattagok és Feladatok
-- **Backend Fejlesztő**: Az én feladatom a szerveroldali logika megtervezése és megvalósítása, az adatbázis kezelése.
-- **Frontend Fejlesztő**: Levi a felhasználói felület kialakításáért és a felhasználói élmény biztosításáért felelős.
+## Bevezetés
+A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegyzetek megosztására és letöltésére. Lehetővé teszi a felhasználók számára, hogy regisztráljanak, fájlokat töltsenek fel, kezeljék profiljukat, és letöltsék a megosztott anyagokat. A platform PHP és MySQL alapú, egyszerű és intuitív felhasználói felülettel.
 
-## Használt Technológiák
-- **Backend**: PHP
-- **Frontend**: HTML, CSS, Bootstrap
-- **Adatbázis**: MySQL
+---
 
-## Célok
-- A projekt célja, hogy egy teljesen működő weboldalt adjunk át.
-- A backend és frontend fejlesztés terén szerzett tudásunkat szeretnénk bemutatni.
-- Jó csapatmunkával, hatékonyan szeretnénk integrálni a frontend és backend részeket.
+## Funkciók
+- **Felhasználói Regisztráció és Bejelentkezés**: A felhasználók biztonságosan hozhatnak létre fiókokat és jelentkezhetnek be.
+- **Fájl Feltöltés és Letöltés**: A felhasználók jegyzeteket tölthetnek fel és tölthetnek le mások által megosztott fájlokat.
+- **Profilkezelés**: A felhasználók frissíthetik profilképeiket és megtekinthetik feltöltött fájljaikat.
+- **Elfelejtett Jelszó**: A felhasználók visszaállíthatják elfelejtett jelszavaikat.
+- **Fájl Törlés**: A felhasználók törölhetik feltöltött fájljaikat.
+- **Reszponzív Dizájn**: A platform különböző eszközökön is működik.
 
-## Következtetés
-A NoteShare projekt egy remek lehetőség arra, hogy a tanultakat a gyakorlatban is kipróbáljuk, és egy valódi weboldalt készítsünk el. A projekt során megtapasztalhattuk, hogyan lehet hatékonyan együttműködni, és modern technológiák segítségével létrehozni egy jól működő rendszert.
+---
+
+## Telepítés
+
+### Előfeltételek
+- XAMPP vagy más helyi szerver PHP és MySQL támogatással.
+- Egy webböngésző.
+
+### Lépések
+1. Klónozd vagy töltsd le a projekt fájljait a helyi szerver gyökérkönyvtárába (pl. `c:/xampp/htdocs/NoteShare`).
+2. Importáld az adatbázist:
+    - Nyisd meg a phpMyAdmin-t.
+    - Hozz létre egy új adatbázist `noteshare` néven.
+    - Importáld a `noteshare.sql` fájlt az `assets/sql/` mappából.
+3. Konfiguráld az adatbázis kapcsolatot:
+    - Nyisd meg a `cfg.php` fájlt.
+    - Győződj meg róla, hogy az adatbázis hitelesítési adatok megfelelnek a helyi szerver beállításainak.
+4. Indítsd el a helyi szervert, és navigálj a `http://localhost/NoteShare/` címre a böngésződben.
+
+---
+
+## Adatbázis Struktúra
+
+### Táblák
+1. **users**
+    - `id` (int, elsődleges kulcs, automatikus növekedés)
+    - `lastname` (varchar)
+    - `firstname` (varchar)
+    - `username` (varchar, egyedi)
+    - `profile_picture` (varchar)
+    - `password` (varchar)
+
+2. **files**
+    - `id` (int, elsődleges kulcs, automatikus növekedés)
+    - `userid` (int, idegen kulcs, hivatkozás a `users.id`-re)
+    - `name` (varchar)
+    - `file_name` (varchar)
+    - `tn_name` (varchar)
+
+---
+
+## Fájlstruktúra
+```
+NoteShare/
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── script.js
+│   ├── sql/
+│   │   └── noteshare.sql
+│   └── users/
+├── index.php
+├── myprofile.php
+├── upload.php
+├── reg.php
+├── login.php
+├── logout.php
+├── forgotpass.php
+├── download.php
+├── delete.php
+└── cfg.php
+```
+
+---
+
+## Használat
+
+### Felhasználói Regisztráció
+1. Navigálj a `reg.php` oldalra.
+2. Töltsd ki a szükséges mezőket (vezetéknév, keresztnév, felhasználónév, jelszó).
+3. Küldd el az űrlapot a fiók létrehozásához.
+
+### Bejelentkezés
+1. Navigálj a `login.php` oldalra.
+2. Add meg a felhasználónevedet és jelszavadat.
+3. Küldd el az űrlapot a bejelentkezéshez.
+
+### Fájlok Feltöltése
+1. Navigálj az `upload.php` oldalra.
+2. Add meg a fájl nevét, és válaszd ki a feltöltendő fájlt.
+3. Küldd el az űrlapot a fájl feltöltéséhez.
+
+### Profilkezelés
+1. Navigálj a `myprofile.php` oldalra.
+2. Tekintsd meg feltöltött fájljaidat, és tölts fel profilképet.
+
+### Fájlok Letöltése
+1. Navigálj az `index.php` oldalra.
+2. Böngészd az elérhető fájlok listáját.
+3. Kattints a "Letöltés" linkre egy fájl letöltéséhez.
+
+### Jelszó Visszaállítása
+1. Navigálj a `forgotpass.php` oldalra.
+2. Add meg a felhasználónevedet, és kövesd az utasításokat a jelszó visszaállításához.
+
+---
+
+## Biztonsági Szempontok
+- **Jelszó Hash-elés**: A jelszavak `password_hash()` segítségével kerülnek tárolásra a biztonság érdekében.
+- **Bemenet Ellenőrzés**: Minden felhasználói bemenet ellenőrzése a SQL injekciók elkerülése érdekében.
+- **Fájl Feltöltések**: A fájltípusok ellenőrzése és korlátozása a rosszindulatú feltöltések elkerülése érdekében.
+- **Munkamenet Kezelés**: Sütik használata a munkamenet kezeléséhez, biztonságos süti gyakorlatokkal.
+
+---
+
+## Ismert Hibák
+1. **Fájlútvonal Kezelés**: A hardkódolt fájlútvonalak problémákat okozhatnak nem Windows rendszereken.
+2. **Jelszó Visszaállítás**: A jelszó visszaállítási funkció nem hash-eli az új jelszót.
+3. **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
+
+---
+
+## Jövőbeli Fejlesztések
+1. **Reszponzív Dizájn**: A felhasználói felület fejlesztése a jobb mobil kompatibilitás érdekében.
+2. **Email Értesítések**: Email alapú jelszó visszaállítási funkció hozzáadása.
+3. **Fájl Előnézetek**: A fájl előnézet támogatásának bővítése több fájltípusra.
+4. **Szerepkör Kezelés**: Adminisztrátori szerepkörök bevezetése a jobb platformkezelés érdekében.
+5. **Fejlettebb Biztonság**: CSRF tokenek és HTTPS támogatás implementálása.
+
+---
+
+## Licenc
+Ez a projekt az MIT Licenc alatt érhető el.
+
+---
