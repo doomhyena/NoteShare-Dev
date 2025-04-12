@@ -1,5 +1,33 @@
+<?php
+
+    require "cfg.php";
+    session_start();
+
+    $userid = $_COOKIE['id'];
+    $sql = "SELECT * FROM users WHERE id='$userid'";
+    $found_user = $conn->query($sql);
+    $user = $found_user->fetch_assoc();
+
+    if (isset($_POST['pfp-btn'])) {
+        $folder = getcwd();
+        $target_dir = $folder."\\assets\\users\\".$user['username']."\\";
+        $file_name = $_FILES['profile_picture']['name'];
+        $tmp_name = $_FILES['profile_picture']['tmp_name'];
+        $target_file = $target_dir . $file_name;
+
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true); 
+        }
+        if (move_uploaded_file($tmp_name, $target_file)) {
+            $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
+        } else {
+            echo "<p>Hiba történt a fájl feltöltésekor.</p>";
+        }
+    }
+
+?>
 <!DOCTYPE html>
-<html>
+<html lang="hu">
    <head>
        <title>Profilom</title>
        <meta charset='UTF-8'>
@@ -20,46 +48,22 @@
     </nav>
     <div>
         <?php
-            require "cfg.php";
-            session_start();
-
-            $userid = $_COOKIE['id'];
-            $sql = "SELECT * FROM users WHERE id='$userid'";
-            $found_user = $conn->query($sql);
-            $user = $found_user->fetch_assoc();
-
-            if (isset($_POST['pfp-btn'])) {
-                $folder = getcwd();
-                $target_dir = $folder."\\assets\\users\\".$user['username']."\\";
-                $file_name = $_FILES['profile_picture']['name'];
-                $tmp_name = $_FILES['profile_picture']['tmp_name'];
-                $target_file = $target_dir . $file_name;
-
-                if (!is_dir($target_dir)) {
-                    mkdir($target_dir, 0777, true); 
-                }
-                if (move_uploaded_file($tmp_name, $target_file)) {
-                    $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
-                } else {
-                    echo "<p>Hiba történt a fájl feltöltésekor.</p>";
-                }
-            }
+            
+            echo "<h2>Profilod:</h2>";
             $folder = getcwd();
-            $profile_picture_path = $folder."\\assets\\users\\".$user['username']."\\".$user['profile_picture'];
+            $profile_picture_path = "assets/users/".$user['username']."/".$user['profile_picture'];
 
                 if (!empty($user['profile_picture'])) {
-                    "<img src='".$profile_picture_path ."' alt='Profilkép'>";
+                    echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
                 } else {
                     echo "<p>Nincs profilkép feltöltve.</p>";
                 }
-
             echo "<form method='POST' enctype='multipart/form-data'>
                     <label for='profile_picture'>Profilkép feltöltése:</label>
                     <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
                     <input type='submit' name='pfp-btn' value='Feltöltés!'>
                   </form>";
-            
-            echo "<h2>Profilod</h2>";
+
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
 

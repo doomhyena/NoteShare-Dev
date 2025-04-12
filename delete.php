@@ -31,5 +31,4 @@
             } else {
             echo "Nincs fájl kiválasztva.";
         }
-
 ?>

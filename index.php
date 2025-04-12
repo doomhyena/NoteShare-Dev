@@ -38,26 +38,27 @@
         <h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>
         <h3>Jegyzetek:</h3>
         <?php
-            $sql = "SELECT * FROM files ORDER BY id DESC";
+            $sql = "SELECT files.*, users.username FROM files INNER JOIN users ON files.userid = users.id ORDER BY files.id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                while ($file = $result->fetch_assoc()) {
-                      echo "<div>";
-                      if(!empty($file)) {
-                       $folder = getcwd();
-                       echo "<div>";
-                       echo "<h4>" .$file['name']. "</h4>";
-                       echo "<iframe src='assets/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
-                       echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                       echo "</div>";
-                   } else {
-                       echo "<p>Nem található a fájl!</p>";
-                   }
-                      echo "</div>";
-                  }
-               } else {
-                   echo "<p>Nincsenek feltöltött fájlok.</p>";
+            while ($file = $result->fetch_assoc()) {
+                echo "<div>";
+                if (!empty($file)) {
+                $folder = getcwd();
+                echo "<div>";
+                echo "<h4>" . $file['name'] . "</h4>";
+                echo "<iframe src='assets/users/" . $file['username'] . "/" . $file['tn_name'] . "' width='600' height='400'></iframe>";
+                echo "<a href='download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                echo "<p>Feltöltötte: <a href='profile.php?id=" . $file['userid'] . "'>" . $file['username'] . "</a></p>";
+                echo "</div>";
+                } else {
+                echo "<p>Nem található a fájl!</p>";
+                }
+                echo "</div>";
+            }
+            } else {
+            echo "<p>Nincsenek feltöltött fájlok.</p>";
             }
         ?>
     </div>

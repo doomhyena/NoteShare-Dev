@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
    <head>
        <title>Elfelejtett Jelszó</title>
        <meta charset='UTF-8'>
