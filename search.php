@@ -42,7 +42,7 @@
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
-    <input type="text" class="search-box" id="search-box" placeholder="Anyag neve">
+    <input type="text" class="search-box" id="search-box" placeholder="Anyag keresése...">
 	<div id="curriculum"></div>
     <script src="assets/js/script.js"></script>
    </body>
