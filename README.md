@@ -169,7 +169,7 @@ NoteShare/
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn - *[Szekeres Levente]*.
 - **Adatbázis Tervezés**: Adatbázis struktúra és SQL szkriptek - *[Csontos Kincső]*.
 - **Dokumentáció**: Projekt dokumentáció elkészítése - *[Csontos Kincső]*.
-- **Tesztelés**: Funkcionális és biztonsági tesztek végrehajtása - *[Csontos Kincső] & Szekeres Levente]*.
+- **Tesztelés**: Funkcionális és biztonsági tesztek végrehajtása - *[Csontos Kincső & Szekeres Levente]*.
 - **Projekt Menedzsment**: Feladatok koordinálása és határidők kezelése - *[Csontos Kincső]*.
 
 ---
