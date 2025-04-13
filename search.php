@@ -2,9 +2,9 @@
 
 	require "assets/php/cfg.php";
 	
-	if(!isset($_COOKIE['id'])){
-		header("Location: login.php");
-	}
+    if(!isset($_COOKIE['id'])){
+        header("Location: index.php");
+    }
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();

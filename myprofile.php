@@ -3,6 +3,10 @@
     require "assets/php/cfg.php";
     session_start();
 
+    if(!isset($_COOKIE['id'])){
+        header("Location: index.php");
+    }
+
     $userid = $_COOKIE['id'];
     $sql = "SELECT * FROM users WHERE id='$userid'";
     $found_user = $conn->query($sql);

@@ -67,13 +67,13 @@ NoteShare/
 │   │   └── favicon.ico
 │   │   └── logo-1.png
 │   │   └── logo-2.png
-│   ├── js/
+│   ├── php/
 │   │   └── cfg.php
 │   │   └── delete.php
 │   │   └── download.php
 │   │   └── findcurriculum.php
 │   │   └── logout.php
-│   ├── php/
+│   ├── js/
 │   │   └── script.js
 │   ├── sql/
 │   │   └── noteshare.sql

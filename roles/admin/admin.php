@@ -1,9 +1,9 @@
 <?php
-    require "/xampp/htdocs/NoteShare/assets/php/cfg.php";
+    require_once __DIR__ . '/../../assets/php/cfg.php';
     session_start();
     
     if(!isset($_COOKIE['id'])){
-        header("Location: /NoteShare/index.php");
+        header("Location: ../../index.php");
     }
 
     $sql = "SELECT * FROM users WHERE id='$_COOKIE[id]'";
@@ -13,39 +13,34 @@
     if(isset($_POST['addadmin-btn'])){
         
         $username = $_POST['username'];
-        $sql = "SELECT * FROM users WHERE username='$username'";
-        $found_user = $conn->query($sql);
-        $found_user_count = mysqli_num_rows($found_user);
-        
-        if($found_user_count == 0){
+		$sql = "SELECT * FROM users WHERE username='$username'";
+		$found_user = $conn->query($sql);
+		
+		if(mysqli_num_rows($found_user) == 0){
             echo "<script>alert('Nincs ilyen felhasználó!')</script>";
         } else {
             if ($user['admin'] == 1) {
                 echo "<script>alert('A felhasználó már admin!')</script>";
             } else {
-                $sql = "UPDATE users SET admin=1 WHERE username='$username'";
-                $conn->query($sql);
-                echo "<script>alert('Admin hozzáadva!')</script>";
+                $conn->query("UPDATE users SET admin=1 WHERE username='$username'");
+                echo "<script>alert('Admin eltávolítva!')</script>";
             }
         }
     }
 
     if(isset($_POST['removeadmin-btn'])){
-        
         $username = $_POST['username'];
-        $sql = "SELECT * FROM users WHERE username='$username'";
-        $found_user = $conn->query($sql);
-        $found_user_count = mysqli_num_rows($found_user);
-        
-        if($found_user_count == 1){
+		$sql = "SELECT * FROM users WHERE username='$username'";
+		$found_user = $conn->query($sql);
+		
+		if(mysqli_num_rows($found_user) == 0){
             echo "<script>alert('Nincs ilyen felhasználó!')</script>";
         } else {
             if ($user['admin'] == 0) {
-                echo "<script>alert('A felhasználó már admin!')</script>";
+                echo "<script>alert('A felhasználó már nem admin!')</script>";
             } else {
-                $sql = "UPDATE users SET admin=0 WHERE username='$username'";
-                $conn->query($sql);
-                echo "<script>alert('Admin hozzáadva!')</script>";
+                $conn->query("UPDATE users SET admin=0 WHERE username='$username'");
+                echo "<script>alert('Admin eltávolítva!')</script>";
             }
         }
     }
@@ -66,33 +61,30 @@
     <body>
     <nav>
         <ul>
-            <li><a href="/NoteShare/index.php">Főoldal</a></li>
-            <li><a href="/NoteShare/upload.php">Feltöltés</a></li>
-            <li><a href="/NoteShare/myprofile.php">Profilom</a></li>
-            <li><a href="/NoteShare/search.php">Keresés</a></li>
+            <li><a href="/index.php">Főoldal</a></li> 
+            <li><a href="/upload.php">Feltöltés</a></li> 
+            <li><a href="/myprofile.php">Profilom</a></li> 
+            <li><a href="/search.php">Keresés</a></li>
             <?php
             if ($user['admin'] == 1) {
-                echo '<li><a href="/NoteShare/roles/admin/admin.php">Admin</a></li>';
+                echo '<li><a href="/roles/admin/admin.php">Admin</a></li>';
             }
-            ?>
-            <?php
             if ($user['teacher'] == 1) {
-                echo '<li><a href="/NoteShare/roles/teacher/teacher.php">Admin</a></li>';
+                echo '<li><a href="/roles/teacher/teacher.php">Tanári felület</a></li>';
             }
             ?>
-            <li><a href="/NoteShare/logout.php">Kijelentkezés</a></li>
-        </ul>
+            <li><a href="/assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>
     <div>
         <h1>Admin Panel</h1>
-        <form method="post" action="assets/php/addadmin.php">
+        <form method="post">
              <label>Admin hozzáadása:</label><br>
              <label for="username">Felhasználónév:</label><br>
              <input type="text" id="username" name="username"><br><br>
              <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
         </form>
-        <form method="post" action="assets/php/removeadmin.php">
+        <form method="post">
              <label>Admin Törlése:</label><br>
              <label for="username">Felhasználónév:</label><br>
              <input type="text" id="username" name="username"><br><br>

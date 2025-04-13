@@ -2,6 +2,10 @@
     require "assets/php/cfg.php";
     session_start();
 
+    if(!isset($_COOKIE['id'])){
+        header("Location: index.php");
+    }
+
     $sql = "SELECT * FROM users WHERE id='" .$_GET['id'] . "'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
