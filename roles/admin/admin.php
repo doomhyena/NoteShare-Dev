@@ -1,15 +1,56 @@
 <?php
-
-    require "../../assets/php/cfg.php";
+    require "/xampp/htdocs/NoteShare/assets/php/cfg.php";
     session_start();
     
     if(!isset($_COOKIE['id'])){
-        header("Location: ../../index.php");
+        header("Location: /NoteShare/index.php");
     }
-    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     $sql = "SELECT * FROM users WHERE id='$_COOKIE[id]'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
+    
+    if(isset($_POST['addadmin-btn'])){
+        
+        $username = $_POST['username'];
+        $sql = "SELECT * FROM users WHERE username='$username'";
+        $found_user = $conn->query($sql);
+        $found_user_count = mysqli_num_rows($found_user);
+        
+        if($found_user_count == 0){
+            echo "<script>alert('Nincs ilyen felhasználó!')</script>";
+        } else {
+            if ($user['admin'] == 1) {
+                echo "<script>alert('A felhasználó már admin!')</script>";
+            } else {
+                $sql = "UPDATE users SET admin=1 WHERE username='$username'";
+                $conn->query($sql);
+                echo "<script>alert('Admin hozzáadva!')</script>";
+            }
+        }
+    }
+
+    if(isset($_POST['removeadmin-btn'])){
+        
+        $username = $_POST['username'];
+        $sql = "SELECT * FROM users WHERE username='$username'";
+        $found_user = $conn->query($sql);
+        $found_user_count = mysqli_num_rows($found_user);
+        
+        if($found_user_count == 1){
+            echo "<script>alert('Nincs ilyen felhasználó!')</script>";
+        } else {
+            if ($user['admin'] == 0) {
+                echo "<script>alert('A felhasználó már admin!')</script>";
+            } else {
+                $sql = "UPDATE users SET admin=0 WHERE username='$username'";
+                $conn->query($sql);
+                echo "<script>alert('Admin hozzáadva!')</script>";
+            }
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -24,24 +65,25 @@
        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel='stylesheet' href='assets/css/styles.css'>
    </head>
-   <body>
-   <nav>
+    <body>
+    <nav>
         <ul>
-            <li><a href="index.php">Főoldal</a></li>
-			<li><a href="upload.php">Feltöltés</a></li>
-            <li><a href="myprofile.php">Profilom</a></li>
-            <li><a href="search.php">Keresés</a></li>
+            <li><a href="/NoteShare/index.php">Főoldal</a></li>
+            <li><a href="/NoteShare/upload.php">Feltöltés</a></li>
+            <li><a href="/NoteShare/myprofile.php">Profilom</a></li>
+            <li><a href="/NoteShare/search.php">Keresés</a></li>
             <?php
-                if ($user['admin'] == 1) {
-                    echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
-                }
+            if ($user['admin'] == 1) {
+                echo '<li><a href="/NoteShare/roles/admin/admin.php">Admin</a></li>';
+            }
             ?>
             <?php
-                if ($user['teacher'] == 1) {
-                    echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
-                }
+            if ($user['teacher'] == 1) {
+                echo '<li><a href="/NoteShare/roles/teacher/teacher.php">Admin</a></li>';
+            }
             ?>
-            <li><a href="logout.php">Kijelentkezés</a></li>
+            <li><a href="/NoteShare/logout.php">Kijelentkezés</a></li>
+        </ul>
         </ul>
     </nav>
     <div>
