@@ -1,19 +1,5 @@
+
 # NoteShare Dokumentáció
-
-## Tartalomjegyzék
-1. [Bevezetés](#bevezetés)
-2. [Funkciók](#funkciók)
-3. [Telepítés](#telepítés)
-4. [Adatbázis Struktúra](#adatbázis-struktúra)
-5. [Fájlstruktúra](#fájlstruktúra)
-6. [Használat](#használat)
-7. [Biztonsági Szempontok](#biztonsági-szempontok)
-8. [Ismert Hibák](#ismert-hibák)
-9. [Jövőbeli Fejlesztések](#jövőbeli-fejlesztések)
-10. [Felhasznált tervezői környezetek és program nyelvek](#felhasznált-tervezői-környezetek-és-program-nyelvek)
-11. [Ki mit készített?](#Ki-mit-készített)
-
----
 
 ## Bevezetés
 A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegyzetek megosztására és letöltésére. Lehetővé teszi a felhasználók számára, hogy regisztráljanak, fájlokat töltsenek fel, kezeljék profiljukat, és letöltsék a megosztott anyagokat. A platform PHP és MySQL alapú, egyszerű és intuitív felhasználói felülettel.
@@ -27,6 +13,8 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 - **Elfelejtett Jelszó**: A felhasználók visszaállíthatják elfelejtett jelszavaikat.
 - **Fájl Törlés**: A felhasználók törölhetik feltöltött fájljaikat.
 - **Reszponzív Dizájn**: A platform különböző eszközökön is működik.
+- **Tanári Szerepkör**: A tanárok számára dedikált felület, amely lehetővé teszi számukra a jegyzetek kezelését.
+- **Adminisztrátori Szerepkör**: Az adminisztrátorok hozzáadhatnak vagy eltávolíthatnak adminisztrátori jogosultságokat más felhasználóktól illetve bárki által közzétett jegyzetet törölhetnek.
 
 ---
 
@@ -37,7 +25,7 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 - Egy webböngésző.
 
 ### Lépések
-1. Klónozd vagy töltsd le a projekt fájljait a helyi szerver gyökérkönyvtárába (pl. `c:/xampp/htdocs/NoteShare`).
+1. Klónozd le a projekt fájljait (pl. `git clone https://github.com/doomhyena/NoteShare.git`) a helyi szerver gyökérkönyvtárába (pl. `c:/xampp/htdocs/NoteShare`).
 2. Importáld az adatbázist:
     - Nyisd meg a phpMyAdmin-t.
     - Hozz létre egy új adatbázist `noteshare` néven.
@@ -75,21 +63,37 @@ NoteShare/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
+│   ├── img/
+│   │   └── favicon.ico
+│   │   └── logo-1.png
+│   │   └── logo-2.png
 │   ├── js/
+│   │   └── cfg.php
+│   │   └── delete.php
+│   │   └── download.php
+│   │   └── findcurriculum.php
+│   │   └── logout.php
+│   ├── php/
 │   │   └── script.js
 │   ├── sql/
 │   │   └── noteshare.sql
+│   └── users/
+├── roles/
+│   ├── admin/
+│   │   └── admin.php
+│   ├── teacher/
+│   │   ├── teacher.php
+│   │   ├── js/
+│   │   │   └── script.js
+│   │   └── css/
+│   │       └── styles.cs
 │   └── users/
 ├── index.php
 ├── myprofile.php
 ├── upload.php
 ├── reg.php
 ├── login.php
-├── logout.php
 ├── forgotpass.php
-├── download.php
-├── delete.php
-└── cfg.php
 ```
 
 ---
@@ -135,8 +139,8 @@ NoteShare/
 
 ## Ismert Hibák
 1. **Fájlútvonal Kezelés**: A hardkódolt fájlútvonalak problémákat okozhatnak nem Windows rendszereken.
-3. **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
-4. **Meg nem jelenő pdf fájlok**: A *Forbidden You don't have permission to access this resource.* hibaüzenet jelenik meg a pdf fájl
+2. **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
+3. **Meg nem jelenő pdf fájlok**: A *Forbidden You don't have permission to access this resource.* hibaüzenet jelenik meg a pdf fájlok esetében.
 
 ---
 
@@ -146,6 +150,8 @@ NoteShare/
 3. **Fájl Előnézetek**: A fájl előnézet támogatásának bővítése több fájltípusra.
 4. **Szerepkör Kezelés**: Adminisztrátori szerepkörök bevezetése a jobb platformkezelés érdekében.
 5. **Fejlettebb Biztonság**: CSRF tokenek és HTTPS támogatás implementálása.
+6. **Tanári Funkciók Bővítése**: A tanárok számára további eszközök biztosítása, például jegyzetek értékelése vagy megjegyzések hozzáadása.
+7. **Adminisztrátori Funkciók Fejlesztése**: Részletesebb statisztikák és felhasználói aktivitás követése az adminisztrátorok számára.
 
 ---
 

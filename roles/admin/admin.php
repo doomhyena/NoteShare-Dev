@@ -5,8 +5,6 @@
     if(!isset($_COOKIE['id'])){
         header("Location: /NoteShare/index.php");
     }
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
 
     $sql = "SELECT * FROM users WHERE id='$_COOKIE[id]'";
     $found_user = $conn->query($sql);
