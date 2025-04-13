@@ -1,6 +1,6 @@
 <?php
 
-    require "../NoteShare/assets/php/cfg.php";
+    require "../../assets/php/cfg.php";
     session_start();
     
     if(!isset($_COOKIE['id'])){
@@ -56,7 +56,7 @@
              <label>Admin Törlése:</label><br>
              <label for="username">Felhasználónév:</label><br>
              <input type="text" id="username" name="username"><br><br>
-             <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
+             <input type="submit" name="removeadmin-btn" value="Admin eltávolítása">
         </form>
     </div>
     <script src='assets/js/script.js'></script>

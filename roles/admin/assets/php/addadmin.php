@@ -1,6 +1,6 @@
 <?php
 
-    require "../NoteShare/assets/php/cfg.php";
+    require "cfg.php";
     session_start();
     
     if(!isset($_COOKIE['id'])){
@@ -10,23 +10,20 @@
     if(isset($_POST['addadmin-btn'])){
         
         $username = $_POST['username'];
-        $password = $_POST['password'];
-        
-        $sql = "SELECT * FROM users WHERE id='$_COOKIE[id]";
-        $found_user = $conn->query($sql);
-        $user = $found_user->fetch_assoc();
         $sql = "SELECT * FROM users WHERE username='$username'";
         $found_user = $conn->query($sql);
-            
-        if(mysqli_num_rows($found_user) == 0){
+        $found_user_count = mysqli_num_rows($found_user);
+        
+        if($found_user_count == 0){
             echo "<script>alert('Nincs ilyen felhasználó!')</script>";
         } else {
-            $user_data = $found_user->fetch_assoc();
-            if ($user_data['admin'] == 1) {
+            if ($user['admin'] == 1) {
                 echo "<script>alert('A felhasználó már admin!')</script>";
             } else {
                 $sql = "UPDATE users SET admin=1 WHERE username='$username'";
+                $conn->query($sql);
                 echo "<script>alert('Admin hozzáadva!')</script>";
+                header("Location: ../../admin.php");
             }
         }
     }
