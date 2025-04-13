@@ -94,6 +94,7 @@ NoteShare/
 ├── reg.php
 ├── login.php
 ├── forgotpass.php
+└──
 ```
 
 ---

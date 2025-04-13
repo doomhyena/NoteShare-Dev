@@ -57,29 +57,31 @@
                 echo "<p>Nincs profilkép feltöltve.</p>";
             }
             
-        echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
-        echo "<p>Felhasználónév: " .$user['username']. "</p>";
-        echo "<h3>Feltöltött fájlok:</h3>";
-        $sql = "SELECT * FROM files WHERE userid=".$_GET['id'] ." ORDER BY id DESC";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($file = $result->fetch_assoc()) {
-                echo "<div>";
-                if(!empty($file)) {
+            echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
+            echo "<p>Felhasználónév: " .$user['username']. "</p>";
+
+            $sql = "SELECT * FROM files WHERE userid='$userid' ORDER BY id DESC";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+             while ($file = $result->fetch_assoc()) {
+                   echo "<div>";
+                   if(!empty($file)) {
                     $folder = getcwd();
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='roles/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
-                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<iframe src='roles/users/".$user['username']."/".$file['file_name']."'></iframe>";
+                    echo "<a href='assetsdownload.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "</div>";
                 } else {
                     echo "<p>Nem található a fájl!</p>";
                 }
-                echo "</div>";
-            }
-        } else {
-            echo "<p>Nincsenek feltöltött fájlok.</p>";
-        }
+                   echo "</div>";
+               }
+            } else {
+                echo "<p>Nincsenek feltöltött fájlok.</p>";
+           }
+        ?>
     
     ?>
    </body>

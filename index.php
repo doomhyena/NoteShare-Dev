@@ -47,19 +47,21 @@
             echo "<h1>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h1>";
             echo "<h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>";
             echo "<h3>Feltöltött fájlok:</h3>";
-            $sql = "SELECT files.*, users.username FROM files INNER JOIN users ON files.userid = users.id ORDER BY files.id DESC";
+
+            $sql = "SELECT * FROM files WHERE userid='$user[id]' ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                while ($file = $result->fetch_assoc()) {
-                    echo "<div>";
-                    if (!empty($file)) {
+             while ($file = $result->fetch_assoc()) {
+                   echo "<div>";
+                   if(!empty($file)) {
                     $folder = getcwd();
                     echo "<div>";
-                    echo "<h4>" . $file['name'] . "</h4>";
-                    echo "<iframe src='roles/users/" . $file['username'] . "/" . $file['tn_name'] . "' width='600' height='400'></iframe>";
+                    echo "<h4>" .$file['name']. "</h4>";
+                    echo "<p>" . $file['description'] . "</p>"; 
+                    echo "<iframe src='roles/users/".$user['username']."/".$file['file_name']."'></iframe>";
                     echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    echo "<p>Feltöltötte: <a href='profile.php?id=" . $file['userid'] . "'>" . $file['username'] . "</a></p>";                
+                    echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
                     if ($user['admin'] == 1) {
                         echo "<form method='POST' action='assets/php/delete.php'>";
                         echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
@@ -67,14 +69,14 @@
                         echo "</form>";
                     }
                     echo "</div>";
-                    } else {
-                        echo "<p>Nem található a fájl!</p>";
-                    }
-                    echo "</div>";
+                } else {
+                    echo "<p>Nem található a fájl!</p>";
                 }
+                   echo "</div>";
+               }
             } else {
-            echo "<p>Nincsenek feltöltött fájlok.</p>";
-            }
+                echo "<p>Nincsenek feltöltött fájlok.</p>";
+           }
         ?>
     </div>
     <script src="assets/js/script.js"></script>

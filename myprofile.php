@@ -89,7 +89,7 @@
                     $folder = getcwd();
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='roles/users/".$user['username']."/".$file['tn_name']."' width='600' height='400'></iframe>";
+                    echo "<iframe src='roles/users/".$user['username']."/".$file['file_name']."'></iframe>";
                     echo "<a href='assetsdownload.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                     echo "</div>";
