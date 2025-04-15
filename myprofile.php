@@ -14,7 +14,7 @@
 
     if (isset($_POST['pfp-btn'])) {
         $folder = getcwd();
-        $target_dir = $folder."roles\\users\\".$user['username']."\\";
+        $target_dir = $folder."users\\".$user['username']."\\";
         $file_name = $_FILES['profile_picture']['name'];
         $tmp_name = $_FILES['profile_picture']['tmp_name'];
         $target_file = $target_dir . $file_name;
@@ -67,7 +67,7 @@
             
             echo "<h2>Profilod:</h2>";
             $folder = getcwd();
-            $profile_picture_path = "roles/users/".$user['username']."/".$user['profile_picture'];
+            $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
 
                 if (!empty($user['profile_picture'])) {
                     echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
@@ -93,7 +93,7 @@
                     $folder = getcwd();
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='roles/users/".$user['username']."/".$file['file_name']."'></iframe>";
+                    echo "<iframe src='/users/".$user['username']."/".$file['file_name']."'></iframe>";
                     echo "<a href='assetsdownload.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                     echo "</div>";

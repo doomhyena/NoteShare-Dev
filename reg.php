@@ -18,7 +18,7 @@
 				$conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '', '$titkositott_jelszo')");
                 $folder = getcwd();
 			
-                $path = $folder."\\roles\\users\\".$username;
+                $path = $folder."\\users\\".$username;
                 
                 if(mkdir($path, 7777)){
                     echo "<script>alert('Tárhely sikeresen létrehozva!')</script>";

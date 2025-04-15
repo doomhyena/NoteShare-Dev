@@ -20,7 +20,7 @@
 		
 		$folder = getcwd();
 		
-		$path = $folder."\\roles\\users\\".$user['username']."\\".$file_name;
+		$path = $folder."users\\".$user['username']."\\".$file_name;
 		
 		if(move_uploaded_file($tmp_name, $path)){
 			

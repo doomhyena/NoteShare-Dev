@@ -11,7 +11,7 @@
     $user = $found_user->fetch_assoc();
 
     $folder = getcwd();
-    $target_dir = $folder."\\roles\\users\\".$user['username']."\\";
+    $target_dir = $folder."users\\".$user['username']."\\";
     $file_name = isset($_FILES['profile_picture']['name']) ? $_FILES['profile_picture']['name'] : '';
     $tmp_name = isset($_FILES['profile_picture']['tmp_name']) ? $_FILES['profile_picture']['tmp_name'] : '';
     $target_file = $target_dir . $file_name;
@@ -53,7 +53,7 @@
     
         echo"<h2>".$user['firstname'] ." profilja:</h2>";
         $folder = getcwd();
-        $profile_picture_path = "roles/users/".$user['username']."/".$user['profile_picture'];
+        $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
 
             if (!empty($user['profile_picture'])) {
                 echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
