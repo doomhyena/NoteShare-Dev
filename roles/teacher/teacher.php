@@ -1,7 +1,13 @@
+<?php
+
+    require "../../assets/php/cfg.php";
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html>
    <head>
-       <title>Oldal neve</title>
+       <title>Tanari Oldal</title>
        <meta charset='UTF-8'>
        <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
@@ -10,6 +16,21 @@
        <link rel='stylesheet' href='assets/css/styles.css'>
    </head>
    <body>
+        <nav>
+            <ul>
+                <li><a href="../../index.php">Főoldal</a></li>
+                    <li><a href="teacher.php">Tanári felület</a></li>
+                    <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li>
+                </ul>
+            </nav>
+        <h1>Tanári oldal</h1>
+         <main>
+              <h2>Üdvözöljük a tanári felületen!</h2>
+              <p>Itt kezelheti a tanulók jegyzeteit és egyéb információit.</p>
+              <p>Használja a bal oldali menüt a navigáláshoz.</p><p>Ha bármilyen kérdése van, forduljon az adminisztrátorhoz.</p>
+              <p>Jó munkát kívánunk!</p>
+              <h2>Tanulók kezelése</h2>
+        </main>
     <script src='assets/js/script.js'></script>
    </body>
 </html>
