@@ -5,33 +5,32 @@
     if(!isset($_COOKIE['id'])){
         header("Location: ../../index.php");
     }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['addadmin-btn'])) {
-            $username = $_POST['username'];
-            if (!empty($username)) {
-                $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = ?");
-                if (mysqli_num_rows($sql) > 0) {
-                    echo "<script>alert('Admin hozzáadva: $username')</script>";
-                } else {
-                    echo "<script>alert('Hiba: A felhasználó nem található vagy már admin.')</script>";
-                }
+    
+    if (isset($_POST['addadmin-btn'])) {
+        $username = $_POST['username'];
+        if (!empty($username)) {
+            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = ?");
+            if (mysqli_num_rows($sql) > 0) {
+                echo "<script>alert('Admin hozzáadva: $username')</script>";
             } else {
-                echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
+                echo "<script>alert('Hiba: A felhasználó nem található vagy már admin.')</script>";
             }
+        } else {
+            echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
         }
+    }
 
-        if (isset($_POST['removeadmin-btn'])) {
-            $username = $_POST['username'];
-            if (!empty($username)) {
-                $sql = $conn->query("UPDATE users SET admin = 0 WHERE username = ?");
-                if (mysqli_num_rows($sql) > 0) {
-                    echo "<script>alert('Admin eltávolítva: $username')</script>";
-                } else {
-                    echo "<script>alert('Hiba: A felhasználó nem található vagy nem admin.')</script>";
-                }
+    if (isset($_POST['removeadmin-btn'])) {
+        $username = $_POST['username'];
+        if (!empty($username)) {
+            $sql = $conn->query("UPDATE users SET admin = 0 WHERE username = ?");
+            if (mysqli_num_rows($sql) > 0) {
+                echo "<script>alert('Admin eltávolítva: $username')</script>";
             } else {
-                echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
+                echo "<script>alert('Hiba: A felhasználó nem található vagy nem admin.')</script>";
             }
+        } else {
+            echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
         }
     }
 ?>
