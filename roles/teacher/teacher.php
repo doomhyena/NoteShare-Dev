@@ -24,32 +24,32 @@
         $conn->query("DELETE FROM class_students WHERE class_id = $class_id AND student_id = $student_id");
         echo "Diák sikeresen eltávolítva az osztályból.";
     } elseif (isset($_POST['assignment_id'])) {
-            $assignment_id = $_POST['assignment_id'];
-            $conn->query("DELETE FROM assignments WHERE id = $assignment_id");
-            echo "Feladat sikeresen törölve.";
-        } elseif (isset($_POST['student_id']) && isset($_POST['grade'])) {
-            $student_id = $_POST['student_id'];
-            $grade = $_POST['grade'];
-            $conn->query("INSERT INTO grades (student_id, grade) VALUES ($student_id, '$grade')");
-            echo "Érdemjegy sikeresen hozzáadva.";
-        } elseif (isset($_POST['class_id']) && !isset($_POST['student_id'])) {
-            $class_id = $_POST['class_id'];
-            $result = $conn->query("SELECT * FROM students WHERE class_id = $class_id");
-            while ($row = $result->fetch_assoc()) {
+        $assignment_id = $_POST['assignment_id'];
+        $conn->query("DELETE FROM assignments WHERE id = $assignment_id");
+        echo "Feladat sikeresen törölve.";
+    } elseif (isset($_POST['student_id']) && isset($_POST['grade'])) {
+        $student_id = $_POST['student_id'];
+        $grade = $_POST['grade'];
+        $conn->query("INSERT INTO grades (student_id, grade) VALUES ($student_id, '$grade')");
+        echo "Érdemjegy sikeresen hozzáadva.";
+    } elseif (isset($_POST['class_id']) && !isset($_POST['student_id'])) {
+        $class_id = $_POST['class_id'];
+        $result = $conn->query("SELECT * FROM students WHERE class_id = $class_id");
+        while ($row = $result->fetch_assoc()) {
             echo "Diák: " . $row['name'] . "<br>";
-            }
-        } elseif (isset($_POST['schedule_id']) && !isset($_POST['class_id'])) {
-            $class_id = $_POST['class_id'];
-            $result = $conn->query("SELECT * FROM schedules WHERE class_id = $class_id");
-            while ($row = $result->fetch_assoc()) {
-            echo "Órarend: " . $row['details'] . "<br>";
-            }
-        } else {
-            $result = $conn->query("SELECT * FROM classes");
-            while ($row = $result->fetch_assoc()) {
-            echo "Osztály: " . $row['name'] . "<br>";
-            }
         }
+    } elseif (isset($_POST['schedule_id']) && !isset($_POST['class_id'])) {
+        $class_id = $_POST['class_id'];
+        $result = $conn->query("SELECT * FROM schedules WHERE class_id = $class_id");
+        while ($row = $result->fetch_assoc()) {
+            echo "Órarend: " . $row['details'] . "<br>";
+        }
+    } else {
+        $result = $conn->query("SELECT * FROM classes");
+        while ($row = $result->fetch_assoc()) {
+            echo "Osztály: " . $row['name'] . "<br>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>

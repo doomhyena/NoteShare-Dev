@@ -78,18 +78,22 @@
     </nav>
     <div>
         <h1>Admin Panel</h1>
-        <form method="post">
-             <label>Admin hozzáadása:</label><br>
-             <label for="username">Felhasználónév:</label><br>
-             <input type="text" id="username" name="username"><br><br>
-             <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
-        </form>
-        <form method="post">
-             <label>Admin Törlése:</label><br>
-             <label for="username">Felhasználónév:</label><br>
-             <input type="text" id="username" name="username"><br><br>
-             <input type="submit" name="removeadmin-btn" value="Admin eltávolítása">
-        </form>
+        <section>
+            <form method="post">
+                <label>Admin hozzáadása:</label><br>
+                <label for="username">Felhasználónév:</label><br>
+                <input type="text" id="username" name="username"><br><br>
+                <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
+            </form>
+        </section>
+        <section>
+            <form method="post">
+                <label>Admin Törlése:</label><br>
+                <label for="username">Felhasználónév:</label><br>
+                <input type="text" id="username" name="username"><br><br>
+                <input type="submit" name="removeadmin-btn" value="Admin eltávolítása">
+            </form>
+        </section>
     </div>
     <script src='assets/js/script.js'></script>
    </body>
