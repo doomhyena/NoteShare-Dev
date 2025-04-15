@@ -18,7 +18,7 @@
     
         if (!empty($username)) {
             $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
-            if (mysqli_num_rows($sql) > 0) {
+            if (mysqli_num_rows($found_user) > 0) {
                 echo "<script>alert('Admin hozzáadva: $username')</script>";
             } else {
                 echo "<script>alert('Hiba: A felhasználó nem található vagy már admin.')</script>";
@@ -36,7 +36,7 @@
     
         if (!empty($username)) {
             $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
-            if (mysqli_num_rows($sql) > 0) {
+            if (mysqli_num_rows($found_user) > 0) {
                 echo "<script>alert('Admin eltávolítva: $username')</script>";
             } else {
                 echo "<script>alert('Hiba: A felhasználó nem található vagy nem admin.')</script>";
