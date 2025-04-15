@@ -35,7 +35,7 @@
         $user = $found_user->fetch_assoc();
     
         if (!empty($username)) {
-            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
+            $sql = $conn->query("UPDATE users SET admin = 0 WHERE username = '" . $conn->real_escape_string($username) . "'");
             if (mysqli_num_rows($found_user) > 0) {
                 echo "<script>alert('Admin eltávolítva: $username')</script>";
             } else {
