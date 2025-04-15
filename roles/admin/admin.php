@@ -5,11 +5,19 @@
     if(!isset($_COOKIE['id'])){
         header("Location: ../../index.php");
     }
-    
+
+    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
+    $found_user = $conn->query($sql);
+    $user = $found_user->fetch_assoc();
+
     if (isset($_POST['addadmin-btn'])) {
         $username = $_POST['username'];
+        $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
+        $found_user = $conn->query($sql);
+        $user = $found_user->fetch_assoc();
+    
         if (!empty($username)) {
-            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = ?");
+            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
             if (mysqli_num_rows($sql) > 0) {
                 echo "<script>alert('Admin hozzáadva: $username')</script>";
             } else {
@@ -22,8 +30,12 @@
 
     if (isset($_POST['removeadmin-btn'])) {
         $username = $_POST['username'];
+        $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
+        $found_user = $conn->query($sql);
+        $user = $found_user->fetch_assoc();
+    
         if (!empty($username)) {
-            $sql = $conn->query("UPDATE users SET admin = 0 WHERE username = ?");
+            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
             if (mysqli_num_rows($sql) > 0) {
                 echo "<script>alert('Admin eltávolítva: $username')</script>";
             } else {
