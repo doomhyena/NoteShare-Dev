@@ -1,5 +1,5 @@
 <?php
-    require '/../../assets/php/cfg.php';
+    require __DIR__ . '/../../assets/php/cfg.php';
     session_start();
     
     if(!isset($_COOKIE['id'])){

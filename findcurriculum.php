@@ -1,6 +1,6 @@
 <?php 
 
-	require "config.php";
+	require "cfg.php";
 	
 	$sql = "SELECT * FROM files WHERE name LIKE '%$_GET[keresett]%'";
 	$founded_curriculum = $conn->query($lekerdezes);
