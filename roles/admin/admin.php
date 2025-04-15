@@ -9,30 +9,28 @@
         if (isset($_POST['addadmin-btn'])) {
             $username = $_POST['username'];
             if (!empty($username)) {
-                $sql = $conn->prepare("UPDATE users SET admin = 1 WHERE username = ?");
-                if (mysqli_num_rows() > 0) {
-                    echo "<p>Admin hozzáadva: $username</p>";
+                $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = ?");
+                if (mysqli_num_rows($sql) > 0) {
+                    echo "<script>alert('Admin hozzáadva: $username')</script>";
                 } else {
-                    echo "<p>Hiba: A felhasználó nem található vagy már admin.</p>";
+                    echo "<script>alert('Hiba: A felhasználó nem található vagy már admin.')</script>";
                 }
-                $sql->close();
             } else {
-                echo "<p>Hiba: A felhasználónév mező üres.</p>";
+                echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
             }
         }
 
         if (isset($_POST['removeadmin-btn'])) {
             $username = $_POST['username'];
             if (!empty($username)) {
-                $sql = $conn->prepare("UPDATE users SET admin = 0 WHERE username = ?");
-                if ($sql->affected_rows > 0) {
-                    echo "<p>Admin eltávolítva: $username</p>";
+                $sql = $conn->query("UPDATE users SET admin = 0 WHERE username = ?");
+                if (mysqli_num_rows($sql) > 0) {
+                    echo "<script>alert('Admin eltávolítva: $username')</script>";
                 } else {
-                    echo "<p>Hiba: A felhasználó nem található vagy nem admin.</p>";
+                    echo "<script>alert('Hiba: A felhasználó nem található vagy nem admin.')</script>";
                 }
-                $sql->close();
             } else {
-                echo "<p>Hiba: A felhasználónév mező üres.</p>";
+                echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
             }
         }
     }
