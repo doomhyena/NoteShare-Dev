@@ -27,9 +27,13 @@
          <main>
               <h2>Üdvözöljük a tanári felületen!</h2>
               <p>Itt kezelheti a tanulók jegyzeteit és egyéb információit.</p>
-              <p>Használja a bal oldali menüt a navigáláshoz.</p><p>Ha bármilyen kérdése van, forduljon az adminisztrátorhoz.</p>
-              <p>Jó munkát kívánunk!</p>
+              <p>Használja a bal oldali menüt a navigáláshoz.</p>
               <h2>Tanulók kezelése</h2>
+                <form method="POST">
+                    <label for="username">Felhasználónév:</label>
+                    <input type="text" name="username" id="username" required>
+                    <button type="submit" name="removeadmin-btn"></button>
+                </form>
         </main>
     <script src='assets/js/script.js'></script>
    </body>
