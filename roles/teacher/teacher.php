@@ -6,52 +6,56 @@
     if(!isset($_COOKIE['id'])){
         header("Location: ../../index.php");
     }
-    if (isset($_POST['class_name'])) {
+    if (isset($_POST['create_class'])) {
         $class_name = $_POST['class_name'];
         $conn->query("INSERT INTO classes (name) VALUES ('$class_name')");
         echo "Osztály sikeresen létrehozva.";
-    } elseif (isset($_POST['class_id']) && !isset($_POST['student_id']) && !isset($_POST['schedule_id'])) {
+    } elseif (isset($_POST['delete_class'])) {
         $class_id = $_POST['class_id'];
         $conn->query("DELETE FROM classes WHERE id = $class_id");
         echo "Osztály sikeresen törölve.";
-    } elseif (isset($_POST['class_id']) && !isset($_POST['student_id']) && isset($_POST['schedule_id'])) {
-        $schedule_id = $_POST['schedule_id'];
-        $conn->query("DELETE FROM schedules WHERE id = $schedule_id");
-        echo "Órarend sikeresen törölve.";
-    } elseif (isset($_POST['class_id']) && isset($_POST['student_id'])) {
-        $class_id = $_POST['class_id'];
-        $student_id = $_POST['student_id'];
-        $conn->query("DELETE FROM class_students WHERE class_id = $class_id AND student_id = $student_id");
-        echo "Diák sikeresen eltávolítva az osztályból.";
-    } elseif (isset($_POST['assignment_id'])) {
-        $assignment_id = $_POST['assignment_id'];
-        $conn->query("DELETE FROM assignments WHERE id = $assignment_id");
-        echo "Feladat sikeresen törölve.";
-    } elseif (isset($_POST['student_id']) && isset($_POST['grade'])) {
-        $student_id = $_POST['student_id'];
-        $grade = $_POST['grade'];
-        $conn->query("INSERT INTO grades (student_id, grade) VALUES ($student_id, '$grade')");
-        echo "Érdemjegy sikeresen hozzáadva.";
-    } elseif (isset($_POST['class_id']) && !isset($_POST['student_id'])) {
+    } elseif (isset($_POST['list_classes'])) {
+        $result = $conn->query("SELECT * FROM classes");
+        while ($row = $result->fetch_assoc()) {
+            echo "Osztály: " . $row['name'] . "<br>";
+        }
+    } elseif (isset($_POST['view_students'])) {
         $class_id = $_POST['class_id'];
         $result = $conn->query("SELECT * FROM students WHERE class_id = $class_id");
         while ($row = $result->fetch_assoc()) {
             echo "Diák: " . $row['name'] . "<br>";
         }
-    } elseif (isset($_POST['schedule_id']) && !isset($_POST['class_id'])) {
+    } elseif (isset($_POST['remove_student'])) {
+        $class_id = $_POST['class_id'];
+        $student_id = $_POST['student_id'];
+        $conn->query("DELETE FROM class_students WHERE class_id = $class_id AND student_id = $student_id");
+        echo "Diák sikeresen eltávolítva az osztályból.";
+    } elseif (isset($_POST['delete_assignment'])) {
+        $assignment_id = $_POST['assignment_id'];
+        $conn->query("DELETE FROM assignments WHERE id = $assignment_id");
+        echo "Feladat sikeresen törölve.";
+    } elseif (isset($_POST['view_assignments'])) {
+        $class_id = $_POST['class_id'];
+        $result = $conn->query("SELECT * FROM assignments WHERE class_id = $class_id");
+        while ($row = $result->fetch_assoc()) {
+            echo "Feladat: " . $row['details'] . "<br>";
+        }
+    } elseif (isset($_POST['add_grade'])) {
+        $student_id = $_POST['student_id'];
+        $grade = $_POST['grade'];
+        $conn->query("INSERT INTO grades (student_id, grade) VALUES ($student_id, '$grade')");
+        echo "Érdemjegy sikeresen hozzáadva.";
+    } elseif (isset($_POST['delete_schedule'])) {
+        $schedule_id = $_POST['schedule_id'];
+        $conn->query("DELETE FROM schedules WHERE id = $schedule_id");
+        echo "Órarend sikeresen törölve.";
+    } elseif (isset($_POST['view_schedule'])) {
         $class_id = $_POST['class_id'];
         $result = $conn->query("SELECT * FROM schedules WHERE class_id = $class_id");
         while ($row = $result->fetch_assoc()) {
             echo "Órarend: " . $row['details'] . "<br>";
         }
-    } else {
-        $result = $conn->query("SELECT * FROM classes");
-        while ($row = $result->fetch_assoc()) {
-            echo "Osztály: " . $row['name'] . "<br>";
-        }
-    }
-
-    
+    }    
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,89 +91,89 @@
             <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>
-    <div class="teacher-dashboard">
+    <div>
         <h1>Tanári Felület</h1>
         <p>Üdvözöljük a tanári oldalon, <?php echo htmlspecialchars($user['name']); ?>!</p>
         <section>
             <h2>Osztályok létrehozása</h2>
             <form method="POST">
-            <label for="class_name">Osztály neve:</label>
-            <input type="text" id="class_name" name="class_name" required>
-            <button name="create_class" type="submit">Osztály létrehozása</button>
+                <label for="class_name">Osztály neve:</label>
+                <input type="text" id="class_name" name="class_name" required>
+                <button name="create_class" type="submit">Osztály létrehozása</button>
             </form>
         </section>
         <section>
             <h2>Osztályok kezelése</h2>
             <form method="POST">
-            <label for="class_id">Osztály azonosító:</label>
-            <input type="text" id="class_id" name="class_id" required>
-            <button name="delete_class" type="submit">Osztály törlése</button>
+                <label for="class_id">Osztály azonosító:</label>
+                <input type="text" id="class_id" name="class_id" required>
+                <button name="delete_class" type="submit">Osztály törlése</button>
             </form>
         </section>
         <section>
             <h2>Osztályok listázása</h2>
             <form method="POST">
-            <button name="list_classes" type="submit">Osztályok listázása</button>
+                <button name="list_classes" type="submit">Osztályok listázása</button>
             </form>
         </section>
         <section>
             <h2>Diákok megtekintése</h2>
             <form method="POST">
-            <label for="class_id">Osztály azonosító:</label>
-            <input type="text" id="class_id" name="class_id" required>
-            <button name="view_students" type="submit">Diákok megtekintése</button>
+                <label for="class_id">Osztály azonosító:</label>
+                <input type="text" id="class_id" name="class_id" required>
+                <button name="view_students" type="submit">Diákok megtekintése</button>
             </form>
         </section>
         <section>
             <h2>Osztályok és diákok kezelése</h2>
             <form method="POST">
-            <label for="class_id">Osztály azonosító:</label>
-            <input type="text" id="class_id" name="class_id" required>
-            <label for="student_id">Diák azonosító:</label>
-            <input type="text" id="student_id" name="student_id" required>
-            <button name="remove_student" type="submit">Diák eltávolítása az osztályból</button>
+                <label for="class_id">Osztály azonosító:</label>
+                <input type="text" id="class_id" name="class_id" required>
+                <label for="student_id">Diák azonosító:</label>
+                <input type="text" id="student_id" name="student_id" required>
+                <button name="remove_student" type="submit">Diák eltávolítása az osztályból</button>
             </form>
         </section>
         <section>
             <h2>Feladatok kezelése</h2>
             <form method="POST">
-            <label for="assignment_id">Feladat azonosító:</label>
-            <input type="text" id="assignment_id" name="assignment_id" required>
-            <button name="delete_assignment" type="submit">Feladat törlése</button>
+                <label for="assignment_id">Feladat azonosító:</label>
+                <input type="text" id="assignment_id" name="assignment_id" required>
+                <button name="delete_assignment" type="submit">Feladat törlése</button>
             </form>
         </section>
         <section>
             <h2>Feladatok megtekintése</h2>
             <form method="POST">
-            <label for="class_id">Osztály azonosító:</label>
-            <input type="text" id="class_id" name="class_id" required>
-            <button name="view_assignments" type="submit">Feladatok megtekintése</button>
+                <label for="class_id">Osztály azonosító:</label>
+                <input type="text" id="class_id" name="class_id" required>
+                <button name="view_assignments" type="submit">Feladatok megtekintése</button>
             </form>
         </section>
         <section>
             <h2>Diákok értékelése</h2>
             <form method="POST">
-            <label for="student_id">Diák azonosító:</label>
-            <input type="text" id="student_id" name="student_id" required>
-            <label for="grade">Érdemjegy:</label>
-            <input type="text" id="grade" name="grade" required>
-            <button name="add_grade" type="submit">Érdemjegy hozzáadása</button>
+                <label for="student_id">Diák azonosító:</label>
+                <input type="text" id="student_id" name="student_id" required>
+                <label for="grade">Érdemjegy:</label>
+                <input type="text" id="grade" name="grade" required>
+                <button name="add_grade" type="submit">Érdemjegy hozzáadása</button>
             </form>
         </section>
         <section>
             <h2>Órarend kezelése</h2>
             <form method="POST">
-            <label for="schedule_id">Órarend azonosító:</label>
-            <input type="text" id="schedule_id" name="schedule_id" required>
-            <button name="delete_schedule" type="submit">Órarend törlése</button>
+                <label for="schedule_id">Órarend azonosító:</label>
+                <input type="text" id="schedule_id" name="schedule_id" required>
+                <button name="delete_schedule" type="submit">Órarend törlése</button>
             </form>
         </section>
         <section>
             <h2>Órarend megtekintése</h2>
             <form method="POST">
-            <label for="class_id">Osztály azonosító:</label>
-            <input type="text" id="class_id" name="class_id" required>
-            <button name="view_schedule" type="submit">Órarend megtekintése</button>
+                <label for="class_id">Osztály azonosító:</label>
+                <input type="text" id="class_id" name="class_id" required>
+                <button name="view_schedule" type="submit">Órarend megtekintése</button>
             </form>
         </section>
         <section>
