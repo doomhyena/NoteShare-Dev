@@ -54,7 +54,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-       <title>Tanari Oldal</title>
+       <title>Tanári Oldal</title>
        <meta charset='UTF-8'>
        <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
