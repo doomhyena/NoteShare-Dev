@@ -7,12 +7,12 @@
     }
     if (isset($_POST['addadmin-btn'])) {
         $username = $_POST['username'];
-        $sql = "SELECT * FROM users WHERE id='" . $username . "'";
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $found_user = $conn->query($sql);
         $user = $found_user->fetch_assoc();
     
         if (!empty($username)) {
-            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '" . $conn->real_escape_string($username) . "'");
+            $sql = $conn->query("UPDATE users SET admin = 1 WHERE username = '$username'");
             if (mysqli_num_rows($found_user) > 0) {
                 echo "<script>alert('Admin hozzáadva: $username')</script>";
             } else {
@@ -25,7 +25,7 @@
 
     if (isset($_POST['removeadmin-btn'])) {
         $username = $_POST['username'];
-        $sql = "SELECT * FROM users WHERE username = '$username'"Ö
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $found_user = $conn->query($sql);
         $user = $found_user->fetch_assoc();
     

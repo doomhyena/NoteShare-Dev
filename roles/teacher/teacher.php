@@ -71,12 +71,13 @@
             <li><a href="/search.php">Keresés</a></li>
             <?php
             if ($user['admin'] == 1) {
-                echo '<li><a href="/roles/admin/admin.php">Admin</a></li>';
+                echo '<li><a href="">Admin</a></li>';
             }
             if ($user['teacher'] == 1) {
-                echo '<li><a href="/roles/teacher/teacher.php">Tanári felület</a></li>';
+                echo '<li><a href="teacher.php">Tanári felület</a></li>';
             }
             ?>
+            <li><a href="">Diák felület</a></li>
             <li><a href="/assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>

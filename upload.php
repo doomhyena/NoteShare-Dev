@@ -62,6 +62,7 @@
                     echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
                 }
             ?>
+            <li><a href="roles/students/students.php">Diák felület</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
