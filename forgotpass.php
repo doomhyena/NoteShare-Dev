@@ -11,25 +11,6 @@
        <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
-   <nav>
-        <ul>
-            <li><a href="index.php">Főoldal</a></li>
-			<li><a href="upload.php">Feltöltés</a></li>
-            <li><a href="myprofile.php">Profilom</a></li>
-            <li><a href="search.php">Keresés</a></li>
-            <?php
-                if ($user['admin'] == 1) {
-                    echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
-                }
-            ?>
-            <?php
-                if ($user['teacher'] == 1) {
-                    echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
-                }
-            ?>
-            <li><a href="logout.php">Kijelentkezés</a></li>
-        </ul>
-    </nav>
         <?php 
             require "assets/php/cfg.php";
 

@@ -89,6 +89,7 @@
                     echo '<li><a href="/roles/teacher/teacher.php">Tanári felület</a></li>';
                 }
             ?>
+            <li><a href="../students/students.php">Diák felület</a></li>
             <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>

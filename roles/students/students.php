@@ -33,6 +33,7 @@
                     echo '<li><a href="../teacher/teacher.php">Tanári felület</a></li>';
                 }
             ?>
+            <li><a href="students.php">Diák felület</a></li>
             <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>
