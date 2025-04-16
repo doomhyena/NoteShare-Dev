@@ -50,6 +50,8 @@
             echo "Osztály: " . $row['name'] . "<br>";
         }
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,75 +93,83 @@
         <section>
             <h2>Osztályok létrehozása</h2>
             <form method="POST">
-                <label for="class_name">Osztály neve:</label>
-                <input type="text" id="class_name" name="class_name" required>
-                <button type="submit">Osztály létrehozása</button>
+            <label for="class_name">Osztály neve:</label>
+            <input type="text" id="class_name" name="class_name" required>
+            <button name="create_class" type="submit">Osztály létrehozása</button>
             </form>
         </section>
         <section>
             <h2>Osztályok kezelése</h2>
             <form method="POST">
-                <label for="class_id">Osztály azonosító:</label>
-                <input type="text" id="class_id" name="class_id" required>
-                <button type="submit">Osztály törlése</button>
+            <label for="class_id">Osztály azonosító:</label>
+            <input type="text" id="class_id" name="class_id" required>
+            <button name="delete_class" type="submit">Osztály törlése</button>
             </form>
         </section>
         <section>
             <h2>Osztályok listázása</h2>
             <form method="POST">
-                <button type="submit">Osztályok listázása</button>
+            <button name="list_classes" type="submit">Osztályok listázása</button>
             </form>
         </section>
         <section>
             <h2>Diákok megtekintése</h2>
             <form method="POST">
-                <label for="class_id">Osztály azonosító:</label>
-                <input type="text" id="class_id" name="class_id" required>
-                <button type="submit">Diákok megtekintése</button>
+            <label for="class_id">Osztály azonosító:</label>
+            <input type="text" id="class_id" name="class_id" required>
+            <button name="view_students" type="submit">Diákok megtekintése</button>
             </form>
         </section>
         <section>
             <h2>Osztályok és diákok kezelése</h2>
             <form method="POST">
-                <label for="class_id">Osztály azonosító:</label>
-                <input type="text" id="class_id" name="class_id" required>
-                <label for="student_id">Diák azonosító:</label>
-                <input type="text" id="student_id" name="student_id" required>
-                <button type="submit">Diák eltávolítása az osztályból</button>
+            <label for="class_id">Osztály azonosító:</label>
+            <input type="text" id="class_id" name="class_id" required>
+            <label for="student_id">Diák azonosító:</label>
+            <input type="text" id="student_id" name="student_id" required>
+            <button name="remove_student" type="submit">Diák eltávolítása az osztályból</button>
             </form>
         </section>
         <section>
             <h2>Feladatok kezelése</h2>
             <form method="POST">
-                <label for="assignment_id">Feladat azonosító:</label>
-                <input type="text" id="assignment_id" name="assignment_id" required>
-                <button type="submit">Feladat törlése</button>
+            <label for="assignment_id">Feladat azonosító:</label>
+            <input type="text" id="assignment_id" name="assignment_id" required>
+            <button name="delete_assignment" type="submit">Feladat törlése</button>
+            </form>
+        </section>
+        <section>
+            <h2>Feladatok megtekintése</h2>
+            <form method="POST">
+            <label for="class_id">Osztály azonosító:</label>
+            <input type="text" id="class_id" name="class_id" required>
+            <button name="view_assignments" type="submit">Feladatok megtekintése</button>
             </form>
         </section>
         <section>
             <h2>Diákok értékelése</h2>
             <form method="POST">
-                <label for="student_id">Diák azonosító:</label>
-                <input type="text" id="student_id" name="student_id" required>
-                <label for="grade">Érdemjegy:</label>
-                <input type="text" id="grade" name="grade" required>
-                <button type="submit">Érdemjegy hozzáadása</button>
+            <label for="student_id">Diák azonosító:</label>
+            <input type="text" id="student_id" name="student_id" required>
+            <label for="grade">Érdemjegy:</label>
+            <input type="text" id="grade" name="grade" required>
+            <button name="add_grade" type="submit">Érdemjegy hozzáadása</button>
             </form>
         </section>
         <section>
             <h2>Órarend kezelése</h2>
             <form method="POST">
-                <label for="schedule_id">Órarend azonosító:</label>
-                <input type="text" id="schedule_id" name="schedule_id" required>
-                <button type="submit">Órarend törlése</button>
+            <label for="schedule_id">Órarend azonosító:</label>
+            <input type="text" id="schedule_id" name="schedule_id" required>
+            <button name="delete_schedule" type="submit">Órarend törlése</button>
             </form>
         </section>
         <section>
             <h2>Órarend megtekintése</h2>
             <form method="POST">
-                <label for="class_id">Osztály azonosító:</label>
-                <input type="text" id="class_id" name="class_id" required>
-                <button type="submit">Órarend megtekintése</button>
+            <label for="class_id">Osztály azonosító:</label>
+            <input type="text" id="class_id" name="class_id" required>
+            <button name="view_schedule" type="submit">Órarend megtekintése</button>
             </form>
         </section>
         <section>
