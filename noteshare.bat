@@ -3,7 +3,7 @@ cd /d "C:\xampp\htdocs\NoteShare"
 
 git add .
 
-set commit_msg=Automatikus commit: %date% %time%
+set commit_msg=Automatic commit: %date% %time%
 git commit -m "%commit_msg%"
 
-git push origin main
+git push
