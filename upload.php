@@ -63,6 +63,7 @@
                 }
             ?>
             <li><a href="roles/students/students.php">Diák felület</a></li>
+            <li><a href="roles/students/students.php">Diák felület</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>

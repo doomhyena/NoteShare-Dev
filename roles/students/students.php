@@ -18,15 +18,19 @@
             <li><a href="../../myprofile.php">Profilom</a></li> 
             <li><a href="../../search.php">Keresés</a></li>
             <?php
+                require __DIR__ . '/../../assets/php/cfg.php';
+                if(!isset($_COOKIE['id'])){
+                    header("Location: ../../index.php");
+                }
                 $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
                 $found_user = $conn->query($sql);
                 $user = $found_user->fetch_assoc();
 
                 if ($user['admin'] == 1) {
-                    echo '<li><a href="admin.php">Admin</a></li>';
+                    echo '<li><a href="../admin/admin.php">Admin</a></li>';
                 }
                 if ($user['teacher'] == 1) {
-                    echo '<li><a href="/roles/teacher/teacher.php">Tanári felület</a></li>';
+                    echo '<li><a href="../teacher/teacher.php">Tanári felület</a></li>';
                 }
             ?>
             <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li> 

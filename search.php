@@ -38,11 +38,14 @@
                 if ($user['teacher'] == 1) {
                     echo '<li><a href="roles/teacher/teacher.php">Admin</a></li>';
                 }
+                
             ?>
+            <li><a href="roles/students/students.php">Diák felület</a></li>
             <li><a href="roles/students/students.php">Diák felület</a></li>
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
+    <h1>Keresés</h1>
     <input type="text" class="search-box" id="search-box" placeholder="Anyag keresése...">
 	<div id="curriculum"></div>
     <script src="assets/js/script.js"></script>
