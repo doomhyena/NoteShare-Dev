@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS NoteShare;
+schedulesCREATE DATABASE IF NOT EXISTS NoteShare;
 USE NoteShare;
 
 -- Táblázat a felhasználók számára

@@ -56,29 +56,16 @@
     <?php
     
             if(isset($_POST['view_schedule'])) {
-                
-                $sql = "SELECT * FROM schedule WHERE class_id = ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("i", $class_id);
-                $stmt->execute();
-                $result = $stmt->get_result();
+                $class_id = $user['class_id'];
+                $found_schedules = $conn->query("SELECT details FROM schedules WHERE class_id = '$class_id'");
 
-                if ($result->num_rows > 0) {
-                    echo "<table border='1'>";
-                    echo "<tr><th>Nap</th><th>Óra</th><th>Tantárgy</th><th>Tanterem</th></tr>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['day']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['time']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['subject']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['room']) . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
+                if ($schedules->num_rows > 0) {
+                    $schedule = $schedules->fetch_assoc();
+                    echo "<h3>Órarend:</h3>";
+                    echo "<div>" . nl2br(htmlspecialchars($schedule['details'])) . "</div>";
                 } else {
-                    echo "<p>Nincs elérhető órarend.</p>";
+                    echo "<p>Nincs elérhető órarend az osztály számára.</p>";
                 }
-                $stmt->close();
             }
     
     ?>
