@@ -19,13 +19,17 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS files (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    uploaded_by INT,
     name VARCHAR(255) NOT NULL,
-    title VARCHAR(255),
     description TEXT,
     file_path VARCHAR(255) NOT NULL,
-    uploaded_by INT,
+    tn_name VARCHAR(255),
     FOREIGN KEY (uploaded_by) REFERENCES users(id)
 );
+
+INSERT INTO `files` (`id`, `uploaded_by`, `name`, `description`, `file_path`, `tn_name`) VALUES
+(1, 2, 'C Jegyzetek', 'CNotesForProfessionals.pdf', `C Jegyzetek`, 'C:xampp	mpphpAD22.tmp'),
+(2, 1, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', ``, 'C:xampp	mpphp925D.tmp');
 
 CREATE TABLE IF NOT EXISTS classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,10 +87,8 @@ CREATE TABLE IF NOT EXISTS grades (
     FOREIGN KEY (entered_by) REFERENCES users(id)
 );
 
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `tn_name`) VALUES
-(1, 1, 'C Jegyzetek', 'CNotesForProfessionals.pdf', 'C:xampp	mpphpAD22.tmp'),
-(2, 2, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', 'C:xampp	mpphp925D.tmp');
+
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `teacher`, `admin`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 0, 1),
-(2, 'Kelemen ', 'Boldizsár', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS', 0, 0);
+(2, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 0, 1),
+(1, 'Kelemen ', 'Boldizsár', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS', 0, 0);
