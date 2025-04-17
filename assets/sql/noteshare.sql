@@ -2,10 +2,10 @@
 -- Létrehozva: 2025. április 16., szerda, 19:26:44
 -- Leírás: SQL-szkript a NoteShare alkalmazás adatbázisának és tábláinak létrehozásához.
 
-CREATE DATABASE IF NOT EXISTS NoteShare;
+CREATE DATABASE NoteShare;
 USE NoteShare;
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lastname VARCHAR(100),
     firstname VARCHAR(100),
@@ -83,10 +83,6 @@ CREATE TABLE grades (
     FOREIGN KEY (student_id) REFERENCES users(id),
     FOREIGN KEY (entered_by) REFERENCES users(id)
 );
-
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
-(1, 2, 'C Jegyzetek', 'CNotesForProfessionals.pdf', 'C Jegyzetek', 'C:xampp	mpphpAD22.tmp'),
-(2, 1, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', 'CSS jegyzetek', 'C:xampp	mpphp925D.tmp');
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`, `teacher`, `admin`) VALUES
 (2, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', 0, 1),
