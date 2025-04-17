@@ -60,7 +60,7 @@
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
                     echo "<p>" . $file['description'] . "</p>"; 
-                    echo "<iframe src='users/".$user['username']."/".$file['tn_name']."'></iframe>";
+                    echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
                     echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
                     if ($user['admin'] == 1) {

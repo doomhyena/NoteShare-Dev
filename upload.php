@@ -14,17 +14,23 @@
 
 	if(isset($_POST['upload-btn'])){
 		
-		$file_name = $_FILES['upload-file']['name'];
+		
+        
+        $dir = $folder."\\users\\".$user['username']."\\";
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true); 
+        }
+
+        $file_name = $_FILES['upload-file']['name'];
 		$tmp_name = $_FILES['upload-file']['tmp_name'];
         $description = $_POST['description'];
-		
-		$folder = getcwd();
-		
-		$path = $folder."users\\".$user['username']."\\".$file_name;
-		
+        $folder = getcwd();
+        $path = $folder."\\users\\".$user['username']."\\".$file_name;
+
 		if(move_uploaded_file($tmp_name, $path)){
 			
-            $conn->query("INSERT INTO files VALUES ('$user[id]', '{$_POST['name']}', '$description', '$file_name', '$tmp_name')");
+            $conn->query("INSERT INTO files (uploaded_by, name, file_name, description, file_path) VALUES ('$user[id]', '{$_POST['name']}', '$file_name', '$description', '$path')");
 			echo "<script>alert('A fájl sikeresen feltöltve!')</script>";
 
         } else {
@@ -70,6 +76,7 @@
         <form method="post" enctype="multipart/form-data">
         <label class="form-header">Anyag feltöltése</label>
         <input type="text" name="name" placeholder="Anyag neve">
+        <textarea name="description" placeholder="Leírás az anyagról"></textarea>
         <input type="file" name="upload-file">
         <input type="submit" name="upload-btn">
     </form>

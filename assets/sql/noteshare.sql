@@ -87,3 +87,6 @@ CREATE TABLE grades (
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`, `teacher`, `admin`) VALUES
 (2, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', 0, 1),
 (1, 'Kelemen ', 'Boldizsár', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS', 'Mi a születési városod?', 'Budapest', 0, 0);
+
+INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
+(1, 2, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', '', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) 
