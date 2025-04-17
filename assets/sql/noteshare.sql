@@ -1,7 +1,10 @@
-schedulesCREATE DATABASE IF NOT EXISTS NoteShare;
+-- Created by: Csontos Kincső 13/A
+-- Létrehozva: 2025. április 16., szerda, 19:26:44
+-- Description: SQL script to create the database and tables for the NoteShare application.
+-- This script creates the database and tables for the NoteShare application, including users, files, classes, schedules, assignments, and grades.
+CREATE DATABASE IF NOT EXISTS NoteShare;
 USE NoteShare;
 
--- Táblázat a felhasználók számára
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -11,7 +14,6 @@ CREATE TABLE IF NOT EXISTS users (
     teacher TINYINT(1) DEFAULT 0
 );
 
--- Táblázat a fájlok számára
 CREATE TABLE IF NOT EXISTS files (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -22,13 +24,11 @@ CREATE TABLE IF NOT EXISTS files (
     FOREIGN KEY (uploaded_by) REFERENCES users(id)
 );
 
--- Táblázat az osztályok számára
 CREATE TABLE IF NOT EXISTS classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
--- Táblázat az osztály-diák kapcsolatok számára
 CREATE TABLE IF NOT EXISTS class_students (
     class_id INT,
     student_id INT,
@@ -37,15 +37,19 @@ CREATE TABLE IF NOT EXISTS class_students (
     FOREIGN KEY (student_id) REFERENCES users(id)
 );
 
--- Táblázat az órarendek számára
 CREATE TABLE IF NOT EXISTS schedules (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
+    day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    teacher_id INT,
     details TEXT,
-    FOREIGN KEY (class_id) REFERENCES classes(id)
+    FOREIGN KEY (class_id) REFERENCES classes(id),
+    FOREIGN KEY (teacher_id) REFERENCES users(id)
 );
 
--- Táblázat a feladatok számára
 CREATE TABLE IF NOT EXISTS assignments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
@@ -54,7 +58,6 @@ CREATE TABLE IF NOT EXISTS assignments (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
--- Táblázat az érdemjegyek számára
 CREATE TABLE IF NOT EXISTS grades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT,
