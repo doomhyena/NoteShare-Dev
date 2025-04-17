@@ -89,4 +89,4 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture
 (1, 'Kelemen ', 'Boldizsár', 'tesztuser', '', '$2y$10$CI1lsAN6RWADb9L6otlv9eGxsTFAJ0H0KSdy9j.FT3IopoYSXbjBS', 'Mi a születési városod?', 'Budapest', 0, 0);
 
 INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
-(1, 2, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', '', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) 
+(1, 2, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', '', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`):
