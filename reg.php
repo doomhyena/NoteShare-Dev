@@ -79,36 +79,3 @@ if(isset($_POST['reg-btn'])){
     <script src="assets/js/script.js"></script>
    </body>
 </html>
-?>
-<!DOCTYPE html>
-<html lang="hu">
-   <head>
-       <title>Regisztráció</title>
-       <meta charset='UTF-8'>
-       <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
-       <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
-       <meta name='author' content='Csontos Kincső, Szekeres Levente'>
-       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-       <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-       <link rel='stylesheet' href='assets/css/styles.css'>
-   </head>
-   <body>
-
-        <h1>Regisztráció</h1>
-        <form method="post">
-            <label for="lastname">Vezetéknév:</label><br>
-            <input type="text" name="lastname"><br><br>
-            <label for="lastname">Keresztnév:</label><br>
-            <input type="text" name="firstname"><br><br>
-            <label for="username">Felhasználónév:</label><br>
-            <input type="text" name="username"><br><br>
-            <label for="password">Jelszó:</label><br>
-            <input type="password" name="password1"><br><br>
-            <label for="password">Jelszó újra:</label><br>
-            <input type="password" name="password2"><br><br>
-            <input type="submit" name="reg-btn" value="Regisztráció!">
-        </form>
-        <label>Már van fiókod? <a href="login.php">Jelentkezz be!</a></label>
-    <script src="assets/js/script.js"></script>
-   </body>
-</html>

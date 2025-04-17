@@ -8,11 +8,14 @@ USE NoteShare;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    lastname VARCHAR(100),
+    firstname VARCHAR(100),
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(100),
+    security_question VARCHAR(255) NOT NULL,
+    security_answer VARCHAR(255) NOT NULL
     admin TINYINT(1) DEFAULT 0,
-    teacher TINYINT(1) DEFAULT 0
+    teacher TINYINT(1) DEFAULT 0,
 );
 
 CREATE TABLE IF NOT EXISTS files (
