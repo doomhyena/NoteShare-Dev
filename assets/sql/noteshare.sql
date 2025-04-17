@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     security_question VARCHAR(255) NOT NULL,
-    security_answer VARCHAR(255) NOT NULL
+    security_answer VARCHAR(255) NOT NULL,
     admin TINYINT(1) DEFAULT 0,
-    teacher TINYINT(1) DEFAULT 0,
+    teacher TINYINT(1) DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS files (
@@ -29,7 +29,18 @@ CREATE TABLE IF NOT EXISTS files (
 
 CREATE TABLE IF NOT EXISTS classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_by INT,
+    FOREIGN KEY (created_by) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS class_members (
+    class_id INT,
+    member_id INT,
+    PRIMARY KEY (class_id, member_id),
+    FOREIGN KEY (class_id) REFERENCES classes(id),
+    FOREIGN KEY (member_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS class_students (
