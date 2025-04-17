@@ -1,7 +1,8 @@
 -- Created by: Csontos Kincső 13/A
 -- Létrehozva: 2025. április 16., szerda, 19:26:44
--- Description: SQL script to create the database and tables for the NoteShare application.
--- This script creates the database and tables for the NoteShare application, including users, files, classes, schedules, assignments, and grades.
+-- Leírás: SQL-szkript a NoteShare alkalmazás adatbázisának és tábláinak létrehozásához.
+--Ez a parancsfájl létrehozza a NoteShare alkalmazás adatbázisát és tábláit, beleértve a felhasználókat, fájlokat, osztályokat, ütemezéseket, feladatokat és osztályzatokat.
+
 CREATE DATABASE IF NOT EXISTS NoteShare;
 USE NoteShare;
 
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS assignments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
     title VARCHAR(255),
+    grade VARCHAR(10),
     description TEXT,
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
