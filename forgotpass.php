@@ -64,6 +64,6 @@
                 echo '    <input type="submit" name="forg-btn" value="Elküldés">';
                 echo '</form>';
             }
-            ?>
+        ?>
    </body>
 </html>

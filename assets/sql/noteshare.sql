@@ -1,7 +1,6 @@
 -- Created by: Csontos Kincső 13/A
 -- Létrehozva: 2025. április 16., szerda, 19:26:44
 -- Leírás: SQL-szkript a NoteShare alkalmazás adatbázisának és tábláinak létrehozásához.
---Ez a parancsfájl létrehozza a NoteShare alkalmazás adatbázisát és tábláit, beleértve a felhasználókat, fájlokat, osztályokat, ütemezéseket, feladatokat és osztályzatokat.
 
 CREATE DATABASE IF NOT EXISTS NoteShare;
 USE NoteShare;
