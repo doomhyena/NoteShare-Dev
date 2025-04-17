@@ -27,7 +27,7 @@ CREATE TABLE files (
     tn_name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS classes (
+CREATE TABLE classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS classes (
     FOREIGN KEY (created_by) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS class_members (
+CREATE TABLE class_members (
     class_id INT,
     member_id INT,
     PRIMARY KEY (class_id, member_id),
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS class_members (
     FOREIGN KEY (member_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS class_students (
+CREATE TABLE class_students (
     class_id INT,
     student_id INT,
     PRIMARY KEY (class_id, student_id),
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS class_students (
     FOREIGN KEY (student_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS schedules (
+CREATE TABLE schedules (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
     day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS schedules (
     FOREIGN KEY (teacher_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS assignments (
+CREATE TABLE assignments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
     title VARCHAR(255),
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS assignments (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
-CREATE TABLE IF NOT EXISTS grades (
+CREATE TABLE grades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT,
     grade VARCHAR(10),

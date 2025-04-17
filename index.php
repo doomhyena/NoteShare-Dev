@@ -49,7 +49,7 @@
             echo "<h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>";
             echo "<h3>Feltöltött fájlok:</h3>";
 
-            $sql = "SELECT * FROM files WHERE userid='$user[id]' ORDER BY id DESC";
+            $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -60,7 +60,7 @@
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
                     echo "<p>" . $file['description'] . "</p>"; 
-                    echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
+                    echo "<iframe src='users/".$user['username']."/".$file['name']."'></iframe>";
                     echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
                     if ($user['admin'] == 1) {
