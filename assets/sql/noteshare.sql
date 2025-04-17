@@ -22,6 +22,7 @@ CREATE TABLE files (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uploaded_by INT,
     name VARCHAR(255) NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
     description TEXT,
     file_path VARCHAR(255) NOT NULL,
     tn_name VARCHAR(255)
@@ -83,7 +84,7 @@ CREATE TABLE grades (
     FOREIGN KEY (entered_by) REFERENCES users(id)
 );
 
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `description`, `file_path`, `tn_name`) VALUES
+INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
 (1, 2, 'C Jegyzetek', 'CNotesForProfessionals.pdf', 'C Jegyzetek', 'C:xampp	mpphpAD22.tmp'),
 (2, 1, 'CSS jegyzetek', 'CSSNotesForProfessionals.pdf', 'CSS jegyzetek', 'C:xampp	mpphp925D.tmp');
 
