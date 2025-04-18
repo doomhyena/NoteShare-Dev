@@ -77,7 +77,6 @@ NoteShare/
 │   │   └── script.js
 │   ├── sql/
 │   │   └── noteshare.sql
-│   └── users/
 ├── roles/
 │   ├── admin/
 │   │   └── admin.php
@@ -87,14 +86,16 @@ NoteShare/
 │   │   │   └── script.js
 │   │   └── css/
 │   │       └── styles.cs
-│   └── users/
-├── index.php
-├── myprofile.php
-├── upload.php
-├── reg.php
-├── login.php
+├── users/
 ├── forgotpass.php
-└──
+├── index.php
+├── login.php
+├── notify.php
+├── profile.php
+├── README.md
+├── reg.php
+├── search.php
+└── upload.php
 ```
 
 ---
