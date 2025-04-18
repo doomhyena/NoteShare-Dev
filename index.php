@@ -95,16 +95,29 @@
                         echo "<button type='submit'>Törlés</button>";
                         echo "</form>";
                     }
+                    		
+                    echo "<form method='post' action='index.php?posztid=$poszt[id]&iro=$poszt[userid]'>";
+                    echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
+                    echo "<input type='submit' name='comment-btn'>";
+                    echo "</form>";
+                    $lekerdezes = "SELECT * FROM kommentek WHERE postid=$poszt[id]";
+                    $talalt_kommentek = $conn->query($lekerdezes);
+            
+                    if(mysqli_num_rows($talalt_kommentek) > 0){
+                        echo '<p>';
+                        while($komment=$talalt_kommentek->fetch_assoc()){
                     
-                    echo "</div>";
-                } else {
-                    echo "<p>Nem található a fájl!</p>";
-                }
-                   echo "</div>";
-               }
-            } else {
+                            $lekerdezes = "SELECT * FROM users WHERE id=$komment[userid]";
+                            $talalt_kommentelo = $conn->query($lekerdezes);
+                            $kommentelo = $talalt_kommentelo->fetch_assoc();
+                            
+                            echo $kommentelo['username'].": ".$komment['text']."<br>";
+                        }
+                    } else {
+                        echo "<p>Nem található a fájl!</p>";
+                    } else {
                 echo "<p>Nincsenek feltöltött fájlok.</p>";
-           }
+            }
         ?>
     </div>
     <script src="assets/js/script.js"></script>
