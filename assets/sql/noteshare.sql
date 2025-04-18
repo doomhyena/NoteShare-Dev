@@ -18,6 +18,21 @@ CREATE TABLE users (
     teacher TINYINT(1) DEFAULT 0
 );
 
+CREATE TABLE comments (
+  id int AUTO_INCREMENT PRIMARY KEY,,
+  userid int(11) NOT NULL,
+  postid int(11) NOT NULL,
+  text varchar(1000) NOT NULL
+); 
+
+CREATE TABLE notifys (
+  id int AUTO_INCREMENT PRIMARY KEY,,
+  ertesitoid int(11) NOT NULL,
+  ertesitettid int(11) NOT NULL,
+  tipus varchar(100) NOT NULL,
+  olvasot varchar(100) NOT NULL
+)
+
 CREATE TABLE files (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uploaded_by INT,
