@@ -38,10 +38,9 @@
         }
 	}
 
-    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
-    $notify_number = mysqli_num_rows($founded_notify);  
-
+    $notify_number = mysqli_num_rows($founded_notify); 
 ?>
 <!DOCTYPE html>
 <html lang="hu">

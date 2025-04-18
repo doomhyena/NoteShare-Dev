@@ -6,10 +6,13 @@
     if(!isset($_COOKIE['id'])){
         header("Location: ../../index.php");
     }
-
-    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
+    $found_user = $conn->query($sql);
+    $user = $found_user->fetch_assoc();
+    
+    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
-    $notify_number = mysqli_num_rows($founded_notify);  
+    $notify_number = mysqli_num_rows($founded_notify);
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +41,7 @@
                 $user = $found_user->fetch_assoc();
 
                 if ($user['admin'] == 1) {
-                    echo "<li><a href='../../notify.php'>Értesítések ($ertesitesek_szama)</a>/li>";
+                    echo "<li><a href='../../notify.php'>Értesítések ($ertesitesek_szama)</a></li>";
                     echo '<li><a href="../admin/admin.php">Admin</a></li>';
                 }
                 if ($user['teacher'] == 1) {
