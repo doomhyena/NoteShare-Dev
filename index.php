@@ -9,7 +9,7 @@
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
 
-    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $sql = "SELECT * FROM notifys WHERE toid = $id AND readed = 0";
     $founded_notify = $conn->query($sql);
     $notify_number = mysqli_num_rows($founded_notify);
 
@@ -102,15 +102,16 @@
                     echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                     echo "<input type='submit' name='comment-btn'>";
                     echo "</form>";
+                    
                     $sql = "SELECT * FROM comments WHERE postid=$post[id]";
-                    $foundend_comments = $conn->query($lekerdezes);
+                    $foundend_comments = $conn->query($sql);
             
                     if(mysqli_num_rows($foundend_comments) > 0){
                         echo '<p>';
                         while($comment=$foundend_comments->fetch_assoc()){
                     
-                            $lekerdezes = "SELECT * FROM users WHERE id=($comment[userid]";
-                            $founded_commenter = $conn->query($lekerdezes);
+                            $sql = "SELECT * FROM users WHERE id=($comment[userid]";
+                            $founded_commenter = $conn->query($sql);
                             $commenter = $founded_commenter->fetch_assoc();
                             
                             echo $commenter['username'].": ".$comment['text']."<br>";
