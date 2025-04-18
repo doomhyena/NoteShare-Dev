@@ -55,18 +55,21 @@ CREATE TABLE files (
     tn_name VARCHAR(255)
 );
 
-CREATE TABLE users (
+CREATE TABLE grades (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    lastname VARCHAR(100),
-    firstname VARCHAR(100),
-    username VARCHAR(50) NOT NULL UNIQUE,
-    profile_picture VARCHAR(255),
-    password VARCHAR(255) NOT NULL,
-    security_question VARCHAR(255) NOT NULL,
-    security_answer VARCHAR(255) NOT NULL,
-    admin TINYINT(1) DEFAULT 0,
-    teacher TINYINT(1) DEFAULT 0
+    student_id INT,
+    grade VARCHAR(10),
+    subject VARCHAR(255) NOT NULL,
+    entered_by INT,
+    FOREIGN KEY (student_id) REFERENCES users(id),
+    FOREIGN KEY (entered_by) REFERENCES users(id)
 );
+
+CREATE TABLE namedays (
+  id int(11) NOT NULL,
+  datum varchar(5) DEFAULT NULL,
+  nevek varchar(255) DEFAULT NULL
+):
 
 CREATE TABLE notifys (
   id int AUTO_INCREMENT PRIMARY KEY,
@@ -89,22 +92,17 @@ CREATE TABLE schedules (
     FOREIGN KEY (teacher_id) REFERENCES users(id)
 );
 
-CREATE TABLE `namedays` (
-  `id` int(11) NOT NULL,
-  `datum` varchar(5) DEFAULT NULL,
-  `nevek` varchar(255) DEFAULT NULL
-):
-
-
-
-CREATE TABLE grades (
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    grade VARCHAR(10),
-    subject VARCHAR(255) NOT NULL,
-    entered_by INT,
-    FOREIGN KEY (student_id) REFERENCES users(id),
-    FOREIGN KEY (entered_by) REFERENCES users(id)
+    lastname VARCHAR(100),
+    firstname VARCHAR(100),
+    username VARCHAR(50) NOT NULL UNIQUE,
+    profile_picture VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    security_question VARCHAR(255) NOT NULL,
+    security_answer VARCHAR(255) NOT NULL,
+    admin TINYINT(1) DEFAULT 0,
+    teacher TINYINT(1) DEFAULT 0
 );
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`, `teacher`, `admin`) VALUES

@@ -37,23 +37,92 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 
 ---
 
+Kiegészítettem a README-ben az "Adatbázis Struktúra" szekciót az adatbázisban szereplő összes táblával, részletes mezőleírásokkal. Itt a frissített rész:
+
+---
+
 ## Adatbázis Struktúra
 
 ### Táblák
+
 1. **users**
-    - `id` (int, elsődleges kulcs, automatikus növekedés)
-    - `lastname` (varchar)
-    - `firstname` (varchar)
-    - `username` (varchar, egyedi)
-    - `profile_picture` (varchar)
-    - `password` (varchar)
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `lastname` (VARCHAR(100))
+   - `firstname` (VARCHAR(100))
+   - `username` (VARCHAR(50), UNIQUE)
+   - `profile_picture` (VARCHAR(255))
+   - `password` (VARCHAR(255))
+   - `security_question` (VARCHAR(255))
+   - `security_answer` (VARCHAR(255))
+   - `admin` (TINYINT(1), alapértelmezetten 0)
+   - `teacher` (TINYINT(1), alapértelmezetten 0)
 
 2. **files**
-    - `id` (int, elsődleges kulcs, automatikus növekedés)
-    - `userid` (int, idegen kulcs, hivatkozás a `users.id`-re)
-    - `name` (varchar)
-    - `file_name` (varchar)
-    - `tn_name` (varchar)
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `uploaded_by` (INT, FK → users.id)
+   - `name` (VARCHAR(255))
+   - `file_name` (VARCHAR(255))
+   - `description` (TEXT)
+   - `file_path` (VARCHAR(255))
+   - `tn_name` (VARCHAR(255))
+
+3. **classes**
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `name` (VARCHAR(100), NOT NULL)
+   - `created_at` (DATETIME, DEFAULT CURRENT_TIMESTAMP)
+   - `created_by` (INT, FK → users.id)
+
+4. **class_members**
+   - `class_id` (INT, FK → classes.id)
+   - `member_id` (INT, FK → users.id)
+   - **Elsődleges kulcs**: (`class_id`, `member_id`)
+
+5. **class_students**
+   - `class_id` (INT, FK → classes.id)
+   - `student_id` (INT, FK → users.id)
+   - **Elsődleges kulcs**: (`class_id`, `student_id`)
+
+6. **assignments**
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `class_id` (INT, FK → classes.id)
+   - `title` (VARCHAR(255))
+   - `grade` (VARCHAR(10))
+   - `description` (TEXT)
+
+7. **grades**
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `student_id` (INT, FK → users.id)
+   - `grade` (VARCHAR(10))
+   - `subject` (VARCHAR(255))
+   - `entered_by` (INT, FK → users.id)
+
+8. **schedules**
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `class_id` (INT, FK → classes.id)
+   - `day_of_week` (ENUM)
+   - `start_time` (TIME)
+   - `end_time` (TIME)
+   - `subject` (VARCHAR(255))
+   - `teacher_id` (INT, FK → users.id)
+   - `details` (TEXT)
+
+9. **comments**
+   - `id` (INT, PK, AUTO_INCREMENT)
+   - `userid` (INT, FK → users.id)
+   - `postid` (INT)
+   - `text` (VARCHAR(1000))
+
+10. **notifys**
+    - `id` (INT, PK, AUTO_INCREMENT)
+    - `fromid` (INT, FK → users.id)
+    - `toid` (INT, FK → users.id)
+    - `notifytype` (VARCHAR(100))
+    - `readed` (TINYINT(1), DEFAULT 0)
+
+11. **namedays**
+    - `id` (INT)
+    - `datum` (VARCHAR(5)) – például "04-18"
+    - `nevek` (VARCHAR(255)) – névnaposok nevei
 
 ---
 
