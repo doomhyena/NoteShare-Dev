@@ -3,7 +3,7 @@
     require  dirname(__FILE__)."/assets/php/cfg.php";
 
     if(!isset($_COOKIE['id'])){
-        header("Location: ".dirname(__FILE__)."/index.php");
+        header("Location: index.php");
     }
 
 	$userid = $_COOKIE['id'];

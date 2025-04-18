@@ -125,7 +125,7 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 
 ## Fájlstruktúra
 ```
-NoteShare/
+NoteShare-Dev/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
