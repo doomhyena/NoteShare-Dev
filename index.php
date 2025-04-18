@@ -47,6 +47,7 @@
         <?php
             echo "<h1>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h1>";
             echo "<h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>";
+            
             echo "<h3>Feltöltött fájlok:</h3>";
 
             $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
