@@ -5,42 +5,13 @@
 CREATE DATABASE NoteShare;
 USE NoteShare;
 
-CREATE TABLE users (
+CREATE TABLE assignments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    lastname VARCHAR(100),
-    firstname VARCHAR(100),
-    username VARCHAR(50) NOT NULL UNIQUE,
-    profile_picture VARCHAR(255),
-    password VARCHAR(255) NOT NULL,
-    security_question VARCHAR(255) NOT NULL,
-    security_answer VARCHAR(255) NOT NULL,
-    admin TINYINT(1) DEFAULT 0,
-    teacher TINYINT(1) DEFAULT 0
-);
-
-CREATE TABLE comments (
-  id int AUTO_INCREMENT PRIMARY KEY,
-  userid int NOT NULL,
-  postid int NOT NULL,
-  text varchar(1000) NOT NULL
-); 
-
-CREATE TABLE notifys (
-  id int AUTO_INCREMENT PRIMARY KEY,
-  fromid int NOT NULL,
-  toid int NOT NULL,
-  notifytype varchar(100) NOT NULL,
-  readed TINYINT(1) DEFAULT 0
-);
-
-CREATE TABLE files (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    uploaded_by INT,
-    name VARCHAR(255) NOT NULL,
-    file_name VARCHAR(255) NOT NULL,
+    class_id INT,
+    title VARCHAR(255),
+    grade VARCHAR(10),
     description TEXT,
-    file_path VARCHAR(255) NOT NULL,
-    tn_name VARCHAR(255)
+    FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
 CREATE TABLE classes (
@@ -67,6 +38,44 @@ CREATE TABLE class_students (
     FOREIGN KEY (student_id) REFERENCES users(id)
 );
 
+CREATE TABLE comments (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  userid int NOT NULL,
+  postid int NOT NULL,
+  text varchar(1000) NOT NULL
+); 
+
+CREATE TABLE files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    uploaded_by INT,
+    name VARCHAR(255) NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    file_path VARCHAR(255) NOT NULL,
+    tn_name VARCHAR(255)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lastname VARCHAR(100),
+    firstname VARCHAR(100),
+    username VARCHAR(50) NOT NULL UNIQUE,
+    profile_picture VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    security_question VARCHAR(255) NOT NULL,
+    security_answer VARCHAR(255) NOT NULL,
+    admin TINYINT(1) DEFAULT 0,
+    teacher TINYINT(1) DEFAULT 0
+);
+
+CREATE TABLE notifys (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  fromid int NOT NULL,
+  toid int NOT NULL,
+  notifytype varchar(100) NOT NULL,
+  readed TINYINT(1) DEFAULT 0
+);
+
 CREATE TABLE schedules (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class_id INT,
@@ -86,14 +95,7 @@ CREATE TABLE `namedays` (
   `nevek` varchar(255) DEFAULT NULL
 ):
 
-CREATE TABLE assignments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    class_id INT,
-    title VARCHAR(255),
-    grade VARCHAR(10),
-    description TEXT,
-    FOREIGN KEY (class_id) REFERENCES classes(id)
-);
+
 
 CREATE TABLE grades (
     id INT AUTO_INCREMENT PRIMARY KEY,

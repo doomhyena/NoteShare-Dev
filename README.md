@@ -79,13 +79,23 @@ NoteShare/
 │   │   └── noteshare.sql
 ├── roles/
 │   ├── admin/
-│   │   └── admin.php
-│   ├── teacher/
-│   │   ├── teacher.php
 │   │   ├── js/
 │   │   │   └── script.js
-│   │   └── css/
-│   │       └── styles.cs
+│   │   ├── css/
+│   │   │   └── styles.cs
+│   │   └── admin.php
+│   ├── students/
+│   │   ├── js/
+│   │   │   └── script.js
+│   │   ├── css/
+│   │   │   └── styles.cs
+│   │   └── students.php
+│   ├── teacher/
+│   │   ├── js/
+│   │   │   └── script.js
+│   │   ├── css/
+│   │   │   └── styles.cs
+│   │   └── teacher.php
 ├── users/
 ├── forgotpass.php
 ├── index.php
