@@ -52,7 +52,7 @@
 
         if(isset($_POST['del-notifs-btn'])){
             
-            $conn->query("DELETE FROM notifys WHERE ertesitettid=$id");
+            $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
             
         }
         
@@ -60,25 +60,25 @@
         echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
         echo "</form>";
         
-        $sql = "SELECT * FROM notifys WHERE toid=$id ORDER BY id DESC";
-        $talalt_ertesitesek = $conn->query($s);
-        while($ertesites=$talalt_ertesitesek->fetch_assoc()){
+        $sql = "SELECT * FROM notifys WHERE toid = $user[id] ORDER BY id DESC";
+        $founded_notifys = $conn->query($sql);
+        while($ertesites=$founded_notifys->fetch_assoc()){
             
-            $kitol = $ertesites['d'];
+            $from = $ertesites['fromid'];  
             
-            $lekerdezes = "SELECT * FROM users WHERE id=$kitol";
-            $talalt_ertesito = $conn->query($lekerdezes);
-            $ertesito = $talalt_ertesito->fetch_assoc();
+            $sql = "SELECT * FROM users WHERE id=$from";
+            $founded_notifyer = $conn->query($sql);
+            $notifyer = $founded_notifyer->fetch_assoc();
             
             if($ertesites['notifytype'] == "friend"){
                 
                 if($ertesites['readed'] == 0){
                     
-                    echo "<p><b>$ertesito[username]</b> barátnak jelölt!</p>";
+                    echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
                     
                 } else {
                     
-                    echo "<p><b>$ertesito[username]</b> barátnak jelölt!</p>";
+                    echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
                     
                 }
                 
@@ -86,11 +86,11 @@
                 
                 if($ertesites['readed'] == 0){
                     
-                    echo "<p><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
+                    echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
                     
                 } else {
                     
-                    echo "<p><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
+                    echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
                     
                 }
                 
@@ -98,7 +98,7 @@
             
         }
         
-        $conn->query("UPDATE ertesitesek SET olvasott = 1 WHERE ertesitettid = $id");
+        $conn->query("UPDATE ertesitesek SET olvasott = 1 WHERE ertesitettid = $user[id]");
         
     ?>
    </body>
