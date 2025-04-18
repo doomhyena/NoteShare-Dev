@@ -82,7 +82,6 @@
                     echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
                     
                 }
-                
             } else if($ertesites['notifytype'] == 'comment'){
                 
                 if($ertesites['readed'] == 0){
@@ -92,11 +91,8 @@
                 } else {
                     
                     echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
-                    
                 }
-                
             }
-            
         }
         
         $conn->query("UPDATE ertesitesek SET olvasott = 1 WHERE ertesitettid = $user[id]");
