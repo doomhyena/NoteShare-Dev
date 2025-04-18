@@ -106,11 +106,10 @@ CREATE TABLE users (
 );
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`, `teacher`, `admin`) VALUES
-(2, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', 0, 1),
+(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', 0, 1),
 
 INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
-(1, 2, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', '', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`):
-
+(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek haladóknak', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);
 
 INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (1, '01-01', 'Fruzsina'),
