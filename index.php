@@ -9,7 +9,7 @@
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
 
-    $sql = "SELECT * FROM notifys WHERE toid = $id AND readed = 0";
+    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
     $notify_number = mysqli_num_rows($founded_notify);
 
@@ -98,7 +98,7 @@
                         echo "<p>Nem található a fájl!</p>";
                     } 
 
-                    echo "<form method='post' action='index.php?post=$post[id]&uploader=$post[userid]'>";
+                    echo "<form method='post' action='index.php?post=$postid[id]&uploader=$postid[userid]'>";
                     echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                     echo "<input type='submit' name='comment-btn'>";
                     echo "</form>";
