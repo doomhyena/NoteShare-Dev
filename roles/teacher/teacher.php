@@ -4,7 +4,7 @@
     session_start();
 
     if(!isset($_COOKIE['id'])){
-        header("Location: ../../index.php");
+        header("Location:"-dirname(__FILE__)."/index.php");
     }
 
     $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
@@ -88,13 +88,13 @@
                 $user = $found_user->fetch_assoc();
 
                 if ($user['admin'] == 1) {
-                    echo '<li><a href="../admin/admin.php">Admin</a></li>';
+                    echo '<li><a href="/roles/admin/admin.php">Admin</a></li>';
                 }
                 if ($user['teacher'] == 1) {
-                    echo '<li><a href="teacher/teacher.php">Tanári felület</a></li>';
+                    echo '<li><a href="/roles/teacher/teacher.php">Tanári felület</a></li>';
                 }
             ?>
-            <li><a href="../../assets/php/logout.php">Kijelentkezés</a></li> 
+            <li><a href="assets/php/logout.php">Kijelentkezés</a></li> 
         </ul>
     </nav>
     <div>
@@ -185,9 +185,13 @@
         <section>
             <h2>Hasznos linkek</h2>
             <ul>
-            <li><a href="/resources/teaching_materials.php">Tanári anyagok</a></li>
-            <li><a href="/resources/teaching_guidelines.php">Tanítási irányelvek</a></li>
-            <li><a href="/resources/student_resources.php">Diákoknak szóló anyagok</a></li>
+                <?php
+                
+                    echo '<li><a href="'.dirname(__FILE__).'/resources/teaching_materials.php">Tanári anyagok</a></li>';
+                    echo '<li><a href="'.dirname(__FILE__).'/resources/teaching_guidelines.php">Tanítási irányelvek</a></li>';
+                    echo '<li><a href="'.dirname(__FILE__).'/resources/student_resources.php">Diákoknak szóló anyagok</a></li>';
+                
+                ?>
             </ul>
         </section>
     </div>
