@@ -7,4 +7,3 @@ document.getElementById("search-box").addEventListener('keyup', (e) => {
     $("#curriculum").load("/NoteShare/assets/php/findcurriculum.php?keresett="+ertek);
         
 });
-
