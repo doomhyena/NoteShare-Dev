@@ -9,7 +9,6 @@
     $sql = "SELECT * FROM users WHERE id='" .$_GET['id'] . "'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
-
     $folder = getcwd();
     $target_dir = $folder."users\\".$user['username']."\\";
     $file_name = isset($_FILES['profile_picture']['name']) ? $_FILES['profile_picture']['name'] : '';
@@ -97,7 +96,7 @@
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
 
-            $sql = "SELECT * FROM files WHERE uploaded_by='$userid' ORDER BY id DESC";
+            $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -107,8 +106,16 @@
                     $folder = getcwd();
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='roles/users/".$user['username']."/".$file['name']."'></iframe>";
-                    echo "<a href='assets/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<p>" . $file['description'] . "</p>"; 
+                    echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
+                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
+                    if ($user['admin'] == 1) {
+                        echo "<form method='POST' action='assets/php/delete.php'>";
+                        echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
+                        echo "<button type='submit'>Törlés</button>";
+                        echo "</form>";
+                    }
                     echo "</div>";
                 } else {
                     echo "<p>Nem található a fájl!</p>";
@@ -119,7 +126,5 @@
                 echo "<p>Nincsenek feltöltött fájlok.</p>";
            }
         ?>
-    
-    ?>
    </body>
 </html>
