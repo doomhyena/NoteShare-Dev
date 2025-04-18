@@ -25,7 +25,7 @@
         <ul>
             <li><a href="../../index.php">Főoldal</a></li> 
             <li><a href="../../upload.php">Feltöltés</a></li> 
-            <li><a href="../../myprofile.php">Profilom</a></li> 
+            <li><a href="../../profile.php">Profilom</a></li> 
             <li><a href="../../search.php">Keresés</a></li>
             <?php
 

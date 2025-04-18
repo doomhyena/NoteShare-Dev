@@ -58,7 +58,7 @@
         <ul>
             <li><a href="index.php">Főoldal</a></li>
 			<li><a href="upload.php">Feltöltés</a></li>
-            <li><a href="myprofile.php">Profilom</a></li>
+            <li><a href="profile.php">Profilom</a></li>
             <li><a href="search.php">Keresés</a></li>
             <?php
                 if ($user['admin'] == 1) {
@@ -84,6 +84,14 @@
                 echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
             } else {
                 echo "<p>Nincs profilkép feltöltve.</p>";
+            }
+
+            if($_GET['id'] == $_COOKIE['id']) {
+                echo "<form method='POST' enctype='multipart/form-data'>
+                    <label for='profile_picture'>Profilkép feltöltése:</label>
+                    <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
+                    <input type='submit' name='pfp-btn' value='Feltöltés!'>
+                    </form>";
             }
             
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
