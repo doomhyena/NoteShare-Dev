@@ -1,5 +1,19 @@
+<?php
+    require "assets/php/cfg.php";
+    
+    if(!isset($_COOKIE['id'])){
+        header("Location: index.php");
+    }
+    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
+    $found_user = $conn->query($sql);
+    $user = $found_user->fetch_assoc();
+    
+    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $founded_notify = $conn->query($sql);
+    $notify_number = mysqli_num_rows($founded_notify);  
+?>
 <!DOCTYPE html>
-<html>
+<html lang="hu">
    <head>
        <title>Értesítések</title>
        <meta charset='UTF-8'>

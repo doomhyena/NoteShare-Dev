@@ -6,6 +6,11 @@
     if(!isset($_COOKIE['id'])){
         header("Location: ../../index.php");
     }
+
+    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $founded_notify = $conn->query($sql);
+    $notify_number = mysqli_num_rows($founded_notify);  
+
     if (isset($_POST['create_class'])) {
         $class_name = $_POST['class_name'];
         $conn->query("INSERT INTO classes (name) VALUES ('$class_name')");
@@ -77,6 +82,7 @@
             <li><a href="../../profile.php">Profilom</a></li> 
             <li><a href="../../search.php">Keresés</a></li>
             <?php
+                echo "<li><a href='../../notify.php'>Értesítések ($ertesitesek_szama)</a>/li>";
                 $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
                 $found_user = $conn->query($sql);
                 $user = $found_user->fetch_assoc();

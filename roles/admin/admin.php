@@ -57,6 +57,10 @@
             echo "<script>alert('Hiba: A felhasználónév mező üres.')</script>";
         }
     }
+
+    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $founded_notify = $conn->query($sql);
+    $notify_number = mysqli_num_rows($founded_notify);  
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -83,6 +87,7 @@
                 $user = $found_user->fetch_assoc();
 
                 if ($user['admin'] == 1) {
+                    echo "<li><a href='../../notify.php'>Értesítések ($notify_number)</a></li>";
                     echo '<li><a href="admin.php">Admin</a></li>';
                 }
                 if ($user['teacher'] == 1) {
