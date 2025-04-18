@@ -17,9 +17,9 @@
 		
 		$postid = $_GET['postid'];
 		$text = $_POST['comment-text'];
-		$conn->query("INSERT INTO comments VALUES(id, $id, $postid, '$text')");
+		$conn->query("INSERT INTO comments VALUES('$user[id]', $postid, '$text')");
 		$uploader = $_GET['uploader'];
-		$conn->query("INSERT INTO notifys VALUES(id, $id, $uploader, 'komment', 'nem')");
+		$conn->query("INSERT INTO notifys VALUES'$user[id]', $uploader, 'komment', 'nem')");
 		
 	}
 
@@ -44,7 +44,7 @@
             <li><a href="profile.php">Profilom</a></li>
             <li><a href="search.php">Keresés</a></li>
             <?php
-                echo "<li><a href='notify.php'>Értesítések ($ertesitesek_szama)</a>/li>";
+                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a>/li>";
                 if ($user['admin'] == 1) {
                     echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
                 }
