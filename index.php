@@ -9,6 +9,10 @@
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
 
+    $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
+    $founded_notify = $conn->query($sql);
+    $notify_number = mysqli_num_rows($founded_notify);  
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -30,6 +34,7 @@
             <li><a href="profile.php">Profilom</a></li>
             <li><a href="search.php">Keresés</a></li>
             <?php
+                echo "<li><a href='notify.php'>Értesítések ($ertesitesek_szama)</a>/li>";
                 if ($user['admin'] == 1) {
                     echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
                 }
