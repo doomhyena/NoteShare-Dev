@@ -3,8 +3,9 @@
     require  dirname(__FILE__)."/assets/php/cfg.php";
 	
     if(!isset($_COOKIE['id'])){
-        header("Location:"-dirname(__FILE__)."/index.php");
+        header("Location: ".dirname(__FILE__)."/index.php");
     }
+
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();

@@ -4,7 +4,7 @@
     session_start();
 
     if(!isset($_COOKIE['id'])){
-        header("Location:"-dirname(__FILE__)."/index.php");
+        header("Location: ".dirname(__FILE__)."/index.php");
     }
 
     $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
@@ -61,7 +61,7 @@
             echo "Órarend: " . $row['details'] . "<br>";
         }
     }    
-    
+
 ?>
 <!DOCTYPE html>
 <html>
