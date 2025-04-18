@@ -7,27 +7,7 @@
         header("Location: index.php");
     }
 
-    $userid = $_COOKIE['id'];
-    $sql = "SELECT * FROM users WHERE id='$userid'";
-    $found_user = $conn->query($sql);
-    $user = $found_user->fetch_assoc();
 
-    if (isset($_POST['pfp-btn'])) {
-        $folder = getcwd();
-        $target_dir = $folder."users\\".$user['username']."\\";
-        $file_name = $_FILES['profile_picture']['name'];
-        $tmp_name = $_FILES['profile_picture']['tmp_name'];
-        $target_file = $target_dir . $file_name;
-
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true); 
-        }
-        if (move_uploaded_file($tmp_name, $target_file)) {
-            $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
-        } else {
-            echo "<p>Hiba történt a fájl feltöltésekor.</p>";
-        }
-    }
 
 ?>
 <!DOCTYPE html>
@@ -94,7 +74,7 @@
                     $folder = getcwd();
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
-                    echo "<iframe src='/users/".$user['username']."/".$file['file_name']."'></iframe>";
+                    echo "<iframe src='/users/".$user['username']."/".$file['name']."'></iframe>";
                     echo "<a href='assetsdownload.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<a href='delete.php?id=" . $file['id'] . "'>Törlés</a>";
                     echo "</div>";
