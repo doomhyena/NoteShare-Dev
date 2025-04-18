@@ -52,7 +52,7 @@
 
         if(isset($_POST['del-notifs-btn'])){
             
-            $conn->query("DELETE FROM ertesitesek WHERE ertesitettid=$id");
+            $conn->query("DELETE FROM notifys WHERE ertesitettid=$id");
             
         }
         
@@ -60,11 +60,11 @@
         echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
         echo "</form>";
         
-        $lekerdezes = "SELECT * FROM ertesitesek WHERE ertesitettid=$id ORDER BY id DESC";
-        $talalt_ertesitesek = $conn->query($lekerdezes);
+        $sql = "SELECT * FROM notifys WHERE toid=$id ORDER BY id DESC";
+        $talalt_ertesitesek = $conn->query($s);
         while($ertesites=$talalt_ertesitesek->fetch_assoc()){
             
-            $kitol = $ertesites['ertesitoid'];
+            $kitol = $ertesites['d'];
             
             $lekerdezes = "SELECT * FROM users WHERE id=$kitol";
             $talalt_ertesito = $conn->query($lekerdezes);
@@ -72,41 +72,25 @@
             
             if($ertesites['notifytype'] == "friend"){
                 
-                if($ertesites['olvasott'] == 0){
+                if($ertesites['readed'] == 0){
                     
-                    echo "<p style='color: red;'><b>$ertesito[username]</b> barátnak jelölt!</p>";
+                    echo "<p><b>$ertesito[username]</b> barátnak jelölt!</p>";
                     
                 } else {
                     
-                    echo "<p style='color: black;'><b>$ertesito[username]</b> bekövetett!</p>";
+                    echo "<p><b>$ertesito[username]</b> barátnak jelölt!</p>";
                     
                 }
                 
-            }
-            else if($ertesites['tipus'] == 'like'){
+            } else if($ertesites['notifytype'] == 'comment'){
                 
-                if($ertesites['olvasott'] == "nem"){
+                if($ertesites['readed'] == 0){
                     
-                    echo "<p style='color: red;'><b>$ertesito[username]</b> kedvelte egy posztodat!</p>";
+                    echo "<p><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
                     
-                }
-                else{
+                } else {
                     
-                    echo "<p style='color: black;'><b>$ertesito[username]</b> kedvelte egy posztodat!</p>";
-                    
-                }
-                
-            }
-            else if($ertesites['tipus'] == 'komment'){
-                
-                if($ertesites['olvasott'] == "nem"){
-                    
-                    echo "<p style='color: red;'><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
-                    
-                }
-                else{
-                    
-                    echo "<p style='color: black;'><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
+                    echo "<p><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
                     
                 }
                 
@@ -114,7 +98,7 @@
             
         }
         
-        $conn->query("UPDATE ertesitesek SET olvasott='igen' WHERE ertesitettid=$id");
+        $conn->query("UPDATE ertesitesek SET olvasott = 1 WHERE ertesitettid = $id");
         
     ?>
    </body>

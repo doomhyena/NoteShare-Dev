@@ -27,8 +27,8 @@ CREATE TABLE comments (
 
 CREATE TABLE notifys (
   id int AUTO_INCREMENT PRIMARY KEY,
-  toid int NOT NULL,
   fromid int NOT NULL,
+  toid int NOT NULL,
   notifytype varchar(100) NOT NULL,
   readed TINYINT(1) DEFAULT 0
 );
