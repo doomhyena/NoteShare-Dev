@@ -65,7 +65,7 @@
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
 
-            $sql = "SELECT * FROM files WHERE userid='$userid' ORDER BY id DESC";
+            $sql = "SELECT * FROM files WHERE uploaded_by='$userid' ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -76,7 +76,7 @@
                     echo "<div>";
                     echo "<h4>" .$file['name']. "</h4>";
                     echo "<iframe src='roles/users/".$user['username']."/".$file['file_name']."'></iframe>";
-                    echo "<a href='assetsdownload.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<a href='assets/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "</div>";
                 } else {
                     echo "<p>Nem található a fájl!</p>";

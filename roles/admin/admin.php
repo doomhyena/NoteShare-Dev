@@ -96,15 +96,18 @@
     <h1>Admin Panel</h1>
     <h2>Adminisztrátorok kezelése</h2>
     <?php
-        echo "<h3>Adminisztrátorok:</h3>";
+        echo "<section>";
+        echo "<h3>Adminisztrátorok listája:</h3>";
         $sql = "SELECT * FROM users WHERE admin = 1";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<p>" . $row['username'] . "</p>";
+                echo "</section>";
             }
         } else {
             echo "<p>Nincsenek adminisztrátorok.</p>";
+            echo "</section>";
         }
         if ($user['username'] == 'doomhyena') {
             

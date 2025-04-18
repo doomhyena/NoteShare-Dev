@@ -84,7 +84,7 @@
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
 
-            $sql = "SELECT * FROM files WHERE userid='$userid' ORDER BY id DESC";
+            $sql = "SELECT * FROM files WHERE uploaded_by='$userid' ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
