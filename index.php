@@ -46,8 +46,19 @@
     <div>
         <?php
             echo "<h1>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h1>";
-            echo "<h2>Itt megoszthatod és letöltheted az iskolai jegyzeteket.</h2>";
-            
+            $today = date("m.d");
+            $sql = "SELECT nevek FROM namedays WHERE datum='$today'";
+            $result = $conn->query($sql);
+            $nameday = "";
+        
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $nameday = $row['nevek'];
+            } else {
+                $nameday = "Nincs névnap ehhez a dátumhoz.";
+            }
+            echo "<p>Ma van a névnapja: " . $nameday . "</p>";
+            echo $today;
             echo "<h3>Feltöltött fájlok:</h3>";
 
             $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
