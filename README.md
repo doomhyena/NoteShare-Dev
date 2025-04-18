@@ -145,22 +145,10 @@ NoteShare/
 │   │   └── noteshare.sql
 ├── roles/
 │   ├── admin/
-│   │   ├── js/
-│   │   │   └── script.js
-│   │   ├── css/
-│   │   │   └── styles.cs
 │   │   └── admin.php
 │   ├── students/
-│   │   ├── js/
-│   │   │   └── script.js
-│   │   ├── css/
-│   │   │   └── styles.cs
 │   │   └── students.php
 │   ├── teacher/
-│   │   ├── js/
-│   │   │   └── script.js
-│   │   ├── css/
-│   │   │   └── styles.cs
 │   │   └── teacher.php
 ├── users/
 ├── forgotpass.php
