@@ -1,4 +1,4 @@
--- Created by: Csontos Kincső 13/A
+-- Készítette: Csontos Kincső 13/A
 -- Létrehozva: 2025. április 16., szerda, 19:26:44
 -- Leírás: SQL-szkript a NoteShare alkalmazás adatbázisának és tábláinak létrehozásához.
 

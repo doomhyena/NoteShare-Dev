@@ -55,7 +55,7 @@
                 $row = $result->fetch_assoc();
                 $nameday = $row['nevek'];
             } else {
-                $nameday = "Nincs névnap ehhez a dátumhoz.";
+                $nameday = "Nincs névnap ma.";
             }
             echo "<p>Mai névnap: " . $nameday . ", boldog névnapot kívánunk nekik!</p>";
             echo "<h3>Feltöltött fájlok:</h3>";
