@@ -46,7 +46,7 @@
     <div>
         <?php
             echo "<h1>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h1>";
-            $today = date("m.d");
+            $today = date("m-d");
             $sql = "SELECT nevek FROM namedays WHERE datum='$today'";
             $result = $conn->query($sql);
             $nameday = "";
@@ -57,8 +57,7 @@
             } else {
                 $nameday = "Nincs névnap ehhez a dátumhoz.";
             }
-            echo "<p>Ma van a névnapja: " . $nameday . "</p>";
-            echo $today;
+            echo "<p>Mai névnap: " . $nameday . ", boldog névnapot kívánunk nekik!</p>";
             echo "<h3>Feltöltött fájlok:</h3>";
 
             $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
