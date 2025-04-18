@@ -110,17 +110,18 @@
                         while($comment=$foundend_comments->fetch_assoc()){
                     
                             $lekerdezes = "SELECT * FROM users WHERE id=($comment[userid]";
-                            $talalt_kommentelo = $conn->query($lekerdezes);
-                            $kommentelo = $talalt_kommentelo->fetch_assoc();
+                            $founded_commenter = $conn->query($lekerdezes);
+                            $commenter = $founded_commenter->fetch_assoc();
                             
-                            echo $kommentelo['username'].": ".($comment'text']."<br>";
+                            echo $commenter['username'].": ".$comment['text']."<br>";
+                            }
                         }
                     }
-                }
-            }  
-        } else {
-            echo "<p>Nincs feltöltött fájl.</p>";
-        }
+                }  
+            } else {
+                echo "<p>Nincs feltöltött fájl.</p>";
+                echo "</div>";
+            }
         ?>
     </div>
     <script src="assets/js/script.js"></script>
