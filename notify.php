@@ -4,7 +4,7 @@
     session_start();
     
     if(!isset($_COOKIE['id'])){
-        header("Location: index.php");
+        header("Location:"-dirname(__FILE__)."/index.php");
     }
     
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
@@ -14,7 +14,7 @@
     $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
     $notify_number = mysqli_num_rows($founded_notify);
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">

@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_COOKIE['id'])) {
-        header('Location: reg.php');
+        header("Location:".dirname(__FILE__)."/reg.php");
     }
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
     $found_user = $conn->query($sql);

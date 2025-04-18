@@ -4,7 +4,7 @@
     session_start();
 
     if(!isset($_COOKIE['id'])){
-        header("Location: index.php");
+        header("Location:"-dirname(__FILE__)."/index.php");
     }
 
     $sql = "SELECT * FROM users WHERE id='" .$_GET['id'] . "'";
