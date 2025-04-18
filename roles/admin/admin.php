@@ -95,12 +95,40 @@
     </nav>
     <h1>Admin Panel</h1>
     <h2>Adminisztrátorok kezelése</h2>
-    <php>
-    <section>
-        <form method="post">
-            <label>Admin hozzáadása:</label><br>
-            <label for="username">Felhasználónév:</label><br>
-            <input type="text" id="username" name="username"><br><br>
+    <?php
+        echo "<h3>Adminisztrátorok:</h3>";
+        $sql = "SELECT * FROM users WHERE admin = 1";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<p>" . $row['username'] . "</p>";
+            }
+        } else {
+            echo "<p>Nincsenek adminisztrátorok.</p>";
+        }
+        if ($user['username'] == 'doomhyena') {
+            echo "<section>";
+            echo "<form method='post'>";
+            echo "<label>Admin hozzáadása:</label><br>";
+            echo "<label for='username'>Felhasználónév:</label><br>";
+            echo "<input type="text" id='username' name='username'><br><br>";
+            echo "";
+            echo "";
+            echo "";
+            echo "";
+            echo "";
+            echo "";
+
+        } else {
+            echo "<script>alert('Hiba: Nincs jogosultságod az adminisztrátorok kezelésére.')</script>";
+        }
+    
+    ?>
+    
+        
+            
+            
+            
             <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
         </form>
     </section>
