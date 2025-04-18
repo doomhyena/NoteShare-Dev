@@ -61,6 +61,7 @@
             echo "Órarend: " . $row['details'] . "<br>";
         }
     }    
+    
 ?>
 <!DOCTYPE html>
 <html>

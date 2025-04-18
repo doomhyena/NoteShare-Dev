@@ -204,8 +204,7 @@ NoteShare/
 ---
 
 ## Ismert Hibák
-1. **Fájlútvonal Kezelés**: A hardkódolt fájlútvonalak problémákat okozhatnak nem Windows rendszereken.
-2. **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
+**Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
 ---
 
 ## Jövőbeli Fejlesztések

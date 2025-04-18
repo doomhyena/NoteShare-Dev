@@ -12,7 +12,7 @@
    </head>
    <body>
         <?php 
-            require dirname(__FILE__)."assets/php/cfg.php";
+            require  dirname(__FILE__)."/assets/php/cfg.php";
 
             if (isset($_POST['forg-btn'])) {
                 $username = $_POST['username'];

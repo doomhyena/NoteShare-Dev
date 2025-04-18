@@ -1,5 +1,6 @@
 <?php
-    require dirname(__FILE__)."assets/php/cfg.php";
+
+    require  dirname(__FILE__)."/assets/php/cfg.php";
     session_start();
     
     if(!isset($_COOKIE['id'])){
@@ -13,6 +14,7 @@
     $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
     $notify_number = mysqli_num_rows($founded_notify);
+    
 ?>
 <!DOCTYPE html>
 <html lang="hu">
