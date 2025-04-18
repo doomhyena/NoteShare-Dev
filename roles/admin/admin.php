@@ -95,6 +95,7 @@
     </nav>
     <h1>Admin Panel</h1>
     <h2>Adminisztrátorok kezelése</h2>
+    <php>
     <section>
         <form method="post">
             <label>Admin hozzáadása:</label><br>
