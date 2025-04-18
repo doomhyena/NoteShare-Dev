@@ -94,30 +94,33 @@
                         echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
                         echo "<button type='submit'>Törlés</button>";
                         echo "</form>";
-                    }
-                    		
-                    echo "<form method='post' action='index.php?posztid=$poszt[id]&iro=$poszt[userid]'>";
+                    } else {
+                        echo "<p>Nem található a fájl!</p>";
+                    } 
+
+                    echo "<form method='post' action='index.php?post=$post[id]&uploader=$post[userid]'>";
                     echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                     echo "<input type='submit' name='comment-btn'>";
                     echo "</form>";
-                    $lekerdezes = "SELECT * FROM kommentek WHERE postid=$poszt[id]";
-                    $talalt_kommentek = $conn->query($lekerdezes);
+                    $sql = "SELECT * FROM comments WHERE postid=$post[id]";
+                    $foundend_comments = $conn->query($lekerdezes);
             
-                    if(mysqli_num_rows($talalt_kommentek) > 0){
+                    if(mysqli_num_rows($foundend_comments) > 0){
                         echo '<p>';
-                        while($komment=$talalt_kommentek->fetch_assoc()){
+                        while($comment=$foundend_comments->fetch_assoc()){
                     
-                            $lekerdezes = "SELECT * FROM users WHERE id=$komment[userid]";
+                            $lekerdezes = "SELECT * FROM users WHERE id=($comment[userid]";
                             $talalt_kommentelo = $conn->query($lekerdezes);
                             $kommentelo = $talalt_kommentelo->fetch_assoc();
                             
-                            echo $kommentelo['username'].": ".$komment['text']."<br>";
+                            echo $kommentelo['username'].": ".($comment'text']."<br>";
                         }
-                    } else {
-                        echo "<p>Nem található a fájl!</p>";
-                    } else {
-                echo "<p>Nincsenek feltöltött fájlok.</p>";
-            }
+                    }
+                }
+            }  
+        } else {
+            echo "<p>Nincs feltöltött fájl.</p>";
+        }
         ?>
     </div>
     <script src="assets/js/script.js"></script>
