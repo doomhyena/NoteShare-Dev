@@ -34,7 +34,7 @@
             <li><a href="profile.php">Profilom</a></li>
             <li><a href="search.php">Keresés</a></li>
             <?php
-                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a>/li>";
+                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                 if ($user['admin'] == 1) {
                     echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
                 }

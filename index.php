@@ -44,7 +44,7 @@
             <li><a href="profile.php">Profilom</a></li>
             <li><a href="search.php">Keresés</a></li>
             <?php
-                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a>/li>";
+                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                 if ($user['admin'] == 1) {
                     echo '<li><a href="roles/admin/admin.php">Admin</a></li>';
                 }
@@ -98,12 +98,12 @@
                         echo "<p>Nem található a fájl!</p>";
                     } 
 
-                    echo "<form method='post' action='index.php?post=$postid[id]&uploader=$postid[userid]'>";
+                    echo "<form method='post' action='index.php?post=$file[id]&uploader=$file[uploaded_by]'>";
                     echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                     echo "<input type='submit' name='comment-btn'>";
                     echo "</form>";
                     
-                    $sql = "SELECT * FROM comments WHERE postid=$post[id]";
+                    $sql = "SELECT * FROM comments WHERE postid=$file[id]";
                     $foundend_comments = $conn->query($sql);
             
                     if(mysqli_num_rows($foundend_comments) > 0){
