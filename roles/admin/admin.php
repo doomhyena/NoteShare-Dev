@@ -107,39 +107,31 @@
             echo "<p>Nincsenek adminisztrátorok.</p>";
         }
         if ($user['username'] == 'doomhyena') {
+            
             echo "<section>";
-            echo "<form method='post'>";
-            echo "<label>Admin hozzáadása:</label><br>";
-            echo "<label for='username'>Felhasználónév:</label><br>";
-            echo "<input type="text" id='username' name='username'><br><br>";
-            echo "";
-            echo "";
-            echo "";
-            echo "";
-            echo "";
-            echo "";
+            echo "  <h3>Adminisztrátorok hozzáadása:</h3>";
+            echo "  <form method='post'>";
+            echo "      <label>Admin hozzáadása:</label><br>";
+            echo "      <label for='username'>Felhasználónév:</label><br>";
+            echo "      <input type='text' id='username' name='username'><br><br>";
+            echo "      <input type='submit' name='addadmin-btn' value='Admin hozzáadása'>";
+            echo "  </form>";
+            echo "</section>";
+            echo "<section>";
+            echo "  <h3>Adminisztrátorok eltávolítása:</h3>";
+            echo "  <form method='post'>";
+            echo "      <label>Admin törlése:</label><br>";
+            echo "      <label for='username'>Felhasználónév:</label><br>";
+            echo "      <input type='text' id='username' name='username'><br><br>";
+            echo "      <input type='submit' name='removeadmin-btn' value='Admin törlése'>";
+            echo "  </form>";
+            echo "</section>";
 
         } else {
             echo "<script>alert('Hiba: Nincs jogosultságod az adminisztrátorok kezelésére.')</script>";
         }
     
     ?>
-    
-        
-            
-            
-            
-            <input type="submit" name="addadmin-btn" value="Admin hozzáadása">
-        </form>
-    </section>
-    <section>
-        <form method="post">
-            <label>Admin Törlése:</label><br>
-            <label for="username">Felhasználónév:</label><br>
-            <input type="text" id="username" name="username"><br><br>
-            <input type="submit" name="removeadmin-btn" value="Admin eltávolítása">
-        </form>
-    </section>
     <h2>Felhasználók kezelése</h2>
     <section>
         <form method="post">
