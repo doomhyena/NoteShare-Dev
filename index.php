@@ -19,7 +19,7 @@
 		$text = $_POST['comment-text'];
 		$conn->query("INSERT INTO comments VALUES('$user[id]', $postid, '$text')");
 		$uploader = $_GET['uploader'];
-		$conn->query("INSERT INTO notifys VALUES'$user[id]', $uploader, 'komment', 'nem')");
+		$conn->query("INSERT INTO notifys VALUES'$user[id]', $uploader, 'comment', 0)");
 		
 	}
 

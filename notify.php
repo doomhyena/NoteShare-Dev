@@ -1,5 +1,6 @@
 <?php
     require "assets/php/cfg.php";
+    session_start();
     
     if(!isset($_COOKIE['id'])){
         header("Location: index.php");
@@ -46,5 +47,75 @@
             <li><a href="logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
+    <?php
+        require "assets/php/cfg.php";
+
+        if(isset($_POST['del-notifs-btn'])){
+            
+            $conn->query("DELETE FROM ertesitesek WHERE ertesitettid=$id");
+            
+        }
+        
+        echo "<form method='post'>";
+        echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
+        echo "</form>";
+        
+        $lekerdezes = "SELECT * FROM ertesitesek WHERE ertesitettid=$id ORDER BY id DESC";
+        $talalt_ertesitesek = $conn->query($lekerdezes);
+        while($ertesites=$talalt_ertesitesek->fetch_assoc()){
+            
+            $kitol = $ertesites['ertesitoid'];
+            
+            $lekerdezes = "SELECT * FROM users WHERE id=$kitol";
+            $talalt_ertesito = $conn->query($lekerdezes);
+            $ertesito = $talalt_ertesito->fetch_assoc();
+            
+            if($ertesites['notifytype'] == "friend"){
+                
+                if($ertesites['olvasott'] == 0){
+                    
+                    echo "<p style='color: red;'><b>$ertesito[username]</b> barátnak jelölt!</p>";
+                    
+                } else {
+                    
+                    echo "<p style='color: black;'><b>$ertesito[username]</b> bekövetett!</p>";
+                    
+                }
+                
+            }
+            else if($ertesites['tipus'] == 'like'){
+                
+                if($ertesites['olvasott'] == "nem"){
+                    
+                    echo "<p style='color: red;'><b>$ertesito[username]</b> kedvelte egy posztodat!</p>";
+                    
+                }
+                else{
+                    
+                    echo "<p style='color: black;'><b>$ertesito[username]</b> kedvelte egy posztodat!</p>";
+                    
+                }
+                
+            }
+            else if($ertesites['tipus'] == 'komment'){
+                
+                if($ertesites['olvasott'] == "nem"){
+                    
+                    echo "<p style='color: red;'><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
+                    
+                }
+                else{
+                    
+                    echo "<p style='color: black;'><b>$ertesito[username]</b> hozzászólt egy posztodhoz!</p>";
+                    
+                }
+                
+            }
+            
+        }
+        
+        $conn->query("UPDATE ertesitesek SET olvasott='igen' WHERE ertesitettid=$id");
+        
+    ?>
    </body>
 </html>
