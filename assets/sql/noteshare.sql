@@ -20,15 +20,15 @@ CREATE TABLE users (
 
 CREATE TABLE comments (
   id int AUTO_INCREMENT PRIMARY KEY,
-  userid int(11) NOT NULL,
-  postid int(11) NOT NULL,
+  userid int NOT NULL,
+  postid int NOT NULL,
   text varchar(1000) NOT NULL
 ); 
 
 CREATE TABLE notifys (
   id int AUTO_INCREMENT PRIMARY KEY,
-  toid int(11) NOT NULL,
-  fromid int(11) NOT NULL,
+  toid int NOT NULL,
+  fromid int NOT NULL,
   notifytype varchar(100) NOT NULL,
   readed TINYINT(1) DEFAULT 0
 );

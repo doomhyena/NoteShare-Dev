@@ -11,7 +11,17 @@
 
     $sql = "SELECT * FROM notifys WHERE ertesitettid=$id AND olvasott='nem'";
     $founded_notify = $conn->query($sql);
-    $notify_number = mysqli_num_rows($founded_notify);  
+    $notify_number = mysqli_num_rows($founded_notify);
+
+	if(isset($_POST['comment-btn'])){
+		
+		$postid = $_GET['postid'];
+		$text = $_POST['comment-text'];
+		$conn->query("INSERT INTO comments VALUES(id, $id, $postid, '$text')");
+		$uploader = $_GET['uploader'];
+		$conn->query("INSERT INTO notifys VALUES(id, $id, $uploader, 'komment', 'nem')");
+		
+	}
 
 ?>
 <!DOCTYPE html>
@@ -85,6 +95,7 @@
                         echo "<button type='submit'>Törlés</button>";
                         echo "</form>";
                     }
+                    
                     echo "</div>";
                 } else {
                     echo "<p>Nem található a fájl!</p>";
