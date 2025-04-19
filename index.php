@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_COOKIE['id'])){
-        header("Location: index.php");
+        header("Location: reg.php");
     }
 
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
