@@ -5,39 +5,6 @@
 CREATE DATABASE NoteShare;
 USE NoteShare;
 
-CREATE TABLE assignments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    class_id INT,
-    title VARCHAR(255),
-    grade VARCHAR(10),
-    description TEXT,
-    FOREIGN KEY (class_id) REFERENCES classes(id)
-);
-
-CREATE TABLE classes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    created_by INT,
-    FOREIGN KEY (created_by) REFERENCES users(id)
-);
-
-CREATE TABLE class_members (
-    class_id INT,
-    member_id INT,
-    PRIMARY KEY (class_id, member_id),
-    FOREIGN KEY (class_id) REFERENCES classes(id),
-    FOREIGN KEY (member_id) REFERENCES users(id)
-);
-
-CREATE TABLE class_students (
-    class_id INT,
-    student_id INT,
-    PRIMARY KEY (class_id, student_id),
-    FOREIGN KEY (class_id) REFERENCES classes(id),
-    FOREIGN KEY (student_id) REFERENCES users(id)
-);
-
 CREATE TABLE comments (
   id int AUTO_INCREMENT PRIMARY KEY,
   userid int NOT NULL,

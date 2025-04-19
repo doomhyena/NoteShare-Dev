@@ -73,51 +73,51 @@
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-             while ($file = $result->fetch_assoc()) {
-                   echo "<div>";
-                   if(!empty($file)) {
-                    $folder = getcwd();
+                while ($file = $result->fetch_assoc()) {
                     echo "<div>";
-                    echo "<h4>" .$file['name']. "</h4>";
-                    echo "<p>" . $file['description'] . "</p>"; 
-                    echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
-                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
-                    if ($user['admin'] == 1) {
-                        echo "<form method='POST' action='assets/php/delete.php'>";
-                        echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
-                        echo "<button type='submit'>Törlés</button>";
-                        echo "</form>";
-                    } else {
-                        echo "<p>Nem található a fájl!</p>";
-                    } 
+                    if(!empty($file)) {
+                        $folder = getcwd();
+                        echo "<div>";
+                        echo "<h4>" .$file['name']. "</h4>";
+                        echo "<p>" . $file['description'] . "</p>"; 
+                        echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
+                        echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                        echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
+                        if ($user['admin'] == 1) {
+                            echo "<form method='POST' action='assets/php/delete.php'>";
+                            echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
+                            echo "<button type='submit'>Törlés</button>";
+                            echo "</form>";
+                        } else {
+                            echo "<p>Nem található a fájl!</p>";
+                        } 
 
-                    echo "<form method='post' action='index.php?post=$file[id]&uploader=$file[uploaded_by]'>";
-                    echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
-                    echo "<input type='submit' name='comment-btn'>";
-                    echo "</form>";
-                    
-                    $sql = "SELECT * FROM comments WHERE postid=$file[id]";
-                    $foundend_comments = $conn->query($sql);
-            
-                    if(mysqli_num_rows($foundend_comments) > 0){
-                        echo '<p>';
-                        while($comment=$foundend_comments->fetch_assoc()){
-                    
-                            $sql = "SELECT * FROM users WHERE id=($comment[userid]";
-                            $founded_commenter = $conn->query($sql);
-                            $commenter = $founded_commenter->fetch_assoc();
-                            
-                            echo $commenter['username'].": ".$comment['text']."<br>";
+                        echo "<form method='post' action='index.php?post=$file[id]&uploader=$file[uploaded_by]'>";
+                        echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
+                        echo "<input type='submit' name='comment-btn'>";
+                        echo "</form>";
+                        
+                        $sql = "SELECT * FROM comments WHERE postid=$file[id]";
+                        $foundend_comments = $conn->query($sql);
+                
+                        if(mysqli_num_rows($foundend_comments) > 0){
+                            echo '<p>';
+                            while($comment=$foundend_comments->fetch_assoc()){
+                        
+                                $sql = "SELECT * FROM users WHERE id=($comment[userid]";
+                                $founded_commenter = $conn->query($sql);
+                                $commenter = $founded_commenter->fetch_assoc();
+                                
+                                echo $commenter['username'].": ".$comment['text']."<br>";
+                                }
                             }
                         }
-                    }
-                }  
-            } else {
-                echo "<p>Nincs feltöltött fájl.</p>";
-                echo "</div>";
-            }
-        ?>
+                    }  
+                } else {
+                    echo "<p>Nincs feltöltött fájl.</p>";
+                    echo "</div>";
+                }
+            ?>
     </div>
     <script src="assets/js/script.js"></script>
    </body>

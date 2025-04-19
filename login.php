@@ -50,6 +50,6 @@
         </form>
         <p>Még nincs fiókod? <a href="reg.php">Regisztrálj itt!</a></p>
         <p>Elfelejtett jelszó? <a href="forgotpass.php">Kérj újat!</a></p>
-    <script src="assets/js/script.js"></script>
+        <script src="assets/js/script.js"></script>
    </body>
 </html>

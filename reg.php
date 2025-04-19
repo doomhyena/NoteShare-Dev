@@ -57,7 +57,6 @@
        <link rel='stylesheet' href='assets/css/styles.css'>
    </head>
    <body>
-
         <h1>Regisztráció</h1>
         <form method="post">
             <label for="lastname">Vezetéknév:</label><br>
@@ -77,6 +76,6 @@
             <input type="submit" name="reg-btn" value="Regisztráció!">
         </form>
         <label>Már van fiókod? <a href="login.php">Jelentkezz be!</a></label>
-    <script src="assets/js/script.js"></script>
+        <script src="assets/js/script.js"></script>
    </body>
 </html>

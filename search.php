@@ -29,31 +29,27 @@
        <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
-   <nav>
-        <ul>
-            <?php
-                echo '<li><a href="'.dirname(__FILE__).'/index.php">Főoldal</a></li>';
-                echo '<li><a href="'.dirname(__FILE__).'/upload.php">Feltöltés</a></li> ';
-                echo '<li><a href="'.dirname(__FILE__).'/profile.php">Profilom</a></li> ';
-                echo '<li><a href="'.dirname(__FILE__).'/search.php">Keresés</a></li>';
-                echo "<li><a href=".dirname(__FILE__)."/notify.php'>Értesítések ($ertesitesek_szama)</a></li>";
-                $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
-                $found_user = $conn->query($sql);
-                $user = $found_user->fetch_assoc();
+        <nav>
+            <ul>
+                <li><a href="index.php">Főoldal</a></li>
+                <li><a href="upload.php">Feltöltés</a></li>
+                <li><a href="profile.php">Profilom</a></li>
+                <li><a href="search.php">Keresés</a></li>
+                <?php
+                    
+                    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
+                    $founded_notify = $conn->query($sql);
+                    $notify_number = mysqli_num_rows($founded_notify);
 
-                if ($user['admin'] == 1) {
-                    echo '<li><a href='.dirname(__FILE__).'/roles/admin/admin.php">Admin</a></li>';
-                }
-                if ($user['teacher'] == 1) {
-                    echo '<li><a href="'.dirname(__FILE__).'/roles/teacher/teacher.php">Tanári felület</a></li>';
-                }
-                echo '<li><a href="'.dirname(__FILE__).'/assets/php/logout.php">Kijelentkezés</a></li>';
-            ?>
-        </ul>
-    </nav>
-    <h1>Keresés</h1>
-    <input type="text" class="search-box" id="search-box" placeholder="Keresés...">
-	<div id="search"></div>
-    <script src="assets/js/script.js"></script>
+                    echo "<li><a href=".dirname(__FILE__)."/notify.php'>Értesítések ($ertesitesek_szama)</a></li>";
+                    
+                ?>
+                <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
+            </ul>
+        </nav>
+        <h1>Keresés</h1>
+        <input type="text" class="search-box" id="search-box" placeholder="Keresés...">
+        <div id="search"></div>
+        <script src="assets/js/script.js"></script>
    </body>
 </html>

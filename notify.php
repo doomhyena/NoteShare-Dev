@@ -31,10 +31,10 @@
    <body>
    <nav>
         <ul>
-            <li><a href="'.dirname(__FILE__).'/index.php">Főoldal</a></li>
-            <li><a href="'.dirname(__FILE__).'/upload.php">Feltöltés</a></li>
-            <li><a href="'.dirname(__FILE__).'/profile.php">Profilom</a></li>
-            <li><a href="'.dirname(__FILE__).'/search.php">Keresés</a></li>
+            <li><a href="index.php">Főoldal</a></li>
+            <li><a href="upload.php">Feltöltés</a></li>
+            <li><a href="profile.php">Profilom</a></li>
+            <li><a href="search.php">Keresés</a></li>
             <?php
                 
                 $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
@@ -44,7 +44,7 @@
                 echo "<li><a href=".dirname(__FILE__)."/notify.php'>Értesítések ($ertesitesek_szama)</a></li>";
                 
             ?>
-            <li><a href="'.dirname(__FILE__).'/assets/php/logout.php">Kijelentkezés</a></li>
+            <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
     <?php

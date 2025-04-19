@@ -80,25 +80,25 @@
             ?>
         </ul>
     </nav>
-    <?php
-    
-        echo"<h2>".$user['firstname'] ." profilja:</h2>";
-        $folder = getcwd();
-        $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
+        <?php
+        
+            echo"<h2>".$user['firstname'] ." profilja:</h2>";
+            $folder = getcwd();
+            $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
 
-            if (!empty($user['profile_picture'])) {
-                echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
-            } else {
-                echo "<p>Nincs profilkép feltöltve.</p>";
-            }
+                if (!empty($user['profile_picture'])) {
+                    echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
+                } else {
+                    echo "<p>Nincs profilkép feltöltve.</p>";
+                }
 
-            if($_GET['id'] == $_COOKIE['id']) {
-                echo "<form method='POST' enctype='multipart/form-data'>
-                    <label for='profile_picture'>Profilkép feltöltése:</label>
-                    <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
-                    <input type='submit' name='pfp-btn' value='Feltöltés!'>
-                    </form>";
-            }
+                if($_GET['id'] == $_COOKIE['id']) {
+                    echo "<form method='POST' enctype='multipart/form-data'>
+                        <label for='profile_picture'>Profilkép feltöltése:</label>
+                        <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
+                        <input type='submit' name='pfp-btn' value='Feltöltés!'>
+                        </form>";
+                }
             
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
