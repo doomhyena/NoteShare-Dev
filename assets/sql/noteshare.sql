@@ -22,16 +22,6 @@ CREATE TABLE files (
     tn_name VARCHAR(255)
 );
 
-CREATE TABLE grades (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    grade VARCHAR(10),
-    subject VARCHAR(255) NOT NULL,
-    entered_by INT,
-    FOREIGN KEY (student_id) REFERENCES users(id),
-    FOREIGN KEY (entered_by) REFERENCES users(id)
-);
-
 CREATE TABLE namedays (
   id int(11) NOT NULL,
   datum varchar(5) DEFAULT NULL,
@@ -44,19 +34,6 @@ CREATE TABLE notifys (
   toid int NOT NULL,
   notifytype varchar(100) NOT NULL,
   readed TINYINT(1) DEFAULT 0
-);
-
-CREATE TABLE schedules (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    class_id INT,
-    day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
-    subject VARCHAR(255) NOT NULL,
-    teacher_id INT,
-    details TEXT,
-    FOREIGN KEY (class_id) REFERENCES classes(id),
-    FOREIGN KEY (teacher_id) REFERENCES users(id)
 );
 
 CREATE TABLE users (
