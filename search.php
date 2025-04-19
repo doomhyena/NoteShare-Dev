@@ -53,7 +53,7 @@
     </nav>
     <h1>Keresés</h1>
     <input type="text" class="search-box" id="search-box" placeholder="Anyag keresése...">
-	<div id="curriculum"></div>
+	<div id="search"></div>
     <script src="assets/js/script.js"></script>
    </body>
 </html>
