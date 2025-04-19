@@ -52,7 +52,7 @@
         </ul>
     </nav>
     <h1>Keresés</h1>
-    <input type="text" class="search-box" id="search-box" placeholder="Anyag keresése...">
+    <input type="text" class="search-box" id="search-box" placeholder="Keresés...">
 	<div id="search"></div>
     <script src="assets/js/script.js"></script>
    </body>
