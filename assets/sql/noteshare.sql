@@ -44,16 +44,11 @@ CREATE TABLE users (
     profile_picture VARCHAR(255),
     password VARCHAR(255) NOT NULL,
     security_question VARCHAR(255) NOT NULL,
-    security_answer VARCHAR(255) NOT NULL,
-    admin TINYINT(1) DEFAULT 0,
-    teacher TINYINT(1) DEFAULT 0
+    security_answer VARCHAR(255) NOT NULL
 );
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`, `teacher`, `admin`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', 0, 1),
-
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `tn_name`) VALUES
-(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek haladóknak', 'C:xampphtdocsNoteShareusersdoomhyenaHTML5NotesForProfessionals.pdf', NULL);
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
+(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
 
 INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (1, '01-01', 'Fruzsina'),
