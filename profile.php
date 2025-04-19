@@ -1,6 +1,6 @@
 <?php
 
-    require  dirname(__FILE__)."/assets/php/cfg.php";
+    require  "assets/php/cfg.php";
     session_start();
 
     if(!isset($_COOKIE['id'])){

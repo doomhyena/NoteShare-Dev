@@ -1,6 +1,6 @@
 <?php 
 
-    require  dirname(__FILE__)."/assets/php/cfg.php";
+    require  "assets/php/cfg.php";
 	
     if(!isset($_COOKIE['id'])){
         header("Location: index.php");
