@@ -70,13 +70,7 @@
                 $found_user = $conn->query($sql);
                 $user = $found_user->fetch_assoc();
 
-                if ($user['admin'] == 1) {
-                    echo '<li><a href='.dirname(__FILE__).'/roles/admin/admin.php">Admin</a></li>';
-                }
-                if ($user['teacher'] == 1) {
-                    echo '<li><a href="'.dirname(__FILE__).'/roles/teacher/teacher.php">Tanári felület</a></li>';
-                }
-                echo '<li><a href="'.dirname(__FILE__).'/assets/php/logout.php">Kijelentkezés</a></li>';
+                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
             ?>
         </ul>
     </nav>

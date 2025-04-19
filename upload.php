@@ -68,7 +68,7 @@
                     $founded_notify = $conn->query($sql);
                     $notify_number = mysqli_num_rows($founded_notify);
 
-                    echo "<li><a href=".dirname(__FILE__)."/notify.php'>Értesítések ($ertesitesek_szama)</a></li>";
+                    echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                     
                 ?>
                 <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
