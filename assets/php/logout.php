@@ -1,7 +1,7 @@
 <?php 
 
+	session_start();
 	session_destroy();
-	header("Location: /NoteShare-Dev/index.php");
-	exit();
+	header("Location: ../../index.php");
 
 ?>
