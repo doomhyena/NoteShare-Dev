@@ -7,7 +7,7 @@
         header("Location: index.php");
     }
 
-    $sql = "SELECT * FROM users WHERE id='" .$_GET['id'] . "'";
+    $sql = "SELECT * FROM users WHERE id='" .$_GET[$user['id']] . "'";
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
     $folder = getcwd();
