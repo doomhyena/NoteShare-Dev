@@ -18,7 +18,7 @@
     $tmp_name = isset($_FILES['profile_picture']['tmp_name']) ? $_FILES['profile_picture']['tmp_name'] : '';
     $target_file = $target_dir . $file_name;
 
-    if ($_GET['id'] == $_COOKIE['id']) {
+    if ($_GET['userid'] == $_COOKIE['id']) {
         $userid = $_COOKIE['id'];
         $sql = "SELECT * FROM users WHERE id='$userid'";
         $found_user = $conn->query($sql);
@@ -95,7 +95,7 @@
                     echo "<p>Nincs profilkép feltöltve.</p>";
                 }
 
-                if($_GET['id'] == $_COOKIE['id']) {
+                if($_GET['userid'] == $_COOKIE['id']) {
                     echo "<form method='POST' enctype='multipart/form-data'>
                         <label for='profile_picture'>Profilkép feltöltése:</label>
                         <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
