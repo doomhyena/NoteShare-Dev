@@ -61,7 +61,7 @@
                 <li><a href="index.php">Főoldal</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
                 <?php
-                    echo "<li><a href='profile.php?id=".$user['id']."'>Profilja</a></li>";
+                    echo "<li><a href='profile.php?userid=".$user['id']."'>Profilja</a></li>";
                 ?>
                 <li><a href="profile.php">Profilom</a></li>
                 <li><a href="search.php">Keresés</a></li>
