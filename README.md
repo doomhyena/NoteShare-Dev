@@ -22,10 +22,9 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 - Egy webböngésző.
 
 ### Lépések
-1. Klónozd le a projekt fájljait (pl. `git clone https://github.com/doomhyena/NoteShare.git`) a helyi szerver gyökérkönyvtárába (pl. `c:/xampp/htdocs/NoteShare`).
+1. Klónozd le a projekt fájljait (pl. `git clone https://github.com/doomhyena/NoteShare-Dev.git`) a helyi szerver gyökérkönyvtárába (pl. `c:/xampp/htdocs/NoteShare-Dev`).
 2. Importáld az adatbázist:
     - Nyisd meg a phpMyAdmin-t.
-    - Hozz létre egy új adatbázist `noteshare` néven.
     - Importáld a `noteshare.sql` fájlt az `assets/sql/` mappából.
 3. Konfiguráld az adatbázis kapcsolatot:
     - Nyisd meg a `cfg.php` fájlt.
