@@ -82,7 +82,7 @@
                         echo "<p>" . $file['description'] . "</p>"; 
                         echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                        echo "<p>Feltöltötte: <a href='profile.php?id=" . $user['id'] . "'>" . $user['username'] . "</a></p>";
+                        echo "<p>Feltöltötte: <a href='profil.php?userid=$user[id]'>" . $user['username'] . "</a></p>";
                         if ($user['admin'] == 1) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
