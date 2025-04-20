@@ -29,76 +29,73 @@
        <link rel='stylesheet' href='assets/css/styles.css'>
    </head>
    <body>
-   <nav>
-        <ul>
-            <li><a href="index.php">Főoldal</a></li>
-            <li><a href="upload.php">Feltöltés</a></li>
-            <?php
-                echo "<li><a href='profile.php?userid=".$user['id']."'>Profilja</a></li>";
-            ?>
-            <li><a href="profile.php">Profilom</a></li>
-            <li><a href="search.php">Keresés</a></li>
-            <?php
-                
-                $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
-                $founded_notify = $conn->query($sql);
-                $notify_number = mysqli_num_rows($founded_notify);
+        <nav>
+            <ul>
+                <li><a href="index.php">Főoldal</a></li>
+                <li><a href="upload.php">Feltöltés</a></li>
+                <?php
+                    echo "<li><a href='profile.php?userid=".$user['id']."'>Profilom</a></li>";
+                ?>
+                <li><a href="search.php">Keresés</a></li>
+                <?php
+                    
+                    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
+                    $founded_notify = $conn->query($sql);
+                    $notify_number = mysqli_num_rows($founded_notify);
 
-                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
-                
-            ?>
-            <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
-        </ul>
-    </nav>
-    <?php
-        require "assets/php/cfg.php";
+                    echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
+                    
+                ?>
+                <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
+            </ul>
+        </nav>
+        <?php
+            require "assets/php/cfg.php";
 
-        if(isset($_POST['del-notifs-btn'])){
-            
-            $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
-            
-        }
-        
-        echo "<form method='post'>";
-        echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
-        echo "</form>";
-        
-        $sql = "SELECT * FROM notifys WHERE toid = $user[id] ORDER BY id DESC";
-        $founded_notifys = $conn->query($sql);
-        while($ertesites=$founded_notifys->fetch_assoc()){
-            
-            $from = $ertesites['fromid'];  
-            
-            $sql = "SELECT * FROM users WHERE id=$from";
-            $founded_notifyer = $conn->query($sql);
-            $notifyer = $founded_notifyer->fetch_assoc();
-            
-            if($ertesites['notifytype'] == "friend"){
+            if(isset($_POST['del-notifs-btn'])){
                 
-                if($ertesites['readed'] == 0){
-                    
-                    echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
-                    
-                } else {
-                    
-                    echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
-                    
-                }
-            } else if($ertesites['notifytype'] == 'comment'){
+                $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
                 
-                if($ertesites['readed'] == 0){
+            }
+            
+            echo "<form method='post'>";
+            echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
+            echo "</form>";
+            
+            $sql = "SELECT * FROM notifys WHERE toid = $user[id] ORDER BY id DESC";
+            $founded_notifys = $conn->query($sql);
+            while($ertesites=$founded_notifys->fetch_assoc()){
+                
+                $from = $ertesites['fromid'];  
+                
+                $sql = "SELECT * FROM users WHERE id=$from";
+                $founded_notifyer = $conn->query($sql);
+                $notifyer = $founded_notifyer->fetch_assoc();
+                
+                if($ertesites['notifytype'] == "friend"){
                     
-                    echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
+                    if($ertesites['readed'] == 0){
+                        
+                        echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
+                        
+                    } else {
+                        
+                        echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
+                        
+                    }
+                } else if($ertesites['notifytype'] == 'comment'){
                     
-                } else {
-                    
-                    echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
+                    if($ertesites['readed'] == 0){
+                        
+                        echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
+                        
+                    } else {
+                        
+                        echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
+                    }
                 }
             }
-        }
-        
-        $conn->query("UPDATE notify SET olvasott = 1 WHERE ertesitettid = $user[id]");
-
-    ?>
+            $conn->query("UPDATE notifys SET readed = 1 WHERE toid = $user[id]");
+        ?>
    </body>
 </html>
