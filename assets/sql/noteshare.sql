@@ -19,7 +19,6 @@ CREATE TABLE files (
     file_name VARCHAR(255) NOT NULL,
     description TEXT,
     file_path VARCHAR(255) NOT NULL,
-    tn_name VARCHAR(255)
 );
 
 CREATE TABLE namedays (

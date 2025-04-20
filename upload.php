@@ -35,8 +35,8 @@
 
 		if(move_uploaded_file($tmp_name, $path)){
 			
-            $conn->query("INSERT INTO files VALUES('$user[id]', '{$_POST['name']}', '$file_name', '$description', '$path')");
-			echo "<script>alert('A fájl sikeresen feltöltve!')</script>";
+            $conn->query("INSERT INTO files (uploaded_by, name, file_name, description, file_path) VALUES ('$user[id]', '{$_POST['name']}', '$file_name', '$description', '$path')");
+          echo "<script>alert('A fájl sikeresen feltöltve!')</script>";
 
         } else {
             echo "<script>alert('A fájl feltöltése sikertelen!')</script>"; 

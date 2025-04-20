@@ -85,7 +85,7 @@
                         echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                         echo "<p>Feltöltötte: <a href='profil.php?userid=$user[id]'>" . $user['username'] . "</a></p>";
-                        if ($user['admin'] == 1) {
+                        if ($user['username'] == $file['uploaded_by']) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
                             echo "<button type='submit'>Törlés</button>";
