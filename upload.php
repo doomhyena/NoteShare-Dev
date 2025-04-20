@@ -23,16 +23,15 @@
             echo "<script>alert('Csak PDF fájlokat lehet feltölteni!')</script>";
         }
     
-        
-        $dir = $folder."\\users\\".$user['username']."\\";
+        $folder = getcwd();
+        $dir = $folder . "/users/" . $user['username'] . "/";
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true); 
         }
 
         $description = $_POST['description'];
-        $folder = getcwd();
-        $path = $folder."\\users\\".$user['username']."\\".$file_name;
+        $path =  $folder . "/users/" . $user['username'] . "/".$file_name;
 
 		if(move_uploaded_file($tmp_name, $path)){
 			
