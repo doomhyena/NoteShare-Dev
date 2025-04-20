@@ -1,6 +1,6 @@
 <?php
 
-	require "../../assets/php/cfg.php";
+	require "cfg.php";
 
 	$keresett = $_GET['keresett'] ?? '';
 	$loggedInUserId = $_COOKIE['id'] ?? 0;

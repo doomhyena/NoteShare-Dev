@@ -14,6 +14,15 @@
 
 	if(isset($_POST['upload-btn'])){
 		
+        $file_name = $_FILES['upload-file']['name'];
+        $tmp_name = $_FILES['upload-file']['tmp_name'];
+        $file_type = mime_content_type($tmp_name);
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    
+        if($file_ext !== 'pdf' || $file_type !== 'application/pdf') {
+            echo "<script>alert('Csak PDF fájlokat lehet feltölteni!')</script>";
+        }
+    
         
         $dir = $folder."\\users\\".$user['username']."\\";
 
@@ -21,8 +30,6 @@
             mkdir($dir, 0777, true); 
         }
 
-        $file_name = $_FILES['upload-file']['name'];
-        $tmp_name = $_FILES['upload-file']['tmp_name'];
         $description = $_POST['description'];
         $folder = getcwd();
         $path = $folder."\\users\\".$user['username']."\\".$file_name;
