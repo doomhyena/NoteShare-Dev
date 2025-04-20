@@ -12,10 +12,6 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 - **Elfelejtett Jelszó**: A felhasználók visszaállíthatják elfelejtett jelszavaikat.
 - **Fájl Törlés**: A felhasználók törölhetik feltöltött fájljaikat.
 - **Reszponzív Dizájn**: A platform különböző eszközökön is működik.
-- **Tanári Szerepkör**: A tanárok számára dedikált felület, amely lehetővé teszi számukra a jegyzetek kezelését.
-- **Adminisztrátori Szerepkör**: Az adminisztrátorok hozzáadhatnak vagy eltávolíthatnak adminisztrátori jogosultságokat más felhasználóktól illetve bárki által közzétett jegyzetet törölhetnek.
-- **Osztályok és Tanulók Kezelése**: A tanárok osztályokat hozhatnak létre, és kezelhetik a tanulók adatait.
-- **Értékelések és Feladatok**: A tanárok feladatokat adhatnak ki és értékelhetik a tanulók teljesítményét.
 
 ---
 
@@ -63,60 +59,20 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
    - `file_path` (VARCHAR(255))
    - `tn_name` (VARCHAR(255))
 
-3. **classes**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `name` (VARCHAR(100), NOT NULL)
-   - `created_at` (DATETIME, DEFAULT CURRENT_TIMESTAMP)
-   - `created_by` (INT, FK → users.id)
-
-4. **class_members**
-   - `class_id` (INT, FK → classes.id)
-   - `member_id` (INT, FK → users.id)
-   - **Elsődleges kulcs**: (`class_id`, `member_id`)
-
-5. **class_students**
-   - `class_id` (INT, FK → classes.id)
-   - `student_id` (INT, FK → users.id)
-   - **Elsődleges kulcs**: (`class_id`, `student_id`)
-
-6. **assignments**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `class_id` (INT, FK → classes.id)
-   - `title` (VARCHAR(255))
-   - `grade` (VARCHAR(10))
-   - `description` (TEXT)
-
-7. **grades**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `student_id` (INT, FK → users.id)
-   - `grade` (VARCHAR(10))
-   - `subject` (VARCHAR(255))
-   - `entered_by` (INT, FK → users.id)
-
-8. **schedules**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `class_id` (INT, FK → classes.id)
-   - `day_of_week` (ENUM)
-   - `start_time` (TIME)
-   - `end_time` (TIME)
-   - `subject` (VARCHAR(255))
-   - `teacher_id` (INT, FK → users.id)
-   - `details` (TEXT)
-
-9. **comments**
+3. **comments**
    - `id` (INT, PK, AUTO_INCREMENT)
    - `userid` (INT, FK → users.id)
    - `postid` (INT)
    - `text` (VARCHAR(1000))
 
-10. **notifys**
+4. **notifys**
     - `id` (INT, PK, AUTO_INCREMENT)
     - `fromid` (INT, FK → users.id)
     - `toid` (INT, FK → users.id)
     - `notifytype` (VARCHAR(100))
     - `readed` (TINYINT(1), DEFAULT 0)
 
-11. **namedays**
+5. **namedays**
     - `id` (INT)
     - `datum` (VARCHAR(5)) – például "04-18"
     - `nevek` (VARCHAR(255)) – névnaposok nevei
@@ -137,22 +93,16 @@ NoteShare-Dev/
 │   │   └── cfg.php
 │   │   └── delete.php
 │   │   └── download.php
-│   │   └── findcurriculum.php
+│   │   └── findanything.php
 │   │   └── logout.php
 │   ├── js/
 │   │   └── script.js
 │   ├── sql/
 │   │   └── noteshare.sql
-├── roles/
-│   ├── admin/
-│   │   └── admin.php
-│   ├── students/
-│   │   └── students.php
-│   ├── teacher/
-│   │   └── teacher.php
 ├── users/
 ├── forgotpass.php
 ├── index.php
+├── LICENSE
 ├── login.php
 ├── notify.php
 ├── profile.php
@@ -205,13 +155,6 @@ NoteShare-Dev/
 
 ## Ismert Hibák
 **Hibakezelés**: Korlátozott hibaüzenetek a hibakereséshez.
----
-
-## Jövőbeli Fejlesztések
-1. **Fájl Előnézetek**: A fájl előnézet támogatásának bővítése több fájltípusra.
-2. **Szerepkör Kezelés**: Adminisztrátori szerepkörök bevezetése a jobb platformkezelés érdekében.
-3. **Tanári Funkciók Bővítése**: A tanárok számára további eszközök biztosítása, például jegyzetek értékelése vagy megjegyzések hozzáadása.
-4. **Adminisztrátori Funkciók Fejlesztése**: Részletesebb statisztikák és felhasználói aktivitás követése az adminisztrátorok számára.
 
 ---
 

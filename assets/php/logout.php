@@ -1,6 +1,6 @@
 <?php 
 
-	setcookie("id", "", time() - 3600, "/");
-	header("Location: ../index.php");
+	session_destroy();
+	header("Location: ../../index.php");
 
 ?>
