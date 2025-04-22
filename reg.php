@@ -2,6 +2,15 @@
 
     require  "assets/php/cfg.php";
 
+    $security_questions = [
+        "Mi a kedvenc könyved?",
+        "Mi volt az első háziállatod neve?",
+        "Mi az édesanyád leánykori neve?",
+        "Mi a születési városod?",
+        "Mi a kedvenc ételed?"
+    ];
+    $selected_question = $security_questions[array_rand($security_questions)];
+
     if(isset($_POST['reg-btn'])){
         
         $lastname = $_POST['lastname'];
@@ -9,16 +18,7 @@
         $username = $_POST['username'];
         $password = $_POST['password1'];
         $passwordtwo = $_POST['password2'];
-        $security_questions = [
-            "Mi a kedvenc könyved?",
-            "Mi volt az első háziállatod neve?",
-            "Mi az édesanyád leánykori neve?",
-            "Mi a születési városod?",
-            "Mi a kedvenc ételed?"
-        ];
 
-
-        $selected_question = $security_questions[array_rand($security_questions)];
         $security_answer = $_POST['security_answer'];
         $sql = "SELECT * FROM users WHERE username='$username'";
         $found_user = $conn->query($sql);
