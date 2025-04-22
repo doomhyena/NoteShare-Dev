@@ -16,6 +16,8 @@
             "Mi a születési városod?",
             "Mi a kedvenc ételed?"
         ];
+
+
         $selected_question = $security_questions[array_rand($security_questions)];
         $security_answer = $_POST['security_answer'];
         $sql = "SELECT * FROM users WHERE username='$username'";
