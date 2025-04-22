@@ -71,8 +71,8 @@
             <input type="password" name="password1"><br><br>
             <label for="password">Jelszó újra:</label><br>
             <input type="password" name="password2"><br><br>
-            <label for="security_question">Biztonsági kérdés:</label><br>
-            <input type="text" name="security_question" value="<?php echo $selected_question; ?>" readonly><br><br>
+            <p><strong>Biztonsági kérdés:</strong> <?php echo $selected_question; ?></p>
+            <input type="hidden" name="security_question" value="<?php echo $selected_question; ?>">
             <label for="security_answer">Válasz:</label><br>
             <input type="text" name="security_answer"><br><br>
             <input type="submit" name="reg-btn" value="Regisztráció!">
