@@ -89,7 +89,7 @@
                         $result = $conn->query($sql);
                         $uploader = $result->fetch_assoc();
                         echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
-                        if ($user['username'] == $file['uploaded_by']) {
+                        if ($user['id'] == $file['uploaded_by']) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
                             echo "<button type='submit'>Törlés</button>";

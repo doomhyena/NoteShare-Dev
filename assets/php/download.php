@@ -21,9 +21,10 @@
                 header('Content-Disposition: attachment; filename="' . basename($path) . '"');
                 readfile($path);
             }
+        } else {
+            echo "<script>alert('A fájl nem található!');</script>";
         }
-        echo "A fájl nem található.";
     } else {
-        echo "Nincs fájl kiválasztva.";
+        echo "<script>alert('Nincs fájl kiválasztva!');</script>";
     }
 ?>
