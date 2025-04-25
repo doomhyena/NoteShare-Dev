@@ -94,7 +94,7 @@
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
                             echo "<button type='submit'>Törlés</button>";
                             echo "</form>";
-                            } 
+                        } 
                         
                         echo "<form method='post' action='index.php?postid=$file[id]&uploader=$file[uploaded_by]'>";
                         echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
