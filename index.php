@@ -15,8 +15,9 @@
             $text = $_POST['comment-text'];
             $conn->query("INSERT INTO comments (userid, postid, text) VALUES ('$user[id]', '$postid', '$text')");
             $uploader = $_GET['uploader'];
-            $conn->query("INSERT INTO notifys (fromid, toid, type, readed) VALUES ('$user[id]', '$uploader', 'comment', 0)");
-    }  else {
+            $conn->query("INSERT INTO notifys (fromid, toid, notifytype, readed) VALUES ('$user[id]', '$uploader', 'comment', 0)");
+        
+    } else {
         echo "<script>alert('Hiba történt a komment írásakor!');</script>";
     }
 
@@ -92,7 +93,7 @@
                             echo "</form>";
                             } 
                         
-                        echo "<form method='post' action='index.php?post=$file[id]&uploader=$file[uploaded_by]'>";
+                        echo "<form method='post' action='index.php?postid=$file[id]&uploader=$file[uploaded_by]'>";
                         echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                         echo "<input type='submit' name='comment-btn'>";
                         echo "</form>";
@@ -104,7 +105,21 @@
                             echo '<p>';
                             while($comment=$foundend_comments->fetch_assoc()){
                             
-                                $sql = "SELECT * FROM users WHERE id=($comment[userid]";
+                                $sql = "SELECT * FROM users WHERE id=($comment[userid]"; 
+                                /*
+                                
+                                CREATE TABLE users (
+                                    id INT AUTO_INCREMENT PRIMARY KEY,
+                                    lastname VARCHAR(100),
+                                    firstname VARCHAR(100),
+                                    username VARCHAR(50) NOT NULL UNIQUE,
+                                    profile_picture VARCHAR(255),
+                                    password VARCHAR(255) NOT NULL,
+                                    security_question VARCHAR(255) NOT NULL,
+                                    security_answer VARCHAR(255) NOT NULL
+                                );
+                                
+                                */
                                 $founded_commenter = $conn->query($sql);
                                 $commenter = $founded_commenter->fetch_assoc();
                                     
