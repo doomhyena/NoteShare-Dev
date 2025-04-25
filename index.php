@@ -85,7 +85,10 @@
                         echo "<p>" . $file['description'] . "</p>"; 
                         echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                        echo "<p>Feltöltötte: <a href='profil.php?userid=$user[id]'>" . $user['username'] . "</a></p>";
+                        $sql = "SELECT username FROM users WHERE id=" . $file['uploaded_by'];
+                        $result = $conn->query($sql);
+                        $uploader = $result->fetch_assoc();
+                        echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
                         if ($user['username'] == $file['uploaded_by']) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
@@ -105,25 +108,11 @@
                             echo '<p>';
                             while($comment=$foundend_comments->fetch_assoc()){
                             
-                                $sql = "SELECT * FROM users WHERE id=($comment[userid]"; 
-                                /*
-                                
-                                CREATE TABLE users (
-                                    id INT AUTO_INCREMENT PRIMARY KEY,
-                                    lastname VARCHAR(100),
-                                    firstname VARCHAR(100),
-                                    username VARCHAR(50) NOT NULL UNIQUE,
-                                    profile_picture VARCHAR(255),
-                                    password VARCHAR(255) NOT NULL,
-                                    security_question VARCHAR(255) NOT NULL,
-                                    security_answer VARCHAR(255) NOT NULL
-                                );
-                                
-                                */
+                                $sql = "SELECT * FROM users WHERE id=$comment[userid]"; 
                                 $founded_commenter = $conn->query($sql);
                                 $commenter = $founded_commenter->fetch_assoc();
                                     
-                                echo $commenter['username'].": ".$comment['text']."<br>";
+                                echo "<b>".$commenter['username'].":</b> ".$comment['text']."<br>";
                                 }
                             }
                         } else {
