@@ -80,7 +80,7 @@
                     echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                     
                 ?>
-                <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
+                <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
             </ul>
         </nav>
         <?php
@@ -119,12 +119,6 @@
                     echo "<p>" . $file['description'] . "</p>"; 
                     echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
                     echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    if ($user['admin'] == 1) {
-                        echo "<form method='POST' action='assets/php/delete.php'>";
-                        echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
-                        echo "<button type='submit'>Törlés</button>";
-                        echo "</form>";
-                    }
                     echo "</div>";
                 } else {
                     echo "<p>Nem található a fájl!</p>";

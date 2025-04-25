@@ -51,7 +51,7 @@
                 echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                 
             ?>
-            <li><a href="/assets/php/logout.php">Kijelentkezés</a></li>
+            <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
     <div>
