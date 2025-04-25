@@ -1,14 +1,25 @@
 <?php
     require "cfg.php";    
 
-    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
-    $found_user = $conn->query($sql);
-    $user = $found_user->fetch_assoc();
+    if (isset($_COOKIE['id']) && is_numeric($_COOKIE['id'])) {
+        $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->bind_param("i", $_COOKIE['id']);
+        $stmt->execute();
+        $found_user = $stmt->get_result();
+        $user = $found_user->fetch_assoc();
+        if (is_numeric($file_id)) {
+            $stmt = $conn->prepare("SELECT * FROM files WHERE id = ?");
+            $stmt->bind_param("i", $file_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        } else {
+            $path = $folder."\\assets\\users\\".$user['username']."\\".$file_name;
+        }
+        echo "<script>alert('Nincs ilyen userID!');</script>";
+    }
 
     if (isset($_GET['id'])) {
-        $file_id = $_GET['id'];
-        $sql = "SELECT * FROM files WHERE id='$file_id'";
-        $result = $conn->query($sql);
+
 
         if ($result->num_rows > 0) {
             $file = $result->fetch_assoc();
