@@ -1,7 +1,6 @@
 <?php
 
     require  "assets/php/cfg.php";
-    session_start();
     
     if(!isset($_COOKIE['id'])){
         header("Location: index.php");
