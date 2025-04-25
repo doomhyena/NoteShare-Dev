@@ -9,15 +9,19 @@
     $found_user = $conn->query($sql);
     $user = $found_user->fetch_assoc();
 
-	if(isset($_POST['comment-btn'])){
-		
-		$postid = $_GET['postid'];
-		$text = $_POST['comment-text'];
-		$conn->query("INSERT INTO comments VALUES('$user[id]', $postid, '$text')");
-		$uploader = $_GET['uploader'];
-		$conn->query("INSERT INTO notifys VALUES'$user[id]', $uploader, 'comment', 0)");
-		
-	}
+    if(isset($_POST['comment-btn'])){
+        
+        if(isset($_GET['postid']) && isset($_GET['uploader']) && !empty($_POST['comment-text'])){
+            $postid = $_GET['postid'];
+            $text = $_POST['comment-text'];
+            $conn->query("INSERT INTO comments (userid, postid, text) VALUES ('$user[id]', '$postid', '$text')");
+            $uploader = $_GET['uploader'];
+            $conn->query("INSERT INTO notifys (fromid, toid, type, readed) VALUES ('$user[id]', '$uploader', 'comment', 0)");
+        } else {
+            echo "<script>alert('Hiba történt a komment írásakor!');</script>";
+        }
+        
+    }
 
 ?>
 <!DOCTYPE html>
