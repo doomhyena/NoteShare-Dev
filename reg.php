@@ -26,10 +26,8 @@
         if(mysqli_num_rows($found_user) == 0){
             if($password == $passwordtwo){
                 $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-                $titkositott_valasz = password_hash($security_answer, PASSWORD_DEFAULT);
-                $conn->query("INSERT INTO users VALUES(id, '$lastname', '$firstname', '$username', '$selected_question', '$titkositott_valasz', '$titkositott_jelszo')");
+                $conn->query("INSERT INTO users (lastname, firstname, username, password, security_question, security_answer) VALUES ('$lastname', '$firstname', '$username', '$titkositott_jelszo', '$selected_question', '$security_answer')");
                 $folder = getcwd();
-            
                 $path = $folder."\\users\\".$username;
                 
                 if(mkdir($path, 7777)){

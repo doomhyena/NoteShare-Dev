@@ -72,59 +72,59 @@
             echo "<p>Mai névnap: " . $nameday . ", boldog névnapot kívánunk nekik!</p>";
             echo "<h3>Feltöltött fájlok:</h3>";
 
-            $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
+            $sql = "SELECT * FROM files ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($file = $result->fetch_assoc()) {
                     echo "<div>";
                     if(!empty($file)) {
+                        $sql = "SELECT * FROM users WHERE id=" . $file['uploaded_by'];
+                        $uploader_result = $conn->query($sql);
+                        $uploader = $uploader_result->fetch_assoc();                         
+
                         $folder = getcwd();
                         echo "<div>";
                         echo "<h4>" .$file['name']. "</h4>";
                         echo "<p>" . $file['description'] . "</p>"; 
-                        echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
+                        echo "<iframe src='users/".$uploader['username']."/".$file['file_name']."'></iframe>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                        $sql = "SELECT username FROM users WHERE id=" . $file['uploaded_by'];
-                        $result = $conn->query($sql);
-                        $uploader = $result->fetch_assoc();
+                        echo "</div>";                   
                         echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
-                        if ($user['id'] == $file['uploaded_by']) {
+                        if ($_COOKIE['id'] == $file['uploaded_by']) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
                             echo "<button type='submit'>Törlés</button>";
                             echo "</form>";
                         } 
-                        
+                            
                         echo "<form method='post' action='index.php?postid=$file[id]&uploader=$file[uploaded_by]'>";
                         echo "<input type='text' name='comment-text' placeholder='Komment írása...'>";
                         echo "<input type='submit' name='comment-btn'>";
                         echo "</form>";
-                            
+                                
                         $sql = "SELECT * FROM comments WHERE postid=$file[id]";
                         $foundend_comments = $conn->query($sql);
-                    
+                        
                         if(mysqli_num_rows($foundend_comments) > 0){
                             echo '<p>';
-                            while($comment=$foundend_comments->fetch_assoc()){
-                            
+                            while($comment=$foundend_comments->fetch_assoc()){   
                                 $sql = "SELECT * FROM users WHERE id=$comment[userid]"; 
                                 $founded_commenter = $conn->query($sql);
                                 $commenter = $founded_commenter->fetch_assoc();
-                                    
+                                        
                                 echo "<b>".$commenter['username'].":</b> ".$comment['text']."<br>";
                                 }
-                            }
-                        } else {
-                            echo "<p>Nem található a fájl!</p>";
-                            echo "</div>";
-                        } 
-                    }  
-                } else {
-                    echo "<p>Nincs feltöltött fájl.</p>";
+                        }
+                    } else {
+                        echo "<p>Nem található a fájl!</p>";
+                    }
                     echo "</div>";
                 }
-            ?>
+            } else {
+                echo "<p>Nincsenek feltöltött fájlok.</p>";
+            }
+        ?>
     </div>
     <script src="assets/js/script.js"></script>
    </body>

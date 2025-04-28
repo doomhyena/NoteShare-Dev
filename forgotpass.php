@@ -23,7 +23,7 @@
                 if (mysqli_num_rows($found_user) > 0) {
                     $user = $found_user->fetch_assoc();
             
-                    if (password_verify($security_answer, $user['security_answer'])) {
+                    if ($security_answer == $user['security_answer']) {
                         echo "<form method='post' action='forgotpass.php?userid=$user[id]'>";
                         echo '    <input type="password" name="password1" placeholder="Jelszó">';
                         echo '    <input type="password" name="password2" placeholder="Jelszó újra">';
