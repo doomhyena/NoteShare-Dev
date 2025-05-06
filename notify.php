@@ -73,15 +73,16 @@
                 $notifyer = $founded_notifyer->fetch_assoc();
                 
                 if($ertesites['notifytype'] == "friend"){
-                    
-                    if($ertesites['readed'] == 0){
-                        
-                        echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
-                        
-                    } else {
-                        
-                        echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
-                        
+                    echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
+                
+                    $check = $conn->query("SELECT * FROM friends WHERE fromid = $notifyer[id] AND toid = $user[id] AND status = 0");
+                    if ($check->num_rows > 0) {
+                        echo "
+                            <form method='post' action='assets/php/accept_friend.php'>
+                                <input type='hidden' name='fromid' value='$notifyer[id]'>
+                                <input type='submit' value='Elfogadás'>
+                            </form>
+                        ";
                     }
                 } else if($ertesites['notifytype'] == 'comment'){
                     

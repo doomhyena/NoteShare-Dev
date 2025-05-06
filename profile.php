@@ -86,23 +86,30 @@
             $folder = getcwd();
             $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
 
-                if (!empty($user['profile_picture'])) {
-                    echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
-                } else {
-                    echo "<p>Nincs profilkép feltöltve.</p>";
-                }
+            if (!empty($user['profile_picture'])) {
+                echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
+            } else {
+                echo "<p>Nincs profilkép feltöltve.</p>";
+            }
 
-                if($_GET['userid'] == $_COOKIE['id']) {
-                    echo "<form method='POST' enctype='multipart/form-data'>
-                        <label for='profile_picture'>Profilkép feltöltése:</label>
-                        <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
-                        <input type='submit' name='pfp-btn' value='Feltöltés!'>
-                        </form>";
-                }
+            if($_GET['userid'] == $_COOKIE['id']) {
+                echo "<form method='POST' enctype='multipart/form-data'>
+                    <label for='profile_picture'>Profilkép feltöltése:</label>
+                    <input type='file' name='profile_picture' id='profile_picture' accept='image/*'>
+                    <input type='submit' name='pfp-btn' value='Feltöltés!'>
+                    </form>";
+            }
             
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
 
+            if ($_GET['userid'] != $_COOKIE['id']) {
+                $toid = intval($_GET['userid']);
+                echo "<form method='post' action='assets/php/add_friend.php'>
+                    <input type='hidden' name='toid' value='" . $_GET['userid'] . "'>
+                    <input type='submit' value='Barátnak jelölés'>
+                </form>";
+            }            
             $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
             $result = $conn->query($sql);
 

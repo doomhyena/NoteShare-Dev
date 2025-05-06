@@ -1,9 +1,6 @@
 <?php
 
 	require "cfg.php";
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL);
-
 
 	$keresett = isset($_GET['keresett']) ? htmlspecialchars(trim($_GET['keresett'])) : '';
 	$loggedInUserId = $_COOKIE['id'] ?? 0;
@@ -35,6 +32,8 @@
 		$friendCheck = $conn->query($sqlFriendCheck);
 
 		if ($friendCheck->num_rows === 0) {
+			echo '<form method="post" action="add_friend.php">';
+			echo '<input type="hidden" name="friend_id" value="' . $userId . '">';
 			echo '<input type="submit" name="add-friend-btn" value="Jelölés">';
 		}
 

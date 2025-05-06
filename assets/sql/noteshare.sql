@@ -33,7 +33,6 @@ CREATE TABLE friends (
     FOREIGN KEY (toid) REFERENCES users(id)
 );
 
-
 CREATE TABLE namedays (
   id int(11) NOT NULL,
   datum varchar(5) DEFAULT NULL,
