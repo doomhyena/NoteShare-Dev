@@ -29,7 +29,7 @@
        <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
-        <nav>
+    <nav>
             <ul>
                 <li><a href="index.php">Főoldal</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
@@ -46,7 +46,8 @@
                     echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                     
                 ?>
-               <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
+                <li><a href="messages.php">Üzenetek</a></li>
+                <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
             </ul>
         </nav>
         <h1>Keresés</h1>

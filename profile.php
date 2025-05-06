@@ -64,9 +64,6 @@
                 <li><a href="index.php">Főoldal</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
                 <?php
-                    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
-                    $found_user = $conn->query($sql);
-                    $user = $found_user->fetch_assoc();
                     echo "<li><a href='profile.php?userid=".$user['id']."'>Profilom</a></li>";
                 ?>
                 <li><a href="search.php">Keresés</a></li>
@@ -79,6 +76,7 @@
                     echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
                     
                 ?>
+                <li><a href="messages.php">Üzenetek</a></li>
                 <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
             </ul>
         </nav>
