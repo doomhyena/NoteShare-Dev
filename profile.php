@@ -114,24 +114,48 @@
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-             while ($file = $result->fetch_assoc()) {
-                   echo "<div>";
-                   if(!empty($file)) {
-                    $folder = getcwd();
-                    echo "<div>";
-                    echo "<h4>" .$file['name']. "</h4>";
-                    echo "<p>" . $file['description'] . "</p>"; 
-                    echo "<iframe src='users/".$user['username']."/".$file['file_name']."'></iframe>";
-                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    echo "</div>";
-                } else {
-                    echo "<p>Nem található a fájl!</p>";
+                while ($file = $result->fetch_assoc()) {
+                    if ($file['uploaded_by'] == $user['id']) {
+                        echo "<div>";
+                        if (!empty($file)) {
+                            $folder = getcwd();
+                            $uploader_id = $file['uploaded_by'];
+                            $uploader_query = $conn->query("SELECT username FROM users WHERE id='$uploader_id'");
+                            $uploader = $uploader_query->fetch_assoc();
+                            echo "<div>";
+                            echo "<h4>" . $file['name'] . "</h4>";
+                            echo "<p><b>Tárgy:</b> " . $file['subject'] . "</p>";
+                            echo "<p>" . $file['description'] . "</p>";
+                            $file_extension = pathinfo($file['file_name'], PATHINFO_EXTENSION);
+                            if ($file_extension === 'docx') {
+                                echo "<p><b>Ez egy .docx fájl. A megtekintéshez töltsd le és nyisd meg Microsoft Word-ben.</b></p>";
+                            } elseif ($file_extension === 'mp4') {
+                                echo "<video controls>
+                                        <source src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' type='video/mp4'>
+                                        A te böngésződ nem támogatja a videocímkét.
+                                      </video>";
+                            } elseif ($file_extension === 'pdf') {
+                                echo "<iframe src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' width='100%' height='500px'></iframe>";
+                            }
+
+                            echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                            echo "</div>";
+                            echo "<p><b>Címkék:</b> " . $file['tags'] . "</p>";
+                            if ($_COOKIE['id'] == $file['uploaded_by']) {
+                                echo "<form method='POST' action='assets/php/delete.php'>";
+                                echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
+                                echo "<button type='submit'>Törlés</button>";
+                                echo "</form>";
+                            }
+                        } else {
+                            echo "<p>Nem található a fájl!</p>";
+                        }
+                        echo "</div>";
+                    }
                 }
-                   echo "</div>";
-               }
             } else {
                 echo "<p>Nincsenek feltöltött fájlok.</p>";
-           }
+            }
         ?>
    </body>
 </html>

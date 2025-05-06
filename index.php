@@ -87,10 +87,11 @@
                         $folder = getcwd();
                         echo "<div>";
                         echo "<h4>" .$file['name']. "</h4>";
+                        echo "<p><b>Tárgy:</b> " . $file['subject'] . "</p>";
                         echo "<p>" . $file['description'] . "</p>"; 
                         $file_extension = pathinfo($file['file_name'], PATHINFO_EXTENSION);
                         if ($file_extension === 'docx') {
-                            echo "<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=" . urlencode("users/" . $uploader['username'] . "/" . $file['file_name']) . "'></iframe>";
+                            echo "<p><b>Ez egy .docx fájl. A megtekintéshez töltsd le és nyisd meg Microsoft Word-ben.</b></p>";
                         } elseif ($file_extension === 'mp4') {
                             echo "<video controls>
                                     <source src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' type='video/mp4'>
@@ -99,8 +100,6 @@
                         } elseif ($file_extension === 'pdf') {
                             echo "<iframe src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' width='100%' height='500px'></iframe>";
                         }
-
-                        echo "<p><b>Tárgy:</b> " . $file['subject'] . "</p>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                         echo "</div>";                   
                         echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
