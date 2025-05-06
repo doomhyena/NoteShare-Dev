@@ -98,9 +98,12 @@
                         } elseif ($file_extension === 'pdf') {
                             echo "<iframe src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' width='100%' height='500px'></iframe>";
                         }
+
+                        echo "<p><b>Tárgy:</b> " . $file['subject'] . "</p>";
                         echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                         echo "</div>";                   
                         echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
+                        echo "<p><b>Címkék:</b> " . $file['tags'] . "</p>";
                         if ($_COOKIE['id'] == $file['uploaded_by']) {
                             echo "<form method='POST' action='assets/php/delete.php'>";
                             echo "<input type='hidden' name='file_id' value='" . $file['id'] . "'>";
