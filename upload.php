@@ -19,8 +19,12 @@
         $file_type = mime_content_type($tmp_name);
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
     
-        if($file_ext !== 'pdf' || $file_type !== 'application/pdf') {
-            echo "<script>alert('Csak PDF fájlokat lehet feltölteni!')</script>";
+        $allowed_extensions = ['pdf', 'mp4', 'docx'];
+        $allowed_types = ['application/pdf', 'video/mp4', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+        if (!in_array($file_ext, $allowed_extensions) || !in_array($file_type, $allowed_types)) {
+            echo "<script>alert('Csak PDF, MP4 vagy DOCX fájlokat lehet feltölteni!')</script>";
+            exit;
         }
     
         $folder = getcwd();

@@ -1,8 +1,11 @@
 <?php
 
 	require "cfg.php";
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
 
-	$keresett = $_GET['keresett'] ?? '';
+
+	$keresett = isset($_GET['keresett']) ? htmlspecialchars(trim($_GET['keresett'])) : '';
 	$loggedInUserId = $_COOKIE['id'] ?? 0;
 
 	$sqlFiles = "SELECT * FROM files WHERE name LIKE '%$keresett%'";
@@ -28,11 +31,7 @@
 				<label>' . htmlspecialchars($user['username']) . '</label>
 		';
 
-		$sqlFriendCheck = "
-			SELECT * FROM friends 
-			WHERE (fromid = $loggedInUserId AND toid = $userId) 
-			OR (fromid = $userId AND toid = $loggedInUserId)
-		";
+		$sqlFriendCheck = "SELECT * FROM friends WHERE (fromid = $loggedInUserId AND toid = $userId) OR (fromid = $userId AND toid = $loggedInUserId)";
 		$friendCheck = $conn->query($sqlFriendCheck);
 
 		if ($friendCheck->num_rows === 0) {

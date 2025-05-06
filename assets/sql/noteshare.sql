@@ -21,6 +21,16 @@ CREATE TABLE files (
     file_path VARCHAR(255) NOT NULL,
 );
 
+CREATE TABLE friends (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fromid INT NOT NULL,
+    toid INT NOT NULL,
+    status TINYINT DEFAULT 0, -- 0=fuggoben, 1=elfogadva
+    FOREIGN KEY (fromid) REFERENCES users(id),
+    FOREIGN KEY (toid) REFERENCES users(id)
+);
+
+
 CREATE TABLE namedays (
   id int(11) NOT NULL,
   datum varchar(5) DEFAULT NULL,
