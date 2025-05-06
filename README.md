@@ -1,17 +1,7 @@
-# NoteShare Dokumentáció
+# NoteShare Readme
 
 ## Bevezetés
 A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegyzetek megosztására és letöltésére. Lehetővé teszi a felhasználók számára, hogy regisztráljanak, fájlokat töltsenek fel, kezeljék profiljukat, és letöltsék a megosztott anyagokat. A platform PHP és MySQL alapú.
-
----
-
-## Funkciók
-- **Felhasználói Regisztráció és Bejelentkezés**: A felhasználók biztonságosan hozhatnak létre fiókokat és jelentkezhetnek be.
-- **Fájl Feltöltés és Letöltés**: A felhasználók jegyzeteket tölthetnek fel és tölthetnek le mások által megosztott fájlokat.
-- **Profilkezelés**: A felhasználók frissíthetik profilképeiket és megtekinthetik feltöltött fájljaikat.
-- **Elfelejtett Jelszó**: A felhasználók visszaállíthatják elfelejtett jelszavaikat.
-- **Fájl Törlés**: A felhasználók törölhetik feltöltött fájljaikat.
-- **Reszponzív Dizájn**: A platform különböző eszközökön is működik.
 
 ---
 
@@ -33,82 +23,42 @@ A **NoteShare** egy webalapú platform, amelyet diákok számára terveztek jegy
 
 ---
 
-## Adatbázis Struktúra
-
-### Táblák
-
-1. **users**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `lastname` (VARCHAR(100))
-   - `firstname` (VARCHAR(100))
-   - `username` (VARCHAR(50), UNIQUE)
-   - `profile_picture` (VARCHAR(255))
-   - `password` (VARCHAR(255))
-   - `security_question` (VARCHAR(255))
-   - `security_answer` (VARCHAR(255))
-   - `admin` (TINYINT(1), alapértelmezetten 0)
-   - `teacher` (TINYINT(1), alapértelmezetten 0)
-
-2. **files**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `uploaded_by` (INT, FK → users.id)
-   - `name` (VARCHAR(255))
-   - `file_name` (VARCHAR(255))
-   - `description` (TEXT)
-   - `file_path` (VARCHAR(255))
-   - `tn_name` (VARCHAR(255))
-
-3. **comments**
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `userid` (INT, FK → users.id)
-   - `postid` (INT)
-   - `text` (VARCHAR(1000))
-
-4. **notifys**
-    - `id` (INT, PK, AUTO_INCREMENT)
-    - `fromid` (INT, FK → users.id)
-    - `toid` (INT, FK → users.id)
-    - `notifytype` (VARCHAR(100))
-    - `readed` (TINYINT(1), DEFAULT 0)
-
-5. **namedays**
-    - `id` (INT)
-    - `datum` (VARCHAR(5)) – például "04-18"
-    - `nevek` (VARCHAR(255)) – névnaposok nevei
-
----
 
 ## Fájlstruktúra
 ```
 NoteShare-Dev/
-├── assets/
-│   ├── css/
-│   │   └── styles.css
-│   ├── img/
-│   │   └── favicon.ico
-│   │   └── logo-1.png
-│   │   └── logo-2.png
-│   ├── php/
-│   │   └── cfg.php
-│   │   └── delete.php
-│   │   └── download.php
-│   │   └── findanything.php
-│   │   └── logout.php
-│   ├── js/
-│   │   └── script.js
-│   ├── sql/
-│   │   └── noteshare.sql
-├── users/
-├── forgotpass.php
-├── index.php
-├── LICENSE
-├── login.php
-├── notify.php
-├── profile.php
-├── README.md
-├── reg.php
-├── search.php
-└── upload.php
+│   ├──/assets
+│   │
+│   ├── /css
+│   │   └── styles.css          # A projekt stíluslapja
+│   ├──/img
+│   │   ├── favicon.ico         # Az alkalmazás faviconja
+│   │   ├── logo-1.png          # Az első logó
+│   │   └── logo-2.png          # A második logó
+│   ├──/js
+│   │   └── script.js           # A JavaScript fájl, amely a fő funkciókat tartalmazza
+│   ├── /sql
+│   │   └── noteshare.sql       # Az oldal adatbázisa
+│   ├──/php
+│   │   ├── accept_friend.php   # Barátok elfogadását kezelő fájl
+│   │   ├── add_friend.php      # Barátok hozzáadását kezelő fájl
+│   │   ├── cfg.php             # Az adatbázis kapcsolat beállításait tartalmazó fájl
+│   │   ├── delete.php          # Fájlok törlését kezelő fájl
+│   │   ├── download.php        # Fájlok letöltését kezelő fájl
+│   │   ├── findanything.php    # Keresési funkciót megvalósító fájl
+│   │   ├── loadmessages.php    # Üzenetek betöltését kezelő fájl
+│   │   └── logout.php          # Kijelentkezést kezelő fájl
+├── users/                      # Felhasználók tárhelyét tartalmazó mappa
+├── forgotpass.php              # Jelszó visszaállítást kezelő fájl
+├── index.php                   # Az oldal főoldala
+├── LICENSE                     # Az oldal licensze
+├── login.php                   # Bejelentkezést kezelő fájl
+├── notify.php                  # Értesítéseket kezelő fájl
+├── profile.php                 # Profilokat megjelenítő fájl
+├── README.md                   # Az oldal dokumentációja markdown fájlként
+├── reg.php                     # A regisztrációkat kezelő fájl
+├── search.php                  # Keresést kezelő fájl
+└── upload.php                  # Feltöltést kezelő fájl
 ```
 
 ---
@@ -143,6 +93,16 @@ NoteShare-Dev/
 1. Navigálj a `forgotpass.php` oldalra.
 2. Add meg a felhasználónevedet, és kövesd az utasításokat a jelszó visszaállításához.
 
+### Barátok hozzáadása: A felhasználók barátokat adhatnak hozzá, és értesítéseket kapnak a barátok státuszáról.
+1. Navigálj a `profile.php` vagy keress egy felhasználót a `search.php`-n.
+2. Jelöld be a gomb segítségével.
+3. Várd meg amíg visszaigazol.
+
+### Üzenetküldés
+1. Navigálj a `messages.php` oldalra.
+2. Válaszd ki, hogy kinek szeretnél üzenetet küldeni.
+3. Küldd el az üzenetedet.
+
 ---
 
 ## Biztonsági Szempontok
@@ -158,9 +118,9 @@ NoteShare-Dev/
 ---
 
 ## Felhasznált tervezői környezetek és program nyelvek
-- **Backend**: PHP (8.2+)
+- **Backend**: PHP (8.2+), jQuery
 - **Adatbázis**: MySQL
-- **Frontend**: HTML5, CSS3, JavaScript
+- **Frontend**: HTML5, CSS3, JavaScript 
 - **Fejlesztői környezet**: XAMPP (PHP és MySQL támogatással)
 - **Egyéb eszközök**: phpMyAdmin, Git
 
