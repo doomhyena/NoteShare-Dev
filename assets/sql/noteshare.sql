@@ -5,61 +5,86 @@
 CREATE DATABASE NoteShare;
 USE NoteShare;
 
-CREATE TABLE comments (
-  id int AUTO_INCREMENT PRIMARY KEY,
-  userid int NOT NULL,
-  postid int NOT NULL,
-  text varchar(1000) NOT NULL
-); 
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `postid` int(11) NOT NULL,
+  `text` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE files (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  uploaded_by INT,
-  name VARCHAR(255) NOT NULL,
-  file_name VARCHAR(255) NOT NULL,
-  description TEXT,
-  file_path VARCHAR(255) NOT NULL,
-  subject VARCHAR(100), 
-  tags VARCHAR(255), 
-  FOREIGN KEY (uploaded_by) REFERENCES users(id)
-);
+INSERT INTO `comments` (`id`, `userid`, `postid`, `text`) VALUES
+(2, 1, 1, 'Second comment'),
+(4, 1, 1, 'Second Comment'),
+(8, 1, 1, 'Third Comment'),
+(9, 1, 2, 'First comment'),
+(10, 2, 2, 'First comment'),
+(11, 2, 2, 'First comment'),
+(12, 2, 2, 'Elemér'),
+(13, 2, 2, 'Kuki');
 
-CREATE TABLE friends (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fromid INT NOT NULL,
-    toid INT NOT NULL,
-    status TINYINT DEFAULT 0, -- 0=fuggoben, 1=elfogadva
-    FOREIGN KEY (fromid) REFERENCES users(id),
-    FOREIGN KEY (toid) REFERENCES users(id)
-);
 
-CREATE TABLE namedays (
-  id int(11) NOT NULL,
-  datum varchar(5) DEFAULT NULL,
-  nevek varchar(255) DEFAULT NULL
-);
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `uploaded_by` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `tags` varchar(255) NOT NULL,
+  `tn_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE notifys (
-  id int AUTO_INCREMENT PRIMARY KEY,
-  fromid int(11) NOT NULL,
-  toid int(11) NOT NULL,
-  notifytype varchar(100) NOT NULL,
-  readed TINYINT(1) DEFAULT 0
-);
+INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `subject`, `tags`, `tn_name`) VALUES
+(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek angolul', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/HTML5NotesForProfessionals.pdf', '', '', NULL),
+(2, 1, 'Tesz Elek', 'AndroidNotesForProfessionals.pdf', 'Teszt Elek', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/AndroidNotesForProfessionals.pdf', '', '', NULL),
+(3, 1, 'Test Video', '6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', 'This is a test video', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', '', '', NULL),
+(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL);
 
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    lastname VARCHAR(100),
-    firstname VARCHAR(100),
-    username VARCHAR(50) NOT NULL UNIQUE,
-    profile_picture VARCHAR(255),
-    password VARCHAR(255) NOT NULL,
-    security_question VARCHAR(255) NOT NULL,
-    security_answer VARCHAR(255) NOT NULL
-);
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$EwcPqq6Aw7/m39popdXq.uH45xjtV6knsEnKZ/gfJo/.dwXvp6Wzm', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
+CREATE TABLE `friends` (
+  `id` int(11) NOT NULL,
+  `fromid` int(11) NOT NULL,
+  `toid` int(11) NOT NULL,
+  `status` tinyint(4) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `friends` (`id`, `fromid`, `toid`, `status`) VALUES
+(3, 2, 1, 1);
+
+CREATE TABLE `messages` (
+  `id` int(255) NOT NULL,
+  `fromid` int(255) NOT NULL,
+  `toid` int(255) NOT NULL,
+  `content` text NOT NULL,
+  `sent_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `messages` (`id`, `fromid`, `toid`, `content`, `sent_at`) VALUES
+(1, 0, 2, 'Szia', '2025-05-06'),
+(2, 1, 2, 'Szia', '2025-05-06'),
+(3, 2, 1, 'Szia', '2025-05-06'),
+(4, 2, 1, 'Mizu?', '2025-05-06'),
+(5, 1, 2, 'Semmi, veled?', '2025-05-06'),
+(6, 1, 2, 'Teszt', '2025-05-06'),
+(7, 2, 1, 'e', '2025-05-06'),
+(8, 2, 1, 'bruh', '2025-05-06'),
+(9, 1, 2, 'miez', '2025-05-06'),
+(10, 2, 1, 'eee', '2025-05-06'),
+(11, 1, 2, 'ehe', '2025-05-06'),
+(12, 2, 1, 'aaa', '2025-05-06'),
+(13, 1, 2, 'aaa', '2025-05-06'),
+(14, 2, 1, 'adsdasd', '2025-05-06'),
+(15, 2, 1, 'eee', '2025-05-06'),
+(16, 1, 2, 'eee', '2025-05-06'),
+(17, 1, 2, 'e', '2025-05-06'),
+(18, 1, 2, 'uwu', '2025-05-06');
+
+CREATE TABLE `namedays` (
+  `id` int(11) NOT NULL,
+  `datum` varchar(5) DEFAULT NULL,
+  `nevek` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (1, '01-01', 'Fruzsina'),
@@ -427,3 +452,73 @@ INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (363, '12-29', 'Tamara, Tamás'),
 (364, '12-30', 'Dávid'),
 (365, '12-31', 'Szilveszter');
+
+CREATE TABLE `notifys` (
+  `id` int(11) NOT NULL,
+  `fromid` int(255) NOT NULL,
+  `toid` int(255) NOT NULL,
+  `notifytype` varchar(100) NOT NULL,
+  `readed` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `notifys` (`id`, `fromid`, `toid`, `notifytype`, `readed`) VALUES
+(12, 2, 1, 'friend', 1);
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `firstname` varchar(100) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `security_question` varchar(255) NOT NULL,
+  `security_answer` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
+(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
+(2, 'Teszt', 'Elek', 'tesztuser', 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád');
+
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fromid` (`fromid`),
+  ADD KEY `toid` (`toid`);
+
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `notifys`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `friends`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `messages`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+ALTER TABLE `notifys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `friends`
+  ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`fromid`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`toid`) REFERENCES `users` (`id`);
+COMMIT;
