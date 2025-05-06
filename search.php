@@ -53,6 +53,12 @@
         <h1>Keresés</h1>
         <input type="text" class="search-box" id="search-box" placeholder="Keresés...">
         <div id="search"></div>
+        <footer>
+            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
+            <GitHub: <a href="https://github.com/doomhyena/NoteShare"></a>
+            <hr>
+            <p>&copy; 2025 NoteShare</p>
+        </footer>
         <script src="assets/js/script.js"></script>
    </body>
 </html>
