@@ -13,12 +13,15 @@ CREATE TABLE comments (
 ); 
 
 CREATE TABLE files (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    uploaded_by INT,
-    name VARCHAR(255) NOT NULL,
-    file_name VARCHAR(255) NOT NULL,
-    description TEXT,
-    file_path VARCHAR(255) NOT NULL,
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  uploaded_by INT,
+  name VARCHAR(255) NOT NULL,
+  file_name VARCHAR(255) NOT NULL,
+  description TEXT,
+  file_path VARCHAR(255) NOT NULL,
+  subject VARCHAR(100), 
+  tags VARCHAR(255), 
+  FOREIGN KEY (uploaded_by) REFERENCES users(id)
 );
 
 CREATE TABLE friends (

@@ -13,7 +13,13 @@
 
 
 	if(isset($_POST['upload-btn'])){
-		
+        $subject = $_POST['subject'];
+        $tags = $_POST['tags'];
+
+        if (empty($subject) || empty($tags)) {
+            echo "<script>alert('Kérjük, adja meg a tárgyat és a címkéket!')</script>";
+            exit;
+        }
         $file_name = $_FILES['upload-file']['name'];
         $tmp_name = $_FILES['upload-file']['tmp_name'];
         $file_type = mime_content_type($tmp_name);
@@ -84,14 +90,16 @@
                     ?>
                     <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
                 </ul>
-            </nav>
+        </nav>
         <form method="post" enctype="multipart/form-data">
-        <label class="form-header">Anyag feltöltése</label>
-        <input type="text" name="name" placeholder="Anyag neve">
-        <textarea name="description" placeholder="Leírás az anyagról"></textarea>
-        <input type="file" name="upload-file">
-        <input type="submit" name="upload-btn">
-    </form>
+            <label class="form-header">Anyag feltöltése</label>
+            <input type="text" name="name" placeholder="Anyag neve">
+            <textarea name="description" placeholder="Leírás az anyagról"></textarea>
+            <input type="text" name="subject" placeholder="Tárgy (pl. fizika, történelem)">
+            <input type="text" name="tags" placeholder="Kulcsszavak, címkék (pl. ZH, jegyzet, beadandó)">
+            <input type="file" name="upload-file">
+            <input type="submit" name="upload-btn">
+        </form>
     <script src="assets/js/script.js"></script>
    </body>
 </html>
