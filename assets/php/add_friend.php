@@ -6,8 +6,8 @@
         exit;
     }
 
-    $fromid = intval($_COOKIE['id']);
-    $toid = intval($_POST['toid']);
+    $fromid = $_COOKIE['id'];
+    $toid = $_POST['toid'];
 
     $user_check = $conn->query("SELECT id FROM users WHERE id = $toid");
     if ($user_check->num_rows === 0) {

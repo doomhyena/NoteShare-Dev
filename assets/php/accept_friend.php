@@ -1,7 +1,7 @@
 <?php
     require 'cfg.php';
 
-    if (!isset($_COOKIE['id']) || !isset($_POST['fromid'])) {
+    if (!isset($_COOKIE['id'])) {
         header("Location: ../../index.php");
     }
 
