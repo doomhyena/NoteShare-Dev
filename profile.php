@@ -84,13 +84,14 @@
         
             echo"<h2>".$user['firstname'] ." profilja:</h2>";
             $folder = getcwd();
-            $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
 
             if (!empty($user['profile_picture'])) {
-                echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
+                $profile_picture_path = "users/".$user['username']."/".$user['profile_picture'];
             } else {
-                echo "<p>Nincs profilkép feltöltve.</p>";
+                $profile_picture_path = "assets/img/default_profile_picture.jpg";
             }
+
+            echo "<img src='".$profile_picture_path."' alt='Profilkép'>";
 
             if($_GET['userid'] == $_COOKIE['id']) {
                 echo "<form method='POST' enctype='multipart/form-data'>
