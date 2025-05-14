@@ -490,8 +490,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
 (1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
 (2, 'Teszt', 'Elek', 'tesztuser', 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád');
-(3, 'Kovács', 'Péter', 'kovipeti', 'profile3.png', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars'),
-(4, 'Szabó', 'Anna', 'szaboanna', 'profile4.png', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati');
+(3, 'Kovács', 'Péter', 'kovipeti', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars'),
+(4, 'Szabó', 'Anna', 'szaboanna', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati');
 
 
 ALTER TABLE `comments`
