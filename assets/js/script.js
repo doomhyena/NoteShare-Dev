@@ -74,3 +74,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function showForm(form){
+		
+    if(form == "reg"){
+        document.getElementById("reg").style.display = "block";
+        document.getElementById("login").style.display = "none";
+    } else {
+        document.getElementById("login").style.display = "block";
+        document.getElementById("reg").style.display = "none";    
+    }
+}
