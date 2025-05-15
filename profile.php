@@ -83,6 +83,10 @@
             
             echo "<p>Név: " .$user['firstname']. " " . $user['lastname']. "</p>";
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
+            if($_GET['userid'] == $_COOKIE['id']) {
+                echo "<p>Email: " .$user['email']. "</p>";
+                echo "<p>Regisztráció dátuma: " . $user['registration_date'] . "</p>";
+            }
 
             if ($_GET['userid'] != $_COOKIE['id']) {
                 $toid = intval($_GET['userid']);

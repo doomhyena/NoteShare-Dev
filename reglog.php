@@ -19,6 +19,7 @@
         $email = $_POST['email'];
         $password = $_POST['password1'];
         $passwordtwo = $_POST['password2'];
+        $registration_date = date('Y-m-d H:i:s');
 
         $security_answer = $_POST['security_answer'];
         $sql = "SELECT * FROM users WHERE username='$username'";
@@ -31,7 +32,7 @@
             if(mysqli_num_rows($found_email) == 0) {
                 if($password == $passwordtwo){
                 $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-                $conn->query("INSERT INTO users (lastname, firstname, username, email, password, security_question, security_answer) VALUES ('$lastname', '$firstname', '$username', '$email', '$titkositott_jelszo', '$selected_question', '$security_answer')");
+                $conn->query("INSERT INTO users (lastname, firstname, username, email, password, security_question, security_answer, registration_date) VALUES ('$lastname', '$firstname', '$username', '$email', '$titkositott_jelszo', '$selected_question', '$security_answer', '$registration_date')");
                 $folder = getcwd();
                 $path = $folder."\\users\\".$username;
                 
