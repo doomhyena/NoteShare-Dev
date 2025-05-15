@@ -489,7 +489,7 @@ CREATE TABLE `users` (
   `registration_date` DATETIME
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`, `reg_date`) VALUES
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`, `registration_date`) VALUES
 (1, 'Csontos', 'Kincső', 'doomhyena', 'csontoskincso05@gmail.com', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', '2025-04-08 10:00:00'),
 (2, 'Teszt', 'Elek', 'tesztuser', 'tesztelek@gmail,com' , 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád', '2025-04-16 11:44:52'),
 (3, 'Kovács', 'Péter', 'kovipeti', 'kovipeti@gmail.com', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars', '2025-05-06 14:32:00'),
