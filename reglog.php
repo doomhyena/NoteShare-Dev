@@ -1,6 +1,6 @@
 <?php 
 
-    require  "assets/php/cfg.php";
+    require  "assets/php/db.php";
 
     $security_questions = [
         "Mi a kedvenc könyved?",

@@ -12,7 +12,7 @@
    </head>
    <body>
         <?php 
-            require  "assets/php/cfg.php";
+            require  "assets/php/db.php";
 
             if (isset($_POST['forg-btn'])) {
                 $username = $_POST['username'];
