@@ -36,29 +36,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.php">Főoldal</a></li>
-            <li><a href="upload.php">Feltöltés</a></li>
-            <?php
-                echo "<li><a href='profile.php?userid=".$user['id']."'>Profilom</a></li>";
-            ?>
-            <li><a href="search.php">Keresés</a></li>
-            <?php
-                
-                $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
-                $founded_notify = $conn->query($sql);
-                $notify_number = mysqli_num_rows($founded_notify);
-
-                echo "<li><a href='notify.php'>Értesítések ($notify_number)</a></li>";
-                    
-            ?>
-            <li><a href="messages.php">Üzenetek</a></li>
-            <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
-        </ul>
-    </nav>
-    <div class="content">
-        <div class="friends">
+    <?php
+        include 'assets/php/navbar.php';
+    ?>
+    <div>
+        <div>
             <?php
                 $query = "SELECT * FROM friends WHERE (fromid=$_COOKIE[id] AND status=1) OR (toid=$_COOKIE[id] AND status=1)";
                 $found_friends = $conn->query($query);
@@ -68,12 +50,12 @@
                     $found_friend = $conn->query($query);
                     $friend = $found_friend->fetch_assoc();
             ?>
-                <div class="friend">
+                <div>
                     <a href="messages.php?friendid=<?= $friendid; ?>"><?= htmlspecialchars($friend['username']); ?></a>
                 </div>
             <?php } ?>
         </div>
-        <div class="chat">
+        <div>
             <?php if (isset($_GET['friendid'])): ?>
                 <?php
                     $friendid = intval($_GET['friendid']);
@@ -81,8 +63,8 @@
                     $found_friend = $conn->query($query);
                     $friend = $found_friend->fetch_assoc();
                 ?>
-                <a class="friend-name"><?= htmlspecialchars($friend['username']); ?></a>
-                <div class="messages"></div>
+                <a><?= htmlspecialchars($friend['username']); ?></a>
+                <div></div>
                 <form method="post">
                     <input type="hidden" name="toid" value="<?= $friendid; ?>">
                     <input type="text" name="message" placeholder="Írj egy üzenetet...">
