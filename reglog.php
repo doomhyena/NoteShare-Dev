@@ -107,12 +107,9 @@
             <input type="submit" name="login-btn" value="Bejelentkezés!">
             <label>Még nincs fiókod? <a href="#" onclick="showForm('reg')">Regisztrálj!</a></label>
         </form>
-        <footer>
-            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
-            <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
-            <hr>
-            <p>&copy; 2025 NoteShare</p>
-        </footer>
+        <?php
+            include 'assets/php/footer.php';
+        ?>
         <script src="assets/js/script.js"></script>
    </body>
 </html>

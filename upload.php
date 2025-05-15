@@ -101,12 +101,9 @@
             <input type="file" name="upload-file">
             <input type="submit" name="upload-btn">
         </form>
-        <footer>
-            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
-            <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
-            <hr>
-            <p>&copy; 2025 NoteShare</p>
-        </footer>
+        <?php
+            include 'assets/php/footer.php';
+        ?>
     <script src="assets/js/script.js"></script>
    </body>
 </html>
