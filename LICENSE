@@ -1,21 +1,39 @@
-MIT License
+Projektmunka Licencfeltételek 1.0
 
-Copyright (c) 2025 Csontos Kincső & Szekeres Levente
+Ez a licenc a repository teljes tartalmára vonatkozik — beleértve, de nem kizárólagosan: forráskód, dokumentáció, képek, ábrák, adatstruktúrák, fájlok és minden kapcsolódó anyag. A licenc kizárólag az Asztali Alkalmazások I. és Informatikai és Távközlési Alapok II. tantárgyak év végi projektmunkájának beadásához és értékeléséhez biztosít megtekintési jogot. Minden egyéb felhasználás kizárólag a szerző előzetes, írásos engedélyével lehetséges.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Engedélyezett tevékenységek  
+A licenc korlátozott, nem átruházható és nem kizárólagos jogot ad az alábbiakra:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+- A forráskód és dokumentáció megtekintése kizárólag a projektmunka beadása és értékelése során.
+- Hozzáférés biztosítása tanárok, értékelők és az érintett oktatási intézmény kijelölt képviselői számára.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Tiltott tevékenységek  
+Az alábbi tevékenységek csak a szerző előzetes, írásos engedélyével végezhetők, ennek hiányában tilosak:
+
+- A forráskód, dokumentáció vagy bármely részének másolása, letöltése, terjesztése, nyilvánosságra hozatala vagy archiválása.
+- A tartalom módosítása, átdolgozása, fordítása vagy bármilyen formában történő származtatása.
+- A forráskód vagy dokumentáció újrafelhasználása más projektekben.
+- Kereskedelmi célú felhasználás.
+- A tartalom felhasználása mesterséges intelligencia, nyelvi modellek vagy gépi tanulás céljából.
+- A tartalom bármely részének feltöltése nyilvános vagy nyílt forráskódú tárolókba (pl. GitHub, GitLab, Bitbucket stb.).
+
+3. Szellemi tulajdonjogok
+
+- A repository teljes tartalma a szerző kizárólagos szellemi tulajdona.
+- A szerző fenntart minden szerzői és egyéb jogot a jelen anyaghoz.
+- A licenc nem ruház át tulajdonjogot a felhasználóra.
+
+4. Felelősség és jogkövetkezmények
+
+- A licenc megsértése jogsértésnek minősül, és jogi következményeket vonhat maga után.
+- A szerző jogosult jogi lépéseket tenni, beleértve a hozzáférés megszüntetését és hivatalos bejelentést az oktatási intézménynél.
+- A jogsértésből eredő károkért a jogsértő felel.
+
+5. Egyéb rendelkezések
+
+- A licenc a közzététel napjától érvényes.
+- A szerző döntése alapján a licenc érvényessége visszavonható.
+- A licenc a magyar joghatóság alá tartozik.
+
+Készítette: Csontos Kincső Anaszztázia – 2025/05/15
