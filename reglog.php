@@ -80,7 +80,7 @@
    </head>
    <body>
         <h1>Regisztráció</h1>
-        <form method="post">
+	    <form id="reg" style="display: none;" method="post">
             <label for="lastname">Vezetéknév:</label><br>
             <input type="text" name="lastname"><br><br>
             <label for="lastname">Keresztnév:</label><br>
@@ -96,20 +96,20 @@
             <label for="security_answer">Válasz:</label><br>
             <input type="text" name="security_answer"><br><br>
             <input type="submit" name="reg-btn" value="Regisztráció!">
+            <label>Már van fiókod? <a href="#" onclick="showForm('login')">Lépj be!</a></label>
         </form>
-		<label>Már van fiókod? <a href="#" onclick="showForm('login')">Lépj be!</a></label>
         <h1>Bejelentkezés</h1>
-        <form method="post">
+	    <form class="reglog" id="login" method="post">
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username"><br><br>
             <label for="password">Jelszó:</label><br>
             <input type="password" name="password"><br><br>
             <input type="submit" name="login-btn" value="Bejelentkezés!">
+            <label>Még nincs fiókod? <a href="#" onclick="showForm('reg')">Regisztrálj!</a></label>
         </form>
-        <label>Még nincs fiókod? <a href="#" onclick="showForm('reg')">Regisztrálj!</a></label>
         <footer>
             <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
-            <GitHub: <a href="https://github.com/doomhyena/NoteShare"></a>
+            <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
             <hr>
             <p>&copy; 2025 NoteShare</p>
         </footer>

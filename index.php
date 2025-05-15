@@ -2,7 +2,7 @@
     require  "assets/php/cfg.php";
 
     if(!isset($_COOKIE['id'])){
-        header("Location: reg.php");
+        header("Location: reglog.php");
     }
 
     $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
@@ -140,10 +140,10 @@
         ?>
     </div>
     <footer>
-            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
-            <GitHub: <a href="https://github.com/doomhyena/NoteShare"></a>
-            <hr>
-            <p>&copy; 2025 NoteShare</p>
+        <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
+        <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
+        <hr>
+        <p>&copy; 2025 NoteShare</p>
     </footer>
     <script src="assets/js/script.js"></script>
    </body>

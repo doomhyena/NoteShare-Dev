@@ -20,7 +20,7 @@ INSERT INTO `comments` (`id`, `userid`, `postid`, `text`) VALUES
 (10, 2, 2, 'First comment'),
 (11, 2, 2, 'First comment'),
 (12, 2, 2, 'Elemér'),
-(13, 2, 2, 'Kuki');
+(13, 2, 2, 'Kuki'),
 (14, 3, 1, 'Nagyon hasznos fájl!'),
 (15, 4, 2, 'Köszi a feltöltést!'),
 (16, 3, 5, 'Ez segített a vizsgán!'),
@@ -42,7 +42,7 @@ INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `f
 (1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek angolul', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/HTML5NotesForProfessionals.pdf', '', '', NULL),
 (2, 1, 'Tesz Elek', 'AndroidNotesForProfessionals.pdf', 'Teszt Elek', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/AndroidNotesForProfessionals.pdf', '', '', NULL),
 (3, 1, 'Test Video', '6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', 'This is a test video', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', '', '', NULL),
-(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL);
+(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL),
 (5, 3, 'C# alapok', 'csharp_notes.pdf', 'Kezdő C# jegyzetek', 'C:/xampp/htdocs/NoteShare-Dev/users/kovipeti/csharp_notes.pdf', 'Programozás', 'C#, programozás', NULL),
 (6, 4, 'Matmatika példatár', 'math_examples.pdf', 'Középiskolás matek példák', 'C:/xampp/htdocs/NoteShare-Dev/users/szaboanna/math_examples.pdf', 'Matematika', 'algebra, egyenlet', NULL);
 
@@ -55,7 +55,7 @@ CREATE TABLE `friends` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `friends` (`id`, `fromid`, `toid`, `status`) VALUES
-(3, 2, 1, 1);
+(3, 2, 1, 1),
 (4, 3, 1, 1),
 (5, 4, 2, 1);
 
@@ -85,7 +85,7 @@ INSERT INTO `messages` (`id`, `fromid`, `toid`, `content`, `sent_at`) VALUES
 (15, 2, 1, 'eee', '2025-05-06'),
 (16, 1, 2, 'eee', '2025-05-06'),
 (17, 1, 2, 'e', '2025-05-06'),
-(18, 1, 2, 'uwu', '2025-05-06');
+(18, 1, 2, 'uwu', '2025-05-06'),
 (19, 3, 1, 'Szia, jó lett a jegyzet!', '2025-05-08'),
 (20, 1, 3, 'Köszi, örülök hogy segít!', '2025-05-08'),
 (21, 4, 2, 'Meg tudod nézni a feltöltésem?', '2025-05-09');
@@ -472,7 +472,7 @@ CREATE TABLE `notifys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `notifys` (`id`, `fromid`, `toid`, `notifytype`, `readed`) VALUES
-(12, 2, 1, 'friend', 1);
+(12, 2, 1, 'friend', 1),
 (13, 3, 1, 'friend', 0),
 (14, 4, 2, 'friend', 0);
 
@@ -489,7 +489,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
 (1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
-(2, 'Teszt', 'Elek', 'tesztuser', 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád');
+(2, 'Teszt', 'Elek', 'tesztuser', 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád'),
 (3, 'Kovács', 'Péter', 'kovipeti', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars'),
 (4, 'Szabó', 'Anna', 'szaboanna', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati');
 

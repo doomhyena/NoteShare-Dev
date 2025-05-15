@@ -94,10 +94,10 @@
         </div>
     </div>
     <footer>
-            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
-            <GitHub: <a href="https://github.com/doomhyena/NoteShare"></a>
-            <hr>
-            <p>&copy; 2025 NoteShare</p>
+        <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
+        <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
+        <hr>
+        <p>&copy; 2025 NoteShare</p>
     </footer>
     <script src="assets/js/script.js"></script>
 </body>
