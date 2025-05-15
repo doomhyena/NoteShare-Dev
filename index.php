@@ -1,6 +1,6 @@
 <?php
-    require  "assets/php/db.php";
 
+    require "assets/php/db.php";
     if(!isset($_COOKIE['id'])){
         header("Location: reglog.php");
     }

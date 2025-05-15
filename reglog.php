@@ -16,6 +16,7 @@
         $lastname = $_POST['lastname'];
         $firstname = $_POST['firstname'];
         $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password1'];
         $passwordtwo = $_POST['password2'];
 
@@ -24,9 +25,13 @@
         $found_user = $conn->query($sql);
         
         if(mysqli_num_rows($found_user) == 0){
-            if($password == $passwordtwo){
+            $sql = "SELECT * FROM users WHERE email='$email'";
+            $found_email = $conn->query($sql); 
+
+            if(mysqli_num_rows($found_email) == 0) {
+                if($password == $passwordtwo){
                 $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-                $conn->query("INSERT INTO users (lastname, firstname, username, password, security_question, security_answer) VALUES ('$lastname', '$firstname', '$username', '$titkositott_jelszo', '$selected_question', '$security_answer')");
+                $conn->query("INSERT INTO users (lastname, firstname, username, email, password, security_question, security_answer) VALUES ('$lastname', '$firstname', '$username', '$email', '$titkositott_jelszo', '$selected_question', '$security_answer')");
                 $folder = getcwd();
                 $path = $folder."\\users\\".$username;
                 
@@ -35,8 +40,11 @@
                 } else {
                     echo "<script>alert('Nem sikerült létrehozni a tárhelyet!')</script>";
                 }
+                } else {
+                    echo "<script>alert('A jelszavak nem egyeznek!')</script>";
+                }
             } else {
-                echo "<script>alert('A jelszavak nem egyeznek!')</script>";
+                echo "<script>alert('Már létezik ilyen email cím!')</script>";
             }
         } else {
             echo "<script>alert('Már létezik ilyen felhasználó!')</script>";
@@ -87,6 +95,8 @@
             <input type="text" name="firstname"><br><br>
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" name="email"><br><br>
             <label for="password">Jelszó:</label><br>
             <input type="password" name="password1"><br><br>
             <label for="password">Jelszó újra:</label><br>

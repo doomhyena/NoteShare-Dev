@@ -481,17 +481,18 @@ CREATE TABLE `users` (
   `lastname` varchar(100) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `security_question` varchar(255) NOT NULL,
   `security_answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
-(2, 'Teszt', 'Elek', 'tesztuser', 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád'),
-(3, 'Kovács', 'Péter', 'kovipeti', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars'),
-(4, 'Szabó', 'Anna', 'szaboanna', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`) VALUES
+(1, 'Csontos', 'Kincső', 'doomhyena', 'csontoskincso05@gmail.com', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza'),
+(2, 'Teszt', 'Elek', 'tesztuser', 'tesztelek@gmail,com' , 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád'),
+(3, 'Kovács', 'Péter', 'kovipeti', 'kovipeti@gmail.com', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars'),
+(4, 'Szabó', 'Anna', 'szaboanna', 'szaboanna@gmail,com', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati');
 
 
 ALTER TABLE `comments`
