@@ -31,8 +31,6 @@
         <?php
             include 'assets/php/navbar.php';
             
-            require "assets/php/cfg.php";
-
             if(isset($_POST['del-notifs-btn'])){
                 
                 $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
