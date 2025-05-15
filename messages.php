@@ -1,8 +1,8 @@
 <?php 
 
     require "assets/php/cfg.php";
-    if (!isset($_COOKIE['id'])) {
-        header("Location: reg.php");
+    if(!isset($_COOKIE['id'])){
+        header("Location: index.php");
     }
 
     $sql = "SELECT * FROM users WHERE id='" . intval($_COOKIE['id']) . "'";
@@ -38,43 +38,34 @@
 <body>
     <?php
         include 'assets/php/navbar.php';
+
+        $query = "SELECT * FROM friends WHERE (fromid=" . intval($_COOKIE['id']) . " AND status=1) OR (toid=" . intval($_COOKIE['id']) . " AND status=1)";
+        $found_friends = $conn->query($query);
+        while ($friendship = $found_friends->fetch_assoc()) {
+            $friendid = ($friendship['fromid'] != $_COOKIE['id']) ? $friendship['fromid'] : $friendship['toid'];
+            $query = "SELECT * FROM users WHERE id=$friendid";
+            $found_friend = $conn->query($query);
+            $friend = $found_friend->fetch_assoc();
     ?>
-    <div>
-        <div>
-            <?php
-                $query = "SELECT * FROM friends WHERE (fromid=$_COOKIE[id] AND status=1) OR (toid=$_COOKIE[id] AND status=1)";
-                $found_friends = $conn->query($query);
-                while ($friendship = $found_friends->fetch_assoc()) {
-                    $friendid = ($friendship['fromid'] != $_COOKIE['id']) ? $friendship['fromid'] : $friendship['toid'];
-                    $query = "SELECT * FROM users WHERE id=$friendid";
-                    $found_friend = $conn->query($query);
-                    $friend = $found_friend->fetch_assoc();
-            ?>
-                <div>
-                    <a href="messages.php?friendid=<?= $friendid; ?>"><?= htmlspecialchars($friend['username']); ?></a>
-                </div>
-            <?php } ?>
-        </div>
-        <div>
-            <?php if (isset($_GET['friendid'])): ?>
-                <?php
-                    $friendid = intval($_GET['friendid']);
-                    $query = "SELECT * FROM users WHERE id=$friendid";
-                    $found_friend = $conn->query($query);
-                    $friend = $found_friend->fetch_assoc();
-                ?>
-                <a><?= htmlspecialchars($friend['username']); ?></a>
-                <div></div>
-                <form method="post">
-                    <input type="hidden" name="toid" value="<?= $friendid; ?>">
-                    <input type="text" name="message" placeholder="Írj egy üzenetet...">
-                    <input type="submit" value="Küldés">
-                </form>
-            <?php else: ?>
-                <p>Válassz egy barátot az üzenetküldéshez.</p>
-            <?php endif; ?>
-        </div>
-    </div>
+        <a href="messages.php?friendid=<?= $friendid; ?>"><?= htmlspecialchars($friend['username']); ?></a><br>
+    <?php }
+     if (isset($_GET['friendid'])):
+        
+            $friendid = intval($_GET['friendid']);
+            $query = "SELECT * FROM users WHERE id=$friendid";
+            $found_friend = $conn->query($query);
+            $friend = $found_friend->fetch_assoc();
+        ?>
+        <a><?= htmlspecialchars($friend['username']); ?></a>
+        <form method="post">
+            <input type="hidden" name="toid" value="<?= $friendid; ?>">
+            <input type="text" name="message" placeholder="Írj egy üzenetet...">
+            <input type="submit" value="Küldés">
+        </form>
+    <?php else: ?>
+        <p>Válassz egy barátot az üzenetküldéshez.</p>
+    <?php endif; ?>
+
     <?php
         include 'assets/php/footer.php';
     ?>
