@@ -186,12 +186,12 @@ A NoteShare egy háromrétegű architektúrát követ:
    - `lastname` (VARCHAR(100))
    - `firstname` (VARCHAR(100))
    - `username` (VARCHAR(50), UNIQUE)
+   - `email` (VARCHAR(50), UNIQUE)
    - `profile_picture` (VARCHAR(255))
    - `password` (VARCHAR(255))
    - `security_question` (VARCHAR(255))
    - `security_answer` (VARCHAR(255))
-   - `admin` (TINYINT(1), alapértelmezetten 0)
-   - `teacher` (TINYINT(1), alapértelmezetten 0)
+   - `registration_date` DATETIME
 
 2. files
    - `id` (INT, PK, AUTO_INCREMENT)
@@ -395,13 +395,16 @@ NoteShare-Dev/
 │   ├──/php
 │   │   ├── accept_friend.php   # Barátok elfogadását kezelő fájl
 │   │   ├── add_friend.php      # Barátok hozzáadását kezelő fájl
-│   │   ├── cfg.php             # Az adatbázis kapcsolat beállításait tartalmazó fájl
+│   │   ├── db.php              # Az adatbázis kapcsolat beállításait tartalmazó fájl
 │   │   ├── delete.php          # Fájlok törlését kezelő fájl
 │   │   ├── download.php        # Fájlok letöltését kezelő fájl
 │   │   ├── findanything.php    # Keresési funkciót megvalósító fájl
+│   │   ├── footer.php          # A footer-t megjelenítő fájl
 │   │   ├── loadmessages.php    # Üzenetek betöltését kezelő fájl
-│   │   └── logout.php          # Kijelentkezést kezelő fájl
+│   │   ├── logout.php          # Kijelentkezést kezelő fájl
+│   │   └── navbar.php          # navbar-t megjelenítő fájé
 ├── users/                      # Felhasználók tárhelyét tartalmazó mappa
+├── Év végi feladat.pdf         # A feladatot leíró dokumentum
 ├── forgotpass.php              # Jelszó visszaállítást kezelő fájl
 ├── index.php                   # Az oldal főoldala
 ├── LICENSE                     # Az oldal licensze
