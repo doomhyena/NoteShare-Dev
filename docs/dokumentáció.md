@@ -1,5 +1,5 @@
 <div align="center">
-# „Schola Europa Akadémia” Technikum, Gimnázium és Alapfokú Művészeti Iskola a  Magyarországi Metodista Egyház fenntartásában
+<h1> „Schola Europa Akadémia” Technikum, Gimnázium és Alapfokú Művészeti Iskola a  Magyarországi Metodista Egyház fenntartásában </h1>
 
 <br> ![Schola Europa Akadémia logó](img/scholalogo.png)<br>
 
