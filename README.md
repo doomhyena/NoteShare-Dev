@@ -19,4 +19,4 @@ A **NoteShare** egy webalapú platform, amely lehetővé teszi a felhasználók 
 A részletes telepítési és használati útmutató megtalálható a projekt dokumentációjában.  
 
 ## Licenc  
-Ez a projekt az MIT Licenc alatt érhető el.  
+Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
