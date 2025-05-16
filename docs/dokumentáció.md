@@ -7,14 +7,13 @@
 5 0613 12 03
 
 Dokumentáció
-**2025**
 
 Készítette:<br>
 Bor Ádám<br>
 Csontos Kincső <br>
 Szekeres Levente<br>
 
-__2025__
+**2025**
 
 </div>
 
