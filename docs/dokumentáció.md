@@ -64,6 +64,8 @@ __2025__
     - 8.3. [Kétlépcsős hitelesítés](#83-kétlépcsős-hiteleítés)
     - 8.4. [AI-alapú keresés és javaslatok](#84-ai-alapú-keresés-és-javaslatok)
     - 8.5. [Gamifikáció](#85-gamifikáció)
+    - 8.6. [Mobil Applikáció](#86-mobil-applikáció)
+    - 8.7. [Asztali Alkalmazás](#87-asztali-alkalmazás)
 
 9. [Az Oldalak Galériája](#9-az-oldalak-galériája)
 
@@ -78,6 +80,9 @@ __2025__
 ### 1.1. A Projekt Célja
 
 A **NoteShare** egy modern, közösségi alapú, oktatássegítő platform, amely lehetővé teszi a diákok számára, hogy egyszerűen és biztonságosan megosszák egymással jegyzeteiket, segédanyagaikat és tanulást támogató dokumentumaikat. A projekt célja, hogy:
+
+* **Kik használják?**
+Diákok, tanárok és oktatók, akik megosztanák egymással az oktatási anyagokat.
 
 * **Gyors és kényelmes fájlmegosztást biztosítson tanulóknak**
 
@@ -362,7 +367,7 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
 - Nyisd meg a phpMyAdmin-t.
 - Importáld a `noteshare.sql` fájlt az `assets/sql/` mappából.
 3. Konfiguráld az adatbázis kapcsolatot:
-- Nyisd meg a `cfg.php` fájlt.
+- Nyisd meg a `db.php` fájlt.
 - Győződj meg róla, hogy az adatbázis hitelesítési adatok megfelelnek a helyi szerver beállításainak.
 4. Indítsd el a helyi szervert, és navigálj a `http://localhost/NoteShare/` címre a böngésződben.
 ```
@@ -418,21 +423,113 @@ NoteShare-Dev/
 <div style="page-break-before: always;"></div>
 
 ## 8. Jövőbeli Tervek
+#### 8.1. Felhasználói fiók bővítések
 
-### 8.1. Felhasználói fiók bővítések
-- Profil testreszabási lehetőségek.
+A NoteShare egyik jövőbeli fejlesztési iránya a felhasználói profilok bővítése és személyre szabása. A cél, hogy a felhasználók saját igényeik szerint alakíthassák profiljukat, ezzel is növelve a közösségi élményt és az elköteleződést.
 
-### 8.2. Nyelvi lokalizáció
-- Többnyelvű támogatás (pl. angol, magyar).
+**Főbb lehetőségek:**
+- **Profilkép feltöltése és módosítása:** A felhasználók egyéni profilképet állíthatnak be, amely megjelenik a hozzászólásoknál, feltöltéseknél és a profiloldalon.
+- **Bemutatkozás megadása:** Lehetőség rövid szöveges bemutatkozás hozzáadására, amely segíti a közösségi kapcsolatok kialakítását.
+- **Érdeklődési körök beállítása:** A felhasználók megadhatják, hogy mely tantárgyak, témák vagy kategóriák érdeklik őket. Ezek alapján a rendszer személyre szabott ajánlásokat és tartalmakat jeleníthet meg.
+- **További személyes adatok kezelése:** Opcionális mezők, mint például elérhetőségek, közösségi média linkek vagy tanulmányi adatok.
 
-### 8.3. Kétlépcsős hitelesítés
-- SMS vagy e-mail alapú hitelesítés.
+**Előnyök:**
+- Személyre szabottabb élmény és ajánlások
+- Közösségi kapcsolatok erősítése
+- Felhasználói aktivitás növelése
 
-### 8.4. AI-alapú keresés és javaslatok
-- Gépi tanulás az anyagok ajánlására.
+#### 8.2. Nyelvi lokalizáció
 
-### 8.5. Gamifikáció
-- Pontok és jelvények a felhasználói aktivitás ösztönzésére.
+A NoteShare célja, hogy minél szélesebb körben elérhető legyen, ezért a felület több nyelven is használhatóvá válik. A lokalizáció lehetővé teszi, hogy a felhasználók a számukra legkényelmesebb nyelven használják az alkalmazást.
+
+**Főbb funkciók:**
+- **Többnyelvű felület:** A rendszer magyar és angol nyelven is elérhető lesz, később további nyelvekkel bővíthető.
+- **Nyelvválasztás a beállításokban:** A felhasználók a profiljukban vagy a beállítások menüben választhatják ki a preferált nyelvet.
+- **Automatikus nyelvfelismerés:** A rendszer képes lehet felismerni a böngésző vagy az operációs rendszer nyelvét, és ennek megfelelően állítja be az alapértelmezett nyelvet.
+- **Fordítási támogatás:** A tartalmak, üzenetek és értesítések is a kiválasztott nyelven jelennek meg.
+
+**Előnyök:**
+- Nemzetközi felhasználók elérése
+- Felhasználói élmény javítása
+- Könnyebb bevezetés új piacokon
+
+#### 8.3. Kétlépcsős hitelesítés
+
+A biztonság növelése érdekében a NoteShare támogatni fogja a kétlépcsős hitelesítést (2FA), amely jelentősen csökkenti a jogosulatlan hozzáférés kockázatát.
+
+**Főbb funkciók:**
+- **Másodlagos azonosítás:** Bejelentkezéskor a felhasználónak egy egyszer használatos kódot is meg kell adnia, amelyet SMS-ben vagy e-mailben kap meg.
+- **Beállítási lehetőség:** A kétlépcsős hitelesítés opcionálisan bekapcsolható a profilbeállításokban.
+- **Biztonsági mentési kódok:** Elveszett eszköz esetén a felhasználók előre generált biztonsági kódokkal is beléphetnek.
+- **Értesítések gyanús bejelentkezésekről:** A rendszer figyelmeztetést küld, ha ismeretlen eszközről vagy helyről próbálnak bejelentkezni.
+
+**Előnyök:**
+- Fiókbiztonság jelentős növelése
+- Felhasználói adatok védelme
+- Bizalom erősítése a platform iránt
+
+#### 8.4. AI-alapú keresés és javaslatok
+
+A NoteShare fejlesztése során gépi tanulási és mesterséges intelligencia (AI) megoldások is bevezetésre kerülnek, hogy a felhasználók gyorsabban és hatékonyabban találják meg a számukra releváns tartalmakat.
+
+**Főbb funkciók:**
+- **Személyre szabott ajánlások:** Az AI elemzi a felhasználó korábbi kereséseit, letöltéseit és érdeklődési köreit, majd ezek alapján ajánl új jegyzeteket vagy segédanyagokat.
+- **Intelligens kereső:** A keresési találatok sorrendjét a rendszer a felhasználó szokásaihoz és preferenciáihoz igazítja.
+- **Tartalom szűrés és kategorizálás:** Az AI segít a feltöltött anyagok automatikus címkézésében és kategorizálásában.
+- **Tanulási útvonalak ajánlása:** A rendszer javaslatokat adhat, hogy milyen anyagokat érdemes elolvasni egy adott témakörben.
+
+**Előnyök:**
+- Gyorsabb és pontosabb keresés
+- Személyre szabott tanulási élmény
+- Nagyobb felhasználói elégedettség
+
+#### 8.5. Gamifikáció
+
+A felhasználói aktivitás ösztönzése érdekében a NoteShare gamifikációs elemeket vezet be, amelyek játékosabbá és motiválóbbá teszik a platform használatát.
+
+**Főbb funkciók:**
+- **Pontgyűjtés:** A felhasználók pontokat szerezhetnek különböző tevékenységekért, például regisztrációért, jegyzetfeltöltésért, hozzászólásért vagy értékelésért.
+- **Jelvények és rangok:** Különféle mérföldkövek eléréséért (pl. első feltöltés, 100. letöltés) digitális jelvényeket és rangokat kapnak a felhasználók.
+- **Ranglisták:** A legaktívabb vagy legnépszerűbb felhasználók megjelennek a közösségi ranglistákon.
+- **Kihívások és küldetések:** Időszakos vagy tematikus kihívások teljesítésével további jutalmak szerezhetők.
+
+**Előnyök:**
+- Felhasználói elköteleződés növelése
+- Közösségi aktivitás ösztönzése
+- Pozitív visszacsatolás a felhasználók számára
+
+#### 8.6. Mobil Applikáció
+
+A NoteShare jövőbeli fejlesztési tervei között szerepel egy natív mobilalkalmazás elkészítése Android és iOS platformokra. A mobil app célja, hogy a felhasználók még kényelmesebben érhessék el a jegyzeteket, tölthessenek fel fájlokat, és kommunikálhassanak egymással útközben is.
+
+**Főbb funkciók:**
+- Jegyzetek böngészése, letöltése és feltöltése közvetlenül a mobilról
+- Push értesítések új üzenetekről, barátkérésekről, kommentekről
+- Felhasználói profil szerkesztése, profilkép módosítása
+- Barátok kezelése, üzenetküldés
+- Offline elérés a letöltött jegyzetekhez
+
+**Technológiai lehetőségek:**
+- **React Native** vagy **Flutter** a multiplatform fejlesztéshez
+- REST API integráció a meglévő backenddel
+- Biztonságos bejelentkezés és adatkezelés
+
+#### 8.7. Asztali Alkalmazás
+
+A platform funkcionalitásának bővítése érdekében egy asztali alkalmazás fejlesztése is tervben van Windows, macOS és Linux rendszerekre. Az asztali kliens célja, hogy a felhasználók gyorsabban és kényelmesebben kezelhessék nagyobb mennyiségű jegyzetet, illetve integráltabb élményt nyújtson az operációs rendszerrel.
+
+**Főbb funkciók:**
+- Fájlok drag & drop feltöltése közvetlenül a gépről
+- Jegyzetek gyors keresése, szűrése és letöltése
+- Értesítések az asztali környezetben
+- Automatikus szinkronizáció a webes és mobil platformmal
+
+**Technológiai lehetőségek:**
+- **Electron** vagy **Tauri** keretrendszer a cross-platform fejlesztéshez
+- REST API vagy WebSocket kapcsolat a szerverrel
+- Integráció a rendszer értesítési szolgáltatásaival
+
+Ezek a fejlesztések jelentősen növelnék a NoteShare elérhetőségét és felhasználói élményét minden platformon.
 
 <div style="page-break-before: always;"></div>
 
@@ -464,3 +561,5 @@ NoteShare-Dev/
 
 ## 11. Licensz
 Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
+
+A felhasználók vállalják, hogy nem töltenek fel jogvédett tartalmat.
