@@ -86,19 +86,7 @@ A **NoteShare** egy modern, közösségi alapú, oktatássegítő platform, amel
 
   - A felhasználók értékelhetik, kommentelhetik a jegyzeteket
   - A rendszer kiemeli a legnépszerűbb vagy legjobbra értékelt anyagokat
-  - Gamifikációs elemek motiválják a közreműködést (pl. pontok, rangok)
 
-* **Biztonságos és megbízható szolgáltatást nyújtson**
-
-  - Jogosultságkezelés szabályozza a feltöltési és megtekintési lehetőségeket
-  - A rendszer automatikus vírusellenőrzést és fájltípusszűrést alkalmaz
-  - A felhasználói adatok és fájlok titkosítva, biztonságos környezetben tárolódnak
-
-* **Skálázható megoldást biztosítson iskolai vagy egyetemi szintű használatra**
-
-  - Támogatja több ezer felhasználó és fájl egyidejű kezelését
-  - API-n keresztül bővíthető mobilalkalmazás vagy más rendszerek irányába
-  - A struktúra modulárisan bővíthető új funkciókkal
 
 ---
 
