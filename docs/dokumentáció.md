@@ -1,6 +1,6 @@
 # „Schola Europa Akadémia” Technikum, Gimnázium és Alapfokú Művészeti Iskola a  Magyarországi Metodista Egyház fenntartásában
 
-<br>[Schola Europa Akadémia logó](img/scholalogo.png)<br>
+<br> ![Schola Europa Akadémia logó](img/scholalogo.png)<br>
 
 **SZOFTVERFEJLESZTŐ ÉS -TESZTELŐ**<br>
 5 0613 12 03
