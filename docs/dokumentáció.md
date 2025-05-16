@@ -7,6 +7,7 @@ Dokumentáció
 **2025**
 
 Készítette:
+Bor Ádám
 Csontos Kincső 
 Szekeres Levente
 
@@ -115,7 +116,6 @@ A NoteShare rendszer az alábbi kulcsfunkciókat biztosítja:
 
 - Admin felület a tartalmak, felhasználók és kategóriák kezeléséhez
 - Feltöltések jelentése és moderálása
-- Letöltési statisztikák, fájlhasználat követése
 
 ### 1.3. Technológiai Stack
 
@@ -416,6 +416,10 @@ NoteShare-Dev/
 ## 9. Az oldalak Galériája
 
 ## 10. Ki mit készített?
+
+### Bor Ádám
+
+- **Tesztelés**: Funkcionális tesztek végrehajtása.
 
 ### Csontos Kincső
 
