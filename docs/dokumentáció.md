@@ -284,7 +284,7 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
 - Nyisd meg a phpMyAdmin-t.
 - Importáld a `noteshare.sql` fájlt az `assets/sql/` mappából.
 3. Konfiguráld az adatbázis kapcsolatot:
-- Nyisd meg a `cfg.php` fájlt.
+- Nyisd meg a `db.php` fájlt.
 - Győződj meg róla, hogy az adatbázis hitelesítési adatok megfelelnek a helyi szerver beállításainak.
 4. Indítsd el a helyi szervert, és navigálj a `http://localhost/NoteShare/` címre a böngésződben.
 ```
@@ -292,14 +292,15 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
 #### 6.2. Használat 
 
 1. Felhasználói Regisztráció
-    1. Navigálj a `reg.php` oldalra.
-    2. Töltsd ki a szükséges mezőket (vezetéknév, keresztnév, felhasználónév, jelszó).
-    3. Küldd el az űrlapot a fiók létrehozásához.
+    1. Navigálj a `reglog.php` oldalra.
+    2. Töltsd ki a szükséges mezőket (vezetéknév, keresztnév, felhasználónév, email cím. jelszó, biztonsági válasz).
+    3. Kattints a `Regisztráció` gombra.
 
 2. Bejelentkezés
-    1. Navigálj a `login.php` oldalra.
-    2. Add meg a felhasználónevedet és jelszavadat.
-    3. Küldd el az űrlapot a bejelentkezéshez.
+    1. Navigálj a `reglog.php` oldalra.
+    2. Kattints a `Lépj be!` linkre
+    3. Add meg a felhasználónevedet és jelszavadat.
+    4. Kattints a `Bejelentkezés` gombra.
 
 3. Fájlok Feltöltése
     1. Navigálj az `upload.php` oldalra.
@@ -391,8 +392,6 @@ NoteShare-Dev/
 │   │   └── logo-2.png                      # A második logó
 │   ├──/js
 │   │   └── script.js                       # A JavaScript fájl, amely a fő funkciókat tartalmazza
-│   ├── /sql
-│   │   └── noteshare.sql                   # Az oldal adatbázisa
 │   ├──/php
 │   │   ├── accept_friend.php               # Barátok elfogadását kezelő fájl
 │   │   ├── add_friend.php                  # Barátok hozzáadását kezelő fájl
@@ -404,16 +403,18 @@ NoteShare-Dev/
 │   │   ├── loadmessages.php                # Üzenetek betöltését kezelő fájl
 │   │   ├── logout.php                      # Kijelentkezést kezelő fájl
 │   │   └── navbar.php                      # navbar-t megjelenítő fájé
+│   ├── /sql
+│   │   └── noteshare.sql                   # Az oldal adatbázisa
 ├── users/                                  # Felhasználók tárhelyét tartalmazó mappa
 ├── Év végi feladat.pdf                     # A feladatot leíró dokumentum
 ├── forgotpass.php                          # Jelszó visszaállítást kezelő fájl
 ├── index.php                               # Az oldal főoldala
 ├── LICENSE                                 # Az oldal licensze
-├── login.php                               # Bejelentkezést kezelő fájl
+├── messages.php                            # Az üzenetküldéséért és fogadásáért felelős fájé
 ├── notify.php                              # Értesítéseket kezelő fájl
 ├── profile.php                             # Profilokat megjelenítő fájl
 ├── README.md                               # Az oldal dokumentációja markdown fájlként
-├── reg.php                                 # A regisztrációkat kezelő fájl
+├── reglog.php                              # Bejelentkezést és a regisztrációt kezelő fájl
 ├── search.php                              # Keresést kezelő fájl
 └── upload.php                              # Feltöltést kezelő fájl
 
