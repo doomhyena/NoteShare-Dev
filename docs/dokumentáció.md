@@ -18,6 +18,8 @@ __2025__
 
 </div>
 
+<div style="page-break-before: always;"></div>
+
 # NoteShare - Online Jegyzetmegosztós Platform Dokumentáció
 
 1. [Bevezetés](#1-bevezetés)
@@ -67,7 +69,9 @@ __2025__
 
 10. [Ki mit készített?](#10-ki-mit-készített?)
 
-11. [Licensz](#11-licensz) 
+11. [Licensz](#11-licensz)
+
+<div style="page-break-before: always;"></div>
 
 ## 1. Bevezetés
 
@@ -147,6 +151,8 @@ A NoteShare fejlesztése során a következő technológiákat és eszközöket 
 - **XAMPP**: Lokális fejlesztői környezet (Apache, MySQL, PHP).
 - **Visual Studio Code**: Kódszerkesztő a fejlesztéshez.
 
+<div style="page-break-before: always;"></div>
+
 ## 2. Rendszerarchitektúra
 
 ### 2.1. Magas Szintű Architektúra
@@ -225,6 +231,8 @@ A NoteShare felhasználói felülete egyszerű és intuitív, a következő szem
 - **Egyszerű navigáció**: Könnyen elérhető funkciók és tiszta menürendszer.
 - **Konzisztens stílus**: Azonos színpaletta és tipográfia az egész alkalmazásban.
 
+<div style="page-break-before: always;"></div>
+
 ## 4. Backend Architektúra
 
 ### 4.1. Szolgáltatások
@@ -237,6 +245,8 @@ A PHP mysqli-t használjuk az adatbázis műveletek végrehajtására.
 
 ### 4.3. Fájlkezelés
 A feltöltött fájlokat a szerveren tároljuk, és a fájlokhoz tartozó metaadatokat az adatbázisban rögzítjük.
+
+<div style="page-break-before: always;"></div>
 
 ## 5. Deployment
 
@@ -256,6 +266,7 @@ Minden új funkciót pull request formájában integrálunk, amelyet code review
 ### 5.5. Hibaelhárítás
 A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját használjuk.
 
+<div style="page-break-before: always;"></div>
 
 ### 6. Felhasználói Dokumentáció
 
@@ -340,6 +351,8 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
    - Rendszeresen ellenőrizze a jogosultságokat
    - Azonnal vonja vissza a nem használt jogosultságokat
 
+<div style="page-break-before: always;"></div>
+
 ### 7. Fejlesztői Dokumentáció
 
 ### 7.1. Fejlesztői Környezet Beállítása
@@ -401,6 +414,8 @@ NoteShare-Dev/
 
 ```
 
+<div style="page-break-before: always;"></div>
+
 ## 8. Jövőbeli Tervek
 
 ### 8.1. Felhasználói fiók bővítések
@@ -418,7 +433,11 @@ NoteShare-Dev/
 ### 8.5. Gamifikáció
 - Pontok és jelvények a felhasználói aktivitás ösztönzésére.
 
+<div style="page-break-before: always;"></div>
+
 ## 9. Az oldalak Galériája
+
+<div style="page-break-before: always;"></div>
 
 ## 10. Ki mit készített?
 
@@ -438,6 +457,8 @@ NoteShare-Dev/
 
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
+
+<div style="page-break-before: always;"></div>
 
 ## 11. Licensz
 Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
