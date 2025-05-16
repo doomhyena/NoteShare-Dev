@@ -108,8 +108,8 @@ A NoteShare rendszer az alábbi kulcsfunkciókat biztosítja:
 
 ### Keresés és közösségi funkciók
 
-- Kulcsszavas kereső és szűrő (tantárgy, évfolyam, értékelés alapján)
-- Kommentelés, csillagozás és „hasznos” gomb
+- Kulcsszavas kereső és szűrő (tantárgy, értékelés alapján)
+- Kommentelés, csillagozás
 - Legnépszerűbb jegyzetek és új feltöltések kiemelése
 
 ### Adminisztráció és jogosultságok
