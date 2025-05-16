@@ -383,38 +383,39 @@ NoteShare-Dev/
 │   ├──/assets
 │   │
 │   ├── /css
-│   │   └── styles.css          # A projekt stíluslapja
+│   │   └── styles.css                      # A projekt stíluslapja
 │   ├──/img
-│   │   ├── favicon.ico         # Az alkalmazás faviconja
-│   │   ├── logo-1.png          # Az első logó
-│   │   └── logo-2.png          # A második logó
+│   │   ├── default_profile_picture.png     # Alapértelmezett profilkép azoknak akik nem állítottak be profilképet
+│   │   ├── favicon.ico                     # Az alkalmazás faviconja
+│   │   ├── logo-1.png                      # Az első logó
+│   │   └── logo-2.png                      # A második logó
 │   ├──/js
-│   │   └── script.js           # A JavaScript fájl, amely a fő funkciókat tartalmazza
+│   │   └── script.js                       # A JavaScript fájl, amely a fő funkciókat tartalmazza
 │   ├── /sql
-│   │   └── noteshare.sql       # Az oldal adatbázisa
+│   │   └── noteshare.sql                   # Az oldal adatbázisa
 │   ├──/php
-│   │   ├── accept_friend.php   # Barátok elfogadását kezelő fájl
-│   │   ├── add_friend.php      # Barátok hozzáadását kezelő fájl
-│   │   ├── db.php              # Az adatbázis kapcsolat beállításait tartalmazó fájl
-│   │   ├── delete.php          # Fájlok törlését kezelő fájl
-│   │   ├── download.php        # Fájlok letöltését kezelő fájl
-│   │   ├── findanything.php    # Keresési funkciót megvalósító fájl
-│   │   ├── footer.php          # A footer-t megjelenítő fájl
-│   │   ├── loadmessages.php    # Üzenetek betöltését kezelő fájl
-│   │   ├── logout.php          # Kijelentkezést kezelő fájl
-│   │   └── navbar.php          # navbar-t megjelenítő fájé
-├── users/                      # Felhasználók tárhelyét tartalmazó mappa
-├── Év végi feladat.pdf         # A feladatot leíró dokumentum
-├── forgotpass.php              # Jelszó visszaállítást kezelő fájl
-├── index.php                   # Az oldal főoldala
-├── LICENSE                     # Az oldal licensze
-├── login.php                   # Bejelentkezést kezelő fájl
-├── notify.php                  # Értesítéseket kezelő fájl
-├── profile.php                 # Profilokat megjelenítő fájl
-├── README.md                   # Az oldal dokumentációja markdown fájlként
-├── reg.php                     # A regisztrációkat kezelő fájl
-├── search.php                  # Keresést kezelő fájl
-└── upload.php                  # Feltöltést kezelő fájl
+│   │   ├── accept_friend.php               # Barátok elfogadását kezelő fájl
+│   │   ├── add_friend.php                  # Barátok hozzáadását kezelő fájl
+│   │   ├── db.php                          # Az adatbázis kapcsolat beállításait tartalmazó fájl
+│   │   ├── delete.php                      # Fájlok törlését kezelő fájl
+│   │   ├── download.php                    # Fájlok letöltését kezelő fájl
+│   │   ├── findanything.php                # Keresési funkciót megvalósító fájl
+│   │   ├── footer.php                      # A footer-t megjelenítő fájl
+│   │   ├── loadmessages.php                # Üzenetek betöltését kezelő fájl
+│   │   ├── logout.php                      # Kijelentkezést kezelő fájl
+│   │   └── navbar.php                      # navbar-t megjelenítő fájé
+├── users/                                  # Felhasználók tárhelyét tartalmazó mappa
+├── Év végi feladat.pdf                     # A feladatot leíró dokumentum
+├── forgotpass.php                          # Jelszó visszaállítást kezelő fájl
+├── index.php                               # Az oldal főoldala
+├── LICENSE                                 # Az oldal licensze
+├── login.php                               # Bejelentkezést kezelő fájl
+├── notify.php                              # Értesítéseket kezelő fájl
+├── profile.php                             # Profilokat megjelenítő fájl
+├── README.md                               # Az oldal dokumentációja markdown fájlként
+├── reg.php                                 # A regisztrációkat kezelő fájl
+├── search.php                              # Keresést kezelő fájl
+└── upload.php                              # Feltöltést kezelő fájl
 
 ```
 
@@ -453,4 +454,4 @@ NoteShare-Dev/
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
 
 ## 11. Licensz
-Ez a projekt az MIT Licensz alatt érhető el.
+Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
