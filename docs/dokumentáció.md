@@ -118,12 +118,6 @@ A NoteShare rendszer az alábbi kulcsfunkciókat biztosítja:
 - Feltöltések jelentése és moderálása
 - Letöltési statisztikák, fájlhasználat követése
 
-### Biztonság és adatvédelem
-
-- Fájltípus- és méretkorlát, vírusellenőrzés
-- Titkosított jelszótárolás és biztonságos session-kezelés
-- GDPR-kompatibilis adatkezelés
-
 ### 1.3. Technológiai Stack
 
 A NoteShare fejlesztése során a következő technológiákat és eszközöket használtuk:
@@ -148,7 +142,6 @@ A NoteShare fejlesztése során a következő technológiákat és eszközöket 
 ### Egyéb eszközök
 - **XAMPP**: Lokális fejlesztői környezet (Apache, MySQL, PHP).
 - **Visual Studio Code**: Kódszerkesztő a fejlesztéshez.
-- **XAMPP (PHP és MySQL támogatással)**:
 
 ## 2. Rendszerarchitektúra
 
@@ -182,12 +175,14 @@ A NoteShare egy háromrétegű architektúrát követ:
    - `registration_date` DATETIME
 
 2. files
-   - `id` (INT, PK, AUTO_INCREMENT)
-   - `uploaded_by` (INT, FK → users.id)
+   - `id` (INT, AUTO_INCREMENT)
+   - `uploaded_by` (INT)
    - `name` (VARCHAR(255))
    - `file_name` (VARCHAR(255))
    - `description` (TEXT)
    - `file_path` (VARCHAR(255))
+   - `subject` (VARCHAR(100))
+   - `tags` (VARCHAR(100))
    - `tn_name` (VARCHAR(255))
 
 3. comments
