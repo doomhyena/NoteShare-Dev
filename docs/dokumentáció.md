@@ -444,6 +444,7 @@ NoteShare-Dev/
 
 ### Bor Ádám
 
+- **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
 
 ### Csontos Kincső
