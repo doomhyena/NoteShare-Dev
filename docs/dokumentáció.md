@@ -96,7 +96,7 @@ A NoteShare rendszer az alábbi kulcsfunkciókat biztosítja:
 ### Fájlfeltöltés és -kezelés
 
 - Jegyzetek és segédanyagok feltöltése PDF, DOCX, MP4 formátumban
-- Automatikus kategorizálás évfolyam, tantárgy és dokumentumtípus szerint
+- Automatikus kategorizálás tantárgy és dokumentumtípus szerint
 - Előnézeti kép generálása (PDF első oldal, képek)
 
 ### Felhasználói felület
