@@ -1,3 +1,4 @@
+<div align="center">
 # „Schola Europa Akadémia” Technikum, Gimnázium és Alapfokú Művészeti Iskola a  Magyarországi Metodista Egyház fenntartásában
 
 <br> ![Schola Europa Akadémia logó](img/scholalogo.png)<br>
@@ -8,12 +9,14 @@
 Dokumentáció
 **2025**
 
-Készítette:
-Bor Ádám
-Csontos Kincső 
-Szekeres Levente
+Készítette:<br>
+Bor Ádám<br>
+Csontos Kincső <br>
+Szekeres Levente<br>
 
 __2025__
+
+</div>
 
 # NoteShare - Online Jegyzetmegosztós Platform Dokumentáció
 
