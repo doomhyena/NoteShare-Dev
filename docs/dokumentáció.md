@@ -400,6 +400,7 @@ NoteShare-Dev/
 │   ├── /sql
 │   │   └── noteshare.sql                   # Az oldal adatbázisa
 ├── users/                                  # Felhasználók tárhelyét tartalmazó mappa
+├── edit_email.php                          # Az email cím módosításáért felelős fájl
 ├── Év végi feladat.pdf                     # A feladatot leíró dokumentum
 ├── forgotpass.php                          # Jelszó visszaállítást kezelő fájl
 ├── index.php                               # Az oldal főoldala
