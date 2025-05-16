@@ -1,7 +1,6 @@
 <?php 
 
     require  "assets/php/db.php";
-
     $security_questions = [
         "Mi a kedvenc könyved?",
         "Mi volt az első háziállatod neve?",
@@ -12,35 +11,37 @@
     $selected_question = $security_questions[array_rand($security_questions)];
 
     if(isset($_POST['reg-btn'])){
-        
         $lastname = $_POST['lastname'];
         $firstname = $_POST['firstname'];
         $username = $_POST['username'];
+        $birthdate = $_POST['birthdate'];
+        $gender = $_POST['gender'];
         $email = $_POST['email'];
         $password = $_POST['password1'];
         $passwordtwo = $_POST['password2'];
         $registration_date = date('Y-m-d H:i:s');
-
+        $security_question = $_POST['security_question'];
         $security_answer = $_POST['security_answer'];
+
         $sql = "SELECT * FROM users WHERE username='$username'";
         $found_user = $conn->query($sql);
-        
+
         if(mysqli_num_rows($found_user) == 0){
             $sql = "SELECT * FROM users WHERE email='$email'";
-            $found_email = $conn->query($sql); 
+            $found_email = $conn->query($sql);
 
             if(mysqli_num_rows($found_email) == 0) {
                 if($password == $passwordtwo){
-                $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-                $conn->query("INSERT INTO users (lastname, firstname, username, email, password, security_question, security_answer, registration_date) VALUES ('$lastname', '$firstname', '$username', '$email', '$titkositott_jelszo', '$selected_question', '$security_answer', '$registration_date')");
-                $folder = getcwd();
-                $path = $folder."\\users\\".$username;
-                
-                if(mkdir($path, 7777)){
-                    echo "<script>alert('Tárhely sikeresen létrehozva!')</script>";
-                } else {
-                    echo "<script>alert('Nem sikerült létrehozni a tárhelyet!')</script>";
-                }
+                    $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
+                    $sql = $conn->query("INSERT INTO users (lastname, firstname, username, birthdate, gender, email, password, security_question, security_answer, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                    $folder = getcwd();
+                    $path = $folder . DIRECTORY_SEPARATOR . "users" . DIRECTORY_SEPARATOR . $username;
+                    if(!is_dir($path) && mkdir($path, 0777, true)){
+                        echo "<script>alert('Tárhely sikeresen létrehozva!')</script>";
+                    } else {
+                        echo "<script>alert('Nem sikerült létrehozni a tárhelyet!')</script>";
+                    }
                 } else {
                     echo "<script>alert('A jelszavak nem egyeznek!')</script>";
                 }
@@ -96,6 +97,14 @@
             <input type="text" name="firstname"><br><br>
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username"><br><br>
+            <label for="birthdate">Születési dátum:</label><br>
+            <input type="date" name="birthdate"><br><br>
+            <label for="gender">Nem:</label><br>
+            <select name="gender">
+                <option name="male" value="male">Férfi</option>
+                <option name="female" value="female">Nő</option>
+                <option name="other" value="other">Egyéb</option>
+            </select><br><br>
             <label for="email">Email:</label><br>
             <input type="email" name="email"><br><br>
             <label for="password">Jelszó:</label><br>

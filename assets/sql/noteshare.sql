@@ -482,19 +482,22 @@ CREATE TABLE `users` (
   `lastname` varchar(100) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `security_question` varchar(255) NOT NULL,
   `security_answer` varchar(255) NOT NULL,
+  `admin` tinyint(1) DEFAULT 0,
   `registration_date` DATETIME
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`, `registration_date`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', 'csontoskincso05@gmail.com', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki', 'Mi a kedvenc könyved?', 'Ideológiák Tárháza', '2025-04-08 10:00:00'),
-(2, 'Teszt', 'Elek', 'tesztuser', 'tesztelek@gmail,com' , 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád', '2025-04-16 11:44:52'),
-(3, 'Kovács', 'Péter', 'kovipeti', 'kovipeti@gmail.com', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars', '2025-05-06 14:32:00'),
-(4, 'Szabó', 'Anna', 'szaboanna', 'szaboanna@gmail,com', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 'Kati', '2025-05-06 14:35:00');
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `birthdate`, `gender`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`, `admin`, `registration_date`) VALUES
+(1, 'Csontos', 'Kincső', 'doomhyena', '2005-04-04', 'female', 'csontoskincso05@gmail.com', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki','Mi a kedvenc könyved?', 'Ideológiák Tárháza', 1, '2025-04-08 10:00:00'),
+(2, 'Teszt', 'Elek', 'tesztuser', '1990-01-01', 'male', 'tesztelek@gmail,com' , 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád', 0, '2025-04-16 11:44:52'),
+(3, 'Kovács', 'Péter', 'kovipeti', '1985-12-12', 'male', 'kovipeti@gmail.com', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars', 0, '2025-05-06 14:32:00'),
+(4, 'Szabó', 'Anna', 'szaboanna', '1995-03-03', 'female', 'szaboanna@gmail,com', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 0, 'Kati', '2025-05-06 14:35:00');
 
 
 ALTER TABLE `comments`
