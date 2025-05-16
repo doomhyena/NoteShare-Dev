@@ -172,7 +172,7 @@ A NoteShare egy háromrétegű architektúrát követ:
    - `password` (VARCHAR(255))
    - `security_question` (VARCHAR(255))
    - `security_answer` (VARCHAR(255))
-   - `registration_date` DATETIME
+   - `registration_date` DATETIME NOT NULL DEFAULT current_timestamp()
 
 2. files
    - `id` (INT, AUTO_INCREMENT)
