@@ -58,6 +58,52 @@
             $sql = "SELECT * FROM files ORDER BY id DESC";
             $result = $conn->query($sql);
 
+            $popular_sql = "SELECT f.*, 
+                IFNULL(AVG(r.rating),0) as avg_rating, COUNT(r.id) as rating_count
+                FROM files f
+                LEFT JOIN ratings r ON f.id = r.file_id
+                GROUP BY f.id
+                ORDER BY avg_rating DESC, rating_count DESC
+                LIMIT 5";
+            $popular_result = $conn->query($popular_sql);
+            $latest_sql = "SELECT * FROM files ORDER BY id DESC LIMIT 5";
+            $latest_result = $conn->query($latest_sql);
+
+            echo "<h3>Legnépszerűbb jegyzetek:</h3>";
+            if ($popular_result->num_rows > 0) {
+                while ($file = $popular_result->fetch_assoc()) {
+                    $sql = "SELECT * FROM users WHERE id=" . $file['uploaded_by'];
+                    $uploader_result = $conn->query($sql);
+                    $uploader = $uploader_result->fetch_assoc();
+                    echo "<div>";
+                    echo "<h4>" . $file['name'] . "</h4>";
+                    echo "<p><b>Átlag értékelés:</b> " . number_format($file['avg_rating'], 2) . " (" . $file['rating_count'] . " értékelés)</p>";
+                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Nincs elérhető népszerű jegyzet.</p>";
+            }
+
+            echo "<h3>Új feltöltések:</h3>";
+            if ($latest_result->num_rows > 0) {
+                while ($file = $latest_result->fetch_assoc()) {
+                    $sql = "SELECT * FROM users WHERE id=" . $file['uploaded_by'];
+                    $uploader_result = $conn->query($sql);
+                    $uploader = $uploader_result->fetch_assoc();
+                    echo "<div>";
+                    echo "<h4>" . $file['name'] . "</h4>";
+                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Nincs új feltöltés.</p>";
+            }
+
+            $result = $conn->query($sql);
+
             if ($result->num_rows > 0) {
                 while ($file = $result->fetch_assoc()) {
                     echo "<div>";
@@ -109,7 +155,7 @@
                                 $commenter = $founded_commenter->fetch_assoc();
                                         
                                 echo "<b>".$commenter['username'].":</b> ".$comment['text']."<br>";
-                                }
+                            }
                         }
                     } else {
                         echo "<p>Nem található a fájl!</p>";
