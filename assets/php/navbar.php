@@ -12,7 +12,11 @@
             <li><a href="search.php">Keresés</a></li>
             <li><a href="notify.php">Értesítések (' . $notify_number . ')</a></li>
             <li><a href="messages.php">Üzenetek</a></li>
-            <li><a href="assets/php/logout.php">Kijelentkezés</a></li>
+            ';
+            if (isset($user['admin']) && $user['admin'] == 1) {
+                echo '<li><a href="admin_panel.php">Admin Panel</a></li>';
+            }
+            echo '<li><a href="assets/php/logout.php">Kijelentkezés</a></li>
         </ul>
     </nav>
     ';
