@@ -40,6 +40,9 @@
             }
         }
     }
+    if (isset($_POST['edit-email-btn'])) {
+        header("Location: edit_email.php");
+    }
 
     $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
     $founded_notify = $conn->query($sql);
@@ -85,6 +88,7 @@
             echo "<p>Felhasználónév: " .$user['username']. "</p>";
             if($_GET['userid'] == $_COOKIE['id']) {
                 echo "<p>Email: " .$user['email']. "</p>";
+                echo "<button class='edit-email-btn'>Profil szerkesztése</button>";
                 echo "<p>Regisztráció dátuma: " . $user['registration_date'] . "</p>";
             }
 
@@ -94,7 +98,7 @@
                     <input type='hidden' name='toid' value='" . $_GET['userid'] . "'>
                     <input type='submit' value='Barátnak jelölés'>
                 </form>";
-            }            
+            }
             $sql = "SELECT * FROM files WHERE uploaded_by='$user[id]' ORDER BY id DESC";
             $result = $conn->query($sql);
 
