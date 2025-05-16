@@ -69,6 +69,9 @@ Szekeres Levente<br>
 9. [Az Oldalak Galériája](#9-az-oldalak-galériája)
 
 10. [Ki mit készített?](#10-ki-mit-készített?)
+    - 10.1. [Bor Ádám](#101-bor-ádám)
+    - 10.2. [Csontos Kincső](#102-csontos-kincső)
+    - 10.3. [Szekeres Levente](#103-szekeres-levente)
 
 11. [Licensz](#11-licensz)
 
@@ -538,12 +541,12 @@ Ezek a fejlesztések jelentősen növelnék a NoteShare elérhetőségét és fe
 
 ## 10. Ki mit készített?
 
-### Bor Ádám
+### 10.1. Bor Ádám
 
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
 
-### Csontos Kincső
+### 10.2. Csontos Kincső
 
 - **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat.
 - **Adatbázis Tervezés**: Adatbázis struktúra és SQL szkriptek.
@@ -551,7 +554,7 @@ Ezek a fejlesztések jelentősen növelnék a NoteShare elérhetőségét és fe
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
 - **Projekt Menedzsment**: Feladatok koordinálása és határidők kezelése.
 
-### Szekeres Levente
+### 10.3. Szekeres Levente
 
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
 - **Tesztelés**: Funkcionális tesztek végrehajtása.

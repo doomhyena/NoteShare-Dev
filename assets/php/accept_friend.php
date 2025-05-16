@@ -1,5 +1,5 @@
 <?php
-    require 'cfg.php';
+	require "db.php";
 
     if (!isset($_COOKIE['id'])) {
         header("Location: ../../index.php");

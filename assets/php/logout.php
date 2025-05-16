@@ -4,7 +4,7 @@
 	session_destroy();
 
 	if (isset($_COOKIE['id'])) {
-		setcookie('id', '', time() - 3600, '/'); // Expire the cookie
+		setcookie('id', '', time() - 3600, '/');
 	}
 	
 	header("Location: ../../index.php");

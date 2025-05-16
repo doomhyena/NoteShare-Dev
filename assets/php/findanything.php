@@ -1,11 +1,29 @@
 <?php
 
-	require "cfg.php";
+	require "db.php";
 
 	$keresett = isset($_GET['keresett']) ? htmlspecialchars(trim($_GET['keresett'])) : '';
 	$loggedInUserId = $_COOKIE['id'] ?? 0;
 
 	$sqlFiles = "SELECT * FROM files WHERE name LIKE '%$keresett%'";
+	$conditions = [];
+
+	if (!empty($keresett)) {
+		$safeKeresett = $conn->real_escape_string($keresett);
+		$conditions[] = "(name LIKE '%$safeKeresett%' OR subject LIKE '%$safeKeresett%' OR tag LIKE '%$safeKeresett%')";
+	}
+
+	if (isset($_GET['rating']) && $_GET['rating'] !== '') {
+		$rating = (int)$_GET['rating'];
+		$conditions[] = "rating = $rating";
+	}
+
+	$whereClause = '';
+	if (!empty($conditions)) {
+		$whereClause = 'WHERE ' . implode(' AND ', $conditions);
+	}
+
+	$sqlFiles = "SELECT * FROM files $whereClause";
 	$resultFiles = $conn->query($sqlFiles);
 
 	while ($file = $resultFiles->fetch_assoc()) {
@@ -16,6 +34,7 @@
 			<a href="download.php?id=' . (int)$file['id'] . '">Letöltés</a>
 		';
 	}
+
 
 	$sqlUsers = "SELECT * FROM users WHERE username LIKE '%$keresett%' AND id != $loggedInUserId";
 	$resultUsers = $conn->query($sqlUsers);
