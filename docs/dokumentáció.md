@@ -47,9 +47,8 @@ __2025__
 
 7. [Fejlesztői Dokumentáció](#7-fejlesztői-dokumentáció)
     - 7.1. [Fejlesztői Környezet Beállítása](#71-fejlesztői-környezet-beállítása)
-    - 7.2. [Kódolási Konvenciók](#72-kódolási-konvenciók)
-    - 7.3. [Verziókezelési Stratégia](#73-verziókezelési-stratégia)
-    - 7.4. [FájlStruktúra](#74-fájlstruktúra)
+    - 7.2. [Verziókezelési Stratégia](#73-verziókezelési-stratégia)
+    - 7.3. [FájlStruktúra](#73-fájlstruktúra)
 
 8. [Jövőbeli Tervek](#8-jövőbeli-tervek)
     - 8.1. [Felhasználói fiók bővítések](#81-felhasználói-fiók-bővítések)
@@ -319,7 +318,6 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
 
 1. **Fiók biztonsága:**
    - Használjon erős jelszót
-   - Engedélyezze a kétfaktoros azonosítást
    - Ne ossza meg a bejelentkezési adatait
 
 2. **Adatok biztonsága:**
@@ -350,16 +348,11 @@ A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját hasz
 - Győződj meg róla, hogy az adatbázis hitelesítési adatok megfelelnek a helyi szerver beállításainak.
 4. Indítsd el a helyi szervert, és navigálj a `http://localhost/NoteShare/` címre a böngésződben.
 ```
-
-### 7.2. Kódolási Konvenciók
-- **PHP**: PSR-12 szabvány.
-- **JavaScript**: ES6+ szabvány.
-
-### 7.3. Verziókezelési Stratégia
+### 7.2. Verziókezelési Stratégia
 - **Main branch**: Stabil, éles verzió.
 - **Feature branch-ek**: Új funkciók fejlesztésére.
 
-### 7.4 FájlStruktúra
+### 7.3. FájlStruktúra
 
 ```bash
 
