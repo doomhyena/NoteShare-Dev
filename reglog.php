@@ -33,7 +33,7 @@
             if(mysqli_num_rows($found_email) == 0) {
                 if($password == $passwordtwo){
                     $titkositott_jelszo = password_hash($password, PASSWORD_DEFAULT);
-                    $sql = $conn->query("INSERT INTO users (lastname, firstname, username, birthdate, gender, email, password, security_question, security_answer, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $sql = $conn->query("INSERT INTO users (lastname, firstname, username, birthdate, gender, email, password, security_question, security_answer, registration_date) VALUES ('$lastname', '$firstname', '$username', '$birthdate', '$gender', '$email', '$titkositott_jelszo', '$security_question', '$security_answer', '$registration_date')");
 
                     $folder = getcwd();
                     $path = $folder . DIRECTORY_SEPARATOR . "users" . DIRECTORY_SEPARATOR . $username;
