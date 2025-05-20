@@ -29,33 +29,46 @@
    </head>
    <body>
         <?php
+            // Betölti a navigációs sávot
             include 'assets/php/navbar.php';
-            
+
+            // Ellenőrzi, hogy a "Értesítések törlése" gombot megnyomták-e
             if(isset($_POST['del-notifs-btn'])){
                 
+                // Törli az összes értesítést, ami a bejelentkezett felhasználónak szól
                 $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
                 
             }
-            
+
+            // Űrlap megjelenítése az értesítések törléséhez
             echo "<form method='post'>";
             echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
             echo "</form>";
-            
+
+            // Lekérdezi az összes értesítést a bejelentkezett felhasználónak, legújabb elöl
             $sql = "SELECT * FROM notifys WHERE toid = $user[id] ORDER BY id DESC";
             $founded_notifys = $conn->query($sql);
+
+            // Végigmegy az összes értesítésen
             while($ertesites=$founded_notifys->fetch_assoc()){
                 
+                // Lekéri az értesítést küldő felhasználó azonosítóját
                 $from = $ertesites['fromid'];  
                 
+                // Lekéri az értesítést küldő felhasználó adatait
                 $sql = "SELECT * FROM users WHERE id=$from";
                 $founded_notifyer = $conn->query($sql);
                 $notifyer = $founded_notifyer->fetch_assoc();
                 
+                // Ha az értesítés típusa "friend" (barátjelölés)
                 if($ertesites['notifytype'] == "friend"){
+                    // Kiírja, hogy ki jelölt barátnak
                     echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
                 
+                    // Ellenőrzi, hogy van-e függőben lévő barátjelölés
                     $check = $conn->query("SELECT * FROM friends WHERE fromid = $notifyer[id] AND toid = $user[id] AND status = 0");
                     if ($check->num_rows > 0) {
+                        // Elfogadó űrlap megjelenítése
                         echo "
                             <form method='post' action='assets/php/accept_friend.php'>
                                 <input type='hidden' name='fromid' value='$notifyer[id]'>
@@ -63,21 +76,25 @@
                             </form>
                         ";
                     }
-                } else if($ertesites['notifytype'] == 'comment'){
+                } 
+                // Ha az értesítés típusa "comment" (hozzászólás)
+                else if($ertesites['notifytype'] == 'comment'){
                     
+                    // Ha az értesítés még nincs olvasva
                     if($ertesites['readed'] == 0){
-                        
+                        // Kiírja, hogy ki szólt hozzá egy poszthoz (olvasatlan)
                         echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
-                        
                     } else {
-                        
+                        // Kiírja, hogy ki szólt hozzá egy poszthoz (olvasott)
                         echo "<p><b>$notifyer[username]</b> hozzászólt egy posztodhoz!</p>";
                     }
                 }
             }
+
+            // Az összes értesítést olvasottnak jelöli a felhasználónál
             $conn->query("UPDATE notifys SET readed = 1 WHERE toid = $user[id]");
-        ?>
-        <?php
+
+            // Betölti a láblécet
             include 'assets/php/footer.php';
         ?>
         <script src="assets/js/script.js"></script>

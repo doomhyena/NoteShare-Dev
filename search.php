@@ -1,19 +1,17 @@
-<?php 
+<?php
+    require  "assets/php/db.php"; // Betölti az adatbázis kapcsolatot létrehozó fájlt
 
-    require  "assets/php/db.php";
-	
-    if(!isset($_COOKIE['id'])){
-        header("Location: index.php");
+    if(!isset($_COOKIE['id'])){ // Ellenőrzi, hogy létezik-e 'id' nevű süti (cookie)
+        header("Location: index.php"); // Ha nincs, átirányítja a felhasználót a főoldalra
     }
 
-    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'";
-    $found_user = $conn->query($sql);
-    $user = $found_user->fetch_assoc();
+    $sql = "SELECT * FROM users WHERE id='" . $_COOKIE['id'] . "'"; // Lekérdezi az adatbázisból azt a felhasználót, akinek az id-je megegyezik a sütiben tárolttal
+    $found_user = $conn->query($sql); // Lefuttatja a lekérdezést
+    $user = $found_user->fetch_assoc(); // Az eredményt asszociatív tömbbé alakítja
 
-    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
-    $founded_notify = $conn->query($sql);
-    $notify_number = mysqli_num_rows($founded_notify);
-
+    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0"; // Lekérdezi azokat az értesítéseket, amelyek a bejelentkezett felhasználónak szólnak és még nem olvasta őket
+    $founded_notify = $conn->query($sql); // Lefuttatja a lekérdezést
+    $notify_number = mysqli_num_rows($founded_notify); // Megszámolja, hány olvasatlan értesítés van
 ?>
 <!DOCTYPE html>
 <html lang="hu">

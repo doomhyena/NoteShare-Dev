@@ -11,51 +11,58 @@
        <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
-        <?php 
-            require  "assets/php/db.php";
+        <?php
+            require  "assets/php/db.php"; // Betölti az adatbázis kapcsolatot biztosító fájlt
 
-            if (isset($_POST['forg-btn'])) {
-                $username = $_POST['username'];
-                $security_answer = $_POST['security_answer'];
-                $sql = "SELECT * FROM users WHERE username='$username'";
-                $found_user = $conn->query($sql);
-            
-                if (mysqli_num_rows($found_user) > 0) {
-                    $user = $found_user->fetch_assoc();
-            
-                    if ($security_answer == $user['security_answer']) {
+            if (isset($_POST['forg-btn'])) { // Ellenőrzi, hogy elküldték-e az első űrlapot
+                $username = $_POST['username']; // Felhasználónév lekérése az űrlapról
+                $security_answer = $_POST['security_answer']; // Biztonsági válasz lekérése
+                $sql = "SELECT * FROM users WHERE username='$username'"; // Felhasználó keresése adatbázisban
+                $found_user = $conn->query($sql); // Lekérdezés futtatása
+
+                if (mysqli_num_rows($found_user) > 0) { // Ha létezik ilyen felhasználó
+                    $user = $found_user->fetch_assoc(); // Felhasználó adatainak lekérése
+
+                    if ($security_answer == $user['security_answer']) { // Ha helyes a biztonsági válasz
+                        // Új email cím megadására szolgáló űrlap megjelenítése
                         echo "<form method='post' action='forgotemail.php?userid=$user[id]'>";
                         echo '    <input type="email" name="email1" placeholder="Jelszó">';
                         echo '    <input type="email" name="email2" placeholder="Jelszó újra">';
                         echo '    <input type="submit" name="new-email-btn" placeholder="Elküldés">';
                         echo '</form>';
                     } else {
+                        // Hibajelzés, ha rossz a biztonsági válasz
                         echo "<script>alert('Helytelen biztonsági válasz!')</script>";
                     }
                 } else {
+                    // Hibajelzés, ha nincs ilyen felhasználó
                     echo "<script>alert('Nincs ilyen felhasználó!')</script>";
                 }
-            } else if (isset($_POST['new-email-btn'])) {
-                $userid = $_GET['userid'];
-            
-                if ($_POST['email1'] == $_POST['email2']) {
-                    $sql = "SELECT * FROM users WHERE id=$userid";
-                    $found_user = $conn->query($sql);
-                    $user = $found_user->fetch_assoc();
-            
-                    if ($_POST['email1'] != $user['email']) {
-                        $email = $_POST['email1'];
-                        $conn->query("UPDATE users SET email='$email' WHERE id=$userid");
+            } else if (isset($_POST['new-email-btn'])) { // Ha az új email cím űrlapot küldték el
+                $userid = $_GET['userid']; // Felhasználó azonosítójának lekérése az URL-ből
 
+                if ($_POST['email1'] == $_POST['email2']) { // Ellenőrzi, hogy a két email egyezik-e
+                    $sql = "SELECT * FROM users WHERE id=$userid"; // Felhasználó keresése azonosító alapján
+                    $found_user = $conn->query($sql); // Lekérdezés futtatása
+                    $user = $found_user->fetch_assoc(); // Felhasználó adatainak lekérése
+
+                    if ($_POST['email1'] != $user['email']) { // Ellenőrzi, hogy az új email különbözik-e a régitől
+                        $email = $_POST['email1']; // Új email cím eltárolása
+                        $conn->query("UPDATE users SET email='$email' WHERE id=$userid"); // Email frissítése az adatbázisban
+
+                        // Sikeres módosítás visszajelzése
                         echo "<script>alert('Az új email címed sikeresen megváltozott!')</script>";
                         echo "<a href='index.php'>Vissza a főoldalra</a>";
                     } else {
+                        // Hibajelzés, ha az új email megegyezik a régivel
                         echo "<script>alert('Az új email címed nem egyezhet a régivel.')</script>";
                     }
                 } else {
+                    // Hibajelzés, ha a két email nem egyezik
                     echo "<script>alert('A két email cím nem egyezik!')</script>";
                 }
             } else {
+                // Az első űrlap megjelenítése, ha még nem történt beküldés
                 echo '<h1>Add meg a felhasználónevedet és a biztonsági kérdésre adott válaszodat!</h1>';
                 echo '<form method="post">';
                 echo '    <input type="text" name="username" placeholder="Felhasználónév">';
@@ -63,9 +70,8 @@
                 echo '    <input type="submit" name="forg-btn" value="Elküldés">';
                 echo '</form>';
             }
-        ?>
-        <?php
-            include 'assets/php/footer.php';
+
+            include 'assets/php/footer.php'; // Lábjegyzet (footer) beillesztése
         ?>
         <script src="assets/js/script.js"></script>
    </body>

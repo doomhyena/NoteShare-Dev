@@ -35,7 +35,6 @@ CREATE TABLE `files` (
   `file_path` varchar(255) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `tags` varchar(255) NOT NULL,
-  `rating` int(11) DEFAULT 0,
   `tn_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -476,6 +475,19 @@ INSERT INTO `notifys` (`id`, `fromid`, `toid`, `notifytype`, `readed`) VALUES
 (12, 2, 1, 'friend', 1),
 (13, 3, 1, 'friend', 0),
 (14, 4, 2, 'friend', 0);
+
+CREATE TABLE `ratings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` tinyint(1) NOT NULL CHECK (`rating` BETWEEN 1 AND 5),
+  `rated_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `file_id` (`file_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `ratings_file_fk` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ratings_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
