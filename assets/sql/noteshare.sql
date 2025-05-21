@@ -38,13 +38,13 @@ CREATE TABLE `files` (
   `tn_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `subject`, `tags`, `rating`, `tn_name`) VALUES
-(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek angolul', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/HTML5NotesForProfessionals.pdf', '', '', NULL, NULL),
-(2, 1, 'Tesz Elek', 'AndroidNotesForProfessionals.pdf', 'Teszt Elek', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/AndroidNotesForProfessionals.pdf', '', '', NULL, NULL),
-(3, 1, 'Test Video', '6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', 'This is a test video', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', '', '', NULL, NULL),
-(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL, NULL),
-(5, 3, 'C# alapok', 'csharp_notes.pdf', 'Kezdő C# jegyzetek', 'C:/xampp/htdocs/NoteShare-Dev/users/kovipeti/csharp_notes.pdf', 'Programozás', 'C#, programozás', NULL, NULL),
-(6, 4, 'Matmatika példatár', 'math_examples.pdf', 'Középiskolás matek példák', 'C:/xampp/htdocs/NoteShare-Dev/users/szaboanna/math_examples.pdf', 'Matematika', 'algebra, egyenlet', NULL, NULL);
+INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `subject`, `tags`, `tn_name`) VALUES
+(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek angolul', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/HTML5NotesForProfessionals.pdf', '', '', NULL),
+(2, 1, 'Tesz Elek', 'AndroidNotesForProfessionals.pdf', 'Teszt Elek', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/AndroidNotesForProfessionals.pdf', '', '', NULL),
+(3, 1, 'Test Video', '6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', 'This is a test video', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', '', '', NULL),
+(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL),
+(5, 3, 'C# alapok', 'csharp_notes.pdf', 'Kezdő C# jegyzetek', 'C:/xampp/htdocs/NoteShare-Dev/users/kovipeti/csharp_notes.pdf', 'Programozás', 'C#, programozás', NULL),
+(6, 4, 'Matmatika példatár', 'math_examples.pdf', 'Középiskolás matek példák', 'C:/xampp/htdocs/NoteShare-Dev/users/szaboanna/math_examples.pdf', 'Matematika', 'algebra, egyenlet', NULL);
 
 
 CREATE TABLE `friends` (
