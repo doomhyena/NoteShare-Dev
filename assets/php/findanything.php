@@ -18,7 +18,7 @@
 	// Ha van keresett kifejezés, feltétel hozzáadása név, tantárgy vagy címke alapján
 	if (!empty($keresett)) {
 		$safeKeresett = $conn->real_escape_string($keresett);
-		$conditions[] = "(name LIKE '%$safeKeresett%' OR subject LIKE '%$safeKeresett%' OR tag LIKE '%$safeKeresett%')";
+		$conditions[] = "(name LIKE '%$safeKeresett%' OR subject LIKE '%$safeKeresett%' OR tags LIKE '%$safeKeresett%')";
 	}
 
 	// Ha van értékelés szűrő, feltétel hozzáadása
@@ -26,6 +26,10 @@
 		$rating = (int)$_GET['rating'];
 		$conditions[] = "rating = $rating";
 	}
+	// Ha nincs keresés, ne adjon vissza semmit
+	if (empty($conditions)) {
+    exit('<p class="search-text">Kezdj el gépelni...</p>');
+}
 
 	// WHERE záradék összeállítása a feltételekből
 	$whereClause = '';
@@ -40,38 +44,39 @@
 	// Talált fájlok kilistázása, letöltési lehetőséggel
 	while ($file = $resultFiles->fetch_assoc()) {
 		// Fájl neve és letöltési link megjelenítése
-		echo '
-			<form class="user" method="post" action="../../search.php?name=' . htmlspecialchars($file['name']) . '">
-				<label>' . htmlspecialchars($file['name']) . '</label>
-			</form>
-			<a href="download.php?id=' . (int)$file['id'] . '">Letöltés</a>
-		';
+echo '
+<div class="search-card">
+    <div class="search-content">
+        <p>' . htmlspecialchars($file['name']) . '</p>
+    </div>
+    <a class="download-icon" href="assets/php/download.php?id=' . (int)$file['id'] . '" title="Letöltés">
+        <img src="assets/img/download-icon.png" alt="Letöltés" />
+    </a>
+</div>';
 	}
 
 	// Felhasználók keresése a keresett név alapján, kivéve a bejelentkezett felhasználót
-	$sqlUsers = "SELECT * FROM users WHERE username LIKE '%$keresett%' AND id != $loggedInUserId";
-	$resultUsers = $conn->query($sqlUsers);
+$sqlUsers = "SELECT * FROM users WHERE username LIKE '%$keresett%' AND id != $loggedInUserId";
+$resultUsers = $conn->query($sqlUsers);
 
-	// Talált felhasználók kilistázása, barátként jelölés lehetőségével
-	while ($user = $resultUsers->fetch_assoc()) {
-		$userId = (int)$user['id'];
+while ($user = $resultUsers->fetch_assoc()) {
+    $userId = (int)$user['id'];
 
-		echo '
-			<form class="user" method="post" action="search.php?userid=' . $userId . '">
-				<label>' . htmlspecialchars($user['username']) . '</label>
-		';
+    // Ellenőrzi, hogy már barátok-e
+    $sqlFriendCheck = "SELECT * FROM friends WHERE (fromid = $loggedInUserId AND toid = $userId) OR (fromid = $userId AND toid = $loggedInUserId)";
+    $friendCheck = $conn->query($sqlFriendCheck);
 
-		// Ellenőrzi, hogy már barátok-e
-		$sqlFriendCheck = "SELECT * FROM friends WHERE (fromid = $loggedInUserId AND toid = $userId) OR (fromid = $userId AND toid = $loggedInUserId)";
-		$friendCheck = $conn->query($sqlFriendCheck);
+    echo '<form class="user search-card search-user-card" method="post" action="assets/php/add_friend.php">';
+    echo '<p>' . htmlspecialchars($user['username']) . '</p>';
 
-		// Ha még nem barátok, megjeleníti a barátként jelölés gombot
-		if ($friendCheck->num_rows === 0) {
-			echo '<form method="post" action="add_friend.php">';
-			echo '<input type="hidden" name="friend_id" value="' . $userId . '">';
-			echo '<input type="submit" name="add-friend-btn" value="Jelölés">';
-		}
+    // Ha még nem barátok, megjeleníti a jelölés gombot
+    if ($friendCheck->num_rows === 0) {
+        echo '<input type="hidden" name="toid" value="' . $userId . '">';
+        echo '<button type="submit" class="friend-btn" name="add-friend-btn" onclick="this.classList.add(\'added\')">Jelölés</button>';
+    } else {
+        echo '<span style="color:green;">✔ Már barátok vagytok</span>';
+    }
 
-		echo '</form>';
-	}
+    echo '</form>';
+}
 ?>

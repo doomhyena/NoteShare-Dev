@@ -1,3 +1,6 @@
+let friendId = new URLSearchParams(window.location.search).get('friendid');
+let lastMessageCount = 0;
+
 document.addEventListener('DOMContentLoaded', function () {
     const searchBox = document.getElementById("search-box");
     if (searchBox) {
@@ -8,12 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const friendId = new URLSearchParams(window.location.search).get('friendid');
-    let lastMessageCount = 0;
-
-
+    if (friendId) {
+        $(".messages").load("assets/php/loadmessages.php?friendid=" + encodeURIComponent(friendId), function () {
+            $.get("assets/php/loadmessages.php?friendid=" + encodeURIComponent(friendId) + "&countonly=1", function (newCount) {
+                lastMessageCount = parseInt(newCount);
+            });
+        });
+    }
 });
 
+// Új üzenetek figyelése
 function checkNewMessages() {
     if (!friendId) return;
     $.get("assets/php/loadmessages.php?friendid=" + encodeURIComponent(friendId) + "&countonly=1", function (newCount) {
@@ -23,18 +30,10 @@ function checkNewMessages() {
         }
     });
 }
-
-if (friendId) {
-    $(".messages").load("assets/php/loadmessages.php?friendid=" + encodeURIComponent(friendId), function () {
-        $.get("assets/php/loadmessages.php?friendid=" + encodeURIComponent(friendId) + "&countonly=1", function (newCount) {
-            lastMessageCount = parseInt(newCount);
-        });
-    });
-}
-
 setInterval(checkNewMessages, 1000);
 
-$('form').submit(function (e) {
+// Üzenetküldés űrlap
+$('form.message-form').submit(function (e) {
     e.preventDefault();
 
     const form = $(this);
@@ -77,8 +76,8 @@ $('form').submit(function (e) {
     });
 });
 
+// Regisztráció és bejelentkezés form váltás
 function showForm(form){
-		
     if(form == "reg"){
         document.getElementById("reg").style.display = "block";
         document.getElementById("login").style.display = "none";
@@ -87,3 +86,44 @@ function showForm(form){
         document.getElementById("reg").style.display = "none";    
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navbarToggler && navLinks) {
+        navbarToggler.addEventListener('click', function () {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.navbar-content')) {
+                navbarToggler.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarToggler.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('friend-btn')) {
+        e.preventDefault();
+        const btn = e.target;
+        const form = btn.closest('form');
+
+        btn.classList.add('added');
+        btn.disabled = true;
+
+        setTimeout(() => {
+            form.submit();
+        }, 1000);
+    }
+});

@@ -1,10 +1,3 @@
--- Készítette: Csontos Kincső 13/A
--- Létrehozva: 2025. április 16., szerda, 19:26:44
--- Leírás: SQL-szkript a NoteShare alkalmazás adatbázisának és tábláinak létrehozásához.
-
-CREATE DATABASE NoteShare;
-USE NoteShare;
-
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
@@ -12,19 +5,12 @@ CREATE TABLE `comments` (
   `text` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `comments` (`id`, `userid`, `postid`, `text`) VALUES
-(2, 1, 1, 'Second comment'),
-(4, 1, 1, 'Second Comment'),
-(8, 1, 1, 'Third Comment'),
-(9, 1, 2, 'First comment'),
-(10, 2, 2, 'First comment'),
-(11, 2, 2, 'First comment'),
-(12, 2, 2, 'Elemér'),
-(13, 2, 2, 'Kuki'),
-(14, 3, 1, 'Nagyon hasznos fájl!'),
-(15, 4, 2, 'Köszi a feltöltést!'),
-(16, 3, 5, 'Ez segített a vizsgán!'),
-(17, 4, 6, 'Tök jó jegyzet, ajánlom mindenkinek.');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `files`
+--
 
 CREATE TABLE `files` (
   `id` int(11) NOT NULL,
@@ -38,14 +24,11 @@ CREATE TABLE `files` (
   `tn_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `files` (`id`, `uploaded_by`, `name`, `file_name`, `description`, `file_path`, `subject`, `tags`, `tn_name`) VALUES
-(1, 1, 'HTML5 jegyzetek', 'HTML5NotesForProfessionals.pdf', 'HTML5 jegyzetek angolul', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/HTML5NotesForProfessionals.pdf', '', '', NULL),
-(2, 1, 'Tesz Elek', 'AndroidNotesForProfessionals.pdf', 'Teszt Elek', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/AndroidNotesForProfessionals.pdf', '', '', NULL),
-(3, 1, 'Test Video', '6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', 'This is a test video', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/6317070_Clouds Sky Storm Weather_By_Tom_Trott_Artlist_HD.mp4', '', '', NULL),
-(4, 1, 'Test docx ', 'test.docx', 'Test docx file', 'C:xampphtdocsNoteShare-Dev/users/doomhyena/test.docx', '', '', NULL),
-(5, 3, 'C# alapok', 'csharp_notes.pdf', 'Kezdő C# jegyzetek', 'C:/xampp/htdocs/NoteShare-Dev/users/kovipeti/csharp_notes.pdf', 'Programozás', 'C#, programozás', NULL),
-(6, 4, 'Matmatika példatár', 'math_examples.pdf', 'Középiskolás matek példák', 'C:/xampp/htdocs/NoteShare-Dev/users/szaboanna/math_examples.pdf', 'Matematika', 'algebra, egyenlet', NULL);
+-- --------------------------------------------------------
 
+--
+-- Tábla szerkezet ehhez a táblához `friends`
+--
 
 CREATE TABLE `friends` (
   `id` int(11) NOT NULL,
@@ -54,10 +37,11 @@ CREATE TABLE `friends` (
   `status` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `friends` (`id`, `fromid`, `toid`, `status`) VALUES
-(3, 2, 1, 1),
-(4, 3, 1, 1),
-(5, 4, 2, 1);
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `messages`
+--
 
 CREATE TABLE `messages` (
   `id` int(255) NOT NULL,
@@ -67,34 +51,21 @@ CREATE TABLE `messages` (
   `sent_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `messages` (`id`, `fromid`, `toid`, `content`, `sent_at`) VALUES
-(1, 0, 2, 'Szia', '2025-05-06'),
-(2, 1, 2, 'Szia', '2025-05-06'),
-(3, 2, 1, 'Szia', '2025-05-06'),
-(4, 2, 1, 'Mizu?', '2025-05-06'),
-(5, 1, 2, 'Semmi, veled?', '2025-05-06'),
-(6, 1, 2, 'Teszt', '2025-05-06'),
-(7, 2, 1, 'e', '2025-05-06'),
-(8, 2, 1, 'bruh', '2025-05-06'),
-(9, 1, 2, 'miez', '2025-05-06'),
-(10, 2, 1, 'eee', '2025-05-06'),
-(11, 1, 2, 'ehe', '2025-05-06'),
-(12, 2, 1, 'aaa', '2025-05-06'),
-(13, 1, 2, 'aaa', '2025-05-06'),
-(14, 2, 1, 'adsdasd', '2025-05-06'),
-(15, 2, 1, 'eee', '2025-05-06'),
-(16, 1, 2, 'eee', '2025-05-06'),
-(17, 1, 2, 'e', '2025-05-06'),
-(18, 1, 2, 'uwu', '2025-05-06'),
-(19, 3, 1, 'Szia, jó lett a jegyzet!', '2025-05-08'),
-(20, 1, 3, 'Köszi, örülök hogy segít!', '2025-05-08'),
-(21, 4, 2, 'Meg tudod nézni a feltöltésem?', '2025-05-09');
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `namedays`
+--
 
 CREATE TABLE `namedays` (
   `id` int(11) NOT NULL,
   `datum` varchar(5) DEFAULT NULL,
   `nevek` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `namedays`
+--
 
 INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (1, '01-01', 'Fruzsina'),
@@ -463,6 +434,12 @@ INSERT INTO `namedays` (`id`, `datum`, `nevek`) VALUES
 (364, '12-30', 'Dávid'),
 (365, '12-31', 'Szilveszter');
 
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `notifys`
+--
+
 CREATE TABLE `notifys` (
   `id` int(11) NOT NULL,
   `fromid` int(255) NOT NULL,
@@ -471,23 +448,22 @@ CREATE TABLE `notifys` (
   `readed` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `notifys` (`id`, `fromid`, `toid`, `notifytype`, `readed`) VALUES
-(12, 2, 1, 'friend', 1),
-(13, 3, 1, 'friend', 0),
-(14, 4, 2, 'friend', 0);
+-- Tábla szerkezet ehhez a táblához `ratings`
+--
 
 CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `rating` tinyint(1) NOT NULL CHECK (`rating` BETWEEN 1 AND 5),
-  `rated_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `file_id` (`file_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `ratings_file_fk` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `ratings_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  `rating` tinyint(1) NOT NULL CHECK (`rating` between 1 and 5),
+  `rated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `users`
+--
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
@@ -501,57 +477,121 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `security_question` varchar(255) NOT NULL,
   `security_answer` varchar(255) NOT NULL,
-  `admin` tinyint(1) DEFAULT 0,
-  `registration_date` DATETIME
+  `admin` tinyint(1) NOT NULL,
+  `registration_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `username`, `birthdate`, `gender`, `email`, `profile_picture`, `password`, `security_question`, `security_answer`, `admin`, `registration_date`) VALUES
-(1, 'Csontos', 'Kincső', 'doomhyena', '2005-04-04', 'female', 'csontoskincso05@gmail.com', '618462_4xEbsnTA.png', '$2y$10$ukEFyn63PqpT.krkw.5O3.D/n2zb9GQCYU4VfZGNYLwakXPbzNYki','Mi a kedvenc könyved?', 'Ideológiák Tárháza', 1, '2025-04-08 10:00:00'),
-(2, 'Teszt', 'Elek', 'tesztuser', '1990-01-01', 'male', 'tesztelek@gmail,com' , 'noFilter.png', '$2y$10$RBRxnUokDjlen6FEZOa6zut3s4gxSjvDy6t22UzydLmIavfj9UBdK', 'Mi volt az első háziállatod neve?', 'Anyád', 0, '2025-04-16 11:44:52'),
-(3, 'Kovács', 'Péter', 'kovipeti', '1985-12-12', 'male', 'kovipeti@gmail.com', '', '$2y$10$abcdefg1234567890abcdefg1234567890abcdefg1234567890abcd', 'Mi a kedvenc filmed?', 'Star Wars', 0, '2025-05-06 14:32:00'),
-(4, 'Szabó', 'Anna', 'szaboanna', '1995-03-03', 'female', 'szaboanna@gmail,com', '', '$2y$10$hijklmn1234567890hijklmn1234567890hijklmn1234567890abcd', 'Hogy hívták a gyerekkori barátod?', 0, 'Kati', '2025-05-06 14:35:00');
+-- Indexek a kiírt táblákhoz
+--
 
-
+--
+-- A tábla indexei `comments`
+--
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
+--
+-- A tábla indexei `files`
+--
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
+--
+-- A tábla indexei `friends`
+--
 ALTER TABLE `friends`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fromid` (`fromid`),
   ADD KEY `toid` (`toid`);
 
+--
+-- A tábla indexei `messages`
+--
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
+--
+-- A tábla indexei `notifys`
+--
 ALTER TABLE `notifys`
   ADD PRIMARY KEY (`id`);
 
+--
+-- A tábla indexei `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `file_id` (`file_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- A tábla indexei `users`
+--
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `comments`
+--
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
+--
+-- AUTO_INCREMENT a táblához `files`
+--
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+--
+-- AUTO_INCREMENT a táblához `friends`
+--
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT a táblához `messages`
+--
 ALTER TABLE `messages`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
+--
+-- AUTO_INCREMENT a táblához `notifys`
+--
 ALTER TABLE `notifys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
+--
+-- AUTO_INCREMENT a táblához `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `users`
+--
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `friends`
+--
 ALTER TABLE `friends`
   ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`fromid`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`toid`) REFERENCES `users` (`id`);
+
+--
+-- Megkötések a táblához `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_file_fk` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ratings_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;

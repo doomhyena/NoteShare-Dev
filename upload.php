@@ -38,7 +38,7 @@
         // Ellenőrzi, hogy a fájl típusa és kiterjesztése engedélyezett-e
         if (!in_array($file_ext, $allowed_extensions) || !in_array($file_type, $allowed_types)) {
             echo "<script>alert('Csak PDF, MP4 vagy DOCX fájlokat lehet feltölteni!')</script>";
-            exit;
+            header("Location: upload.php");
         }
 
         // Meghatározza a felhasználó mappájának elérési útját
@@ -60,9 +60,11 @@
             // Sikeres feltöltés esetén elmenti az adatokat az adatbázisba
             $conn->query("INSERT INTO files (uploaded_by, name, file_name, description, file_path) VALUES ('$user[id]', '{$_POST['name']}', '$file_name', '$description', '$path')");
             echo "<script>alert('A fájl sikeresen feltöltve!')</script>";
+			header("Location: upload.php");
         } else {
             // Sikertelen feltöltés esetén hibaüzenetet ír ki
-            echo "<script>alert('A fájl feltöltése sikertelen!')</script>"; 
+            echo "<script>alert('A fájl feltöltése sikertelen!')</script>";
+			header("Location: upload.php");
         }
     }
 
@@ -79,27 +81,31 @@
        <meta charset='UTF-8'>
        <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
-       <meta name='author' content='Bor Ádám, Csontos Kincső, Szekeres Levente'>
+       <meta name='author' content='Csontos Kincső, Szekeres Levente'>
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel='stylesheet' href='assets/css/styles.css'>
+       	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	   <script src="assets/js/script.js"></script>
    </head>
    <body>
         <?php
             include 'assets/php/navbar.php';
         ?>
-        <form method="post" enctype="multipart/form-data">
+        <form class= "upload" method="post" enctype="multipart/form-data">
             <label class="form-header">Anyag feltöltése</label>
             <input type="text" name="name" placeholder="Anyag neve">
             <textarea name="description" placeholder="Leírás az anyagról"></textarea>
             <input type="text" name="subject" placeholder="Tárgy (pl. fizika, történelem)">
             <input type="text" name="tags" placeholder="Kulcsszavak, címkék (pl. ZH, jegyzet, beadandó)">
-            <input type="file" name="upload-file">
-            <input type="submit" name="upload-btn">
+            <div class="file-input-wrapper">
+			<span class="file-icon">📁</span>
+			<input type="file" name="upload-file">
+			</div>
+            <input type="submit" name="upload-btn" value="Feltöltés">
         </form>
         <?php
             include 'assets/php/footer.php';
         ?>
-    <script src="assets/js/script.js"></script>
    </body>
 </html>

@@ -9,7 +9,6 @@
 Dokumentáció
 
 Készítette:<br>
-Bor Ádám<br>
 Csontos Kincső <br>
 Szekeres Levente<br>
 
@@ -66,14 +65,11 @@ Szekeres Levente<br>
     - 8.6. [Mobil Applikáció](#86-mobil-applikáció)
     - 8.7. [Asztali Alkalmazás](#87-asztali-alkalmazás)
 
-9. [Az Oldalak Galériája](#9-az-oldalak-galériája)
+9. [Ki mit készített?](#9-ki-mit-készített?)
+    - 10.1. [Csontos Kincső](#91-csontos-kincső)
+    - 10.2. [Szekeres Levente](#92-szekeres-levente)
 
-10. [Ki mit készített?](#10-ki-mit-készített?)
-    - 10.1. [Bor Ádám](#101-bor-ádám)
-    - 10.2. [Csontos Kincső](#102-csontos-kincső)
-    - 10.3. [Szekeres Levente](#103-szekeres-levente)
-
-11. [Licensz](#11-licensz)
+10. [Licensz](#10-licensz)
 
 <div style="page-break-before: always;"></div>
 
@@ -158,8 +154,6 @@ A NoteShare fejlesztése során a következő technológiákat és eszközöket 
 - **XAMPP**: Lokális fejlesztői környezet (Apache, MySQL, PHP).
 - **Visual Studio Code**: Kódszerkesztő a fejlesztéshez.
 
-<div style="page-break-before: always;"></div>
-
 ## 2. Rendszerarchitektúra
 
 ### 2.1. Magas Szintű Architektúra
@@ -238,8 +232,6 @@ A NoteShare felhasználói felülete egyszerű és intuitív, a következő szem
 - **Egyszerű navigáció**: Könnyen elérhető funkciók és tiszta menürendszer.
 - **Konzisztens stílus**: Azonos színpaletta és tipográfia az egész alkalmazásban.
 
-<div style="page-break-before: always;"></div>
-
 ## 4. Backend Architektúra
 
 ### 4.1. Szolgáltatások
@@ -252,8 +244,6 @@ A PHP mysqli-t használjuk az adatbázis műveletek végrehajtására.
 
 ### 4.3. Fájlkezelés
 A feltöltött fájlokat a szerveren tároljuk, és a fájlokhoz tartozó metaadatokat az adatbázisban rögzítjük.
-
-<div style="page-break-before: always;"></div>
 
 ## 5. Deployment
 
@@ -272,8 +262,6 @@ Minden új funkciót pull request formájában integrálunk, amelyet code review
 
 ### 5.5. Hibaelhárítás
 A hibák nyomon követésére és kezelésére a GitHub Issues funkcióját használjuk.
-
-<div style="page-break-before: always;"></div>
 
 ### 6. Felhasználói Dokumentáció
 
@@ -422,8 +410,6 @@ NoteShare-Dev/
 
 ```
 
-<div style="page-break-before: always;"></div>
-
 ## 8. Jövőbeli Tervek
 #### 8.1. Felhasználói fiók bővítések
 
@@ -533,35 +519,24 @@ A platform funkcionalitásának bővítése érdekében egy asztali alkalmazás 
 
 Ezek a fejlesztések jelentősen növelnék a NoteShare elérhetőségét és felhasználói élményét minden platformon.
 
-<div style="page-break-before: always;"></div>
+## 9. Ki mit készített?
 
-## 9. Az oldalak Galériája
-
-<div style="page-break-before: always;"></div>
-
-## 10. Ki mit készített?
-
-### 10.1. Bor Ádám
-
-- **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
-- **Tesztelés**: Funkcionális tesztek végrehajtása.
-
-### 10.2. Csontos Kincső
+### 9.1. Csontos Kincső
 
 - **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat.
 - **Adatbázis Tervezés**: Adatbázis struktúra és SQL szkriptek.
 - **Dokumentáció**: Projekt dokumentáció elkészítése.
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
-- **Projekt Menedzsment**: Feladatok koordinálása és határidők kezelése.
 
-### 10.3. Szekeres Levente
+### 9.2. Szekeres Levente
 
+- **Backend Fejlesztés**: Backend logika, adatbázis kapcsolat.
 - **Frontend Fejlesztés**: Felhasználói felület tervezése és reszponzív dizájn
 - **Tesztelés**: Funkcionális tesztek végrehajtása.
 
 <div style="page-break-before: always;"></div>
 
-## 11. Licensz
+## 10. Licensz
 Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
 
 A felhasználók vállalják, hogy nem töltenek fel jogvédett tartalmat.

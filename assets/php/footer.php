@@ -1,13 +1,19 @@
+<!DOCTYPE html>
+<html lang="hu">
+   <head>
+   <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+   <body>
 <?php
 
-    // Kiírja a lábléc HTML kódját
     echo '
-        <footer>
-            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p> <!-- Fejlesztők nevei -->
-            <a href="https://github.com/doomhyena/NoteShare">GitHub</a> <!-- GitHub hivatkozás -->
-            <hr> <!-- Vízszintes vonal -->
-            <p>&copy; 2025 NoteShare</p> <!-- Copyright szöveg -->
-        </footer>
+	<footer>
+		<div class="footer-inner">
+            <p>Fejlesztők: Csontos Kincső, Szekeres Levente</p>
+            <a href="https://github.com/doomhyena/NoteShare">GitHub</a>
+            <p>&copy; 2025 NoteShare</p>
+		</div>
+	</footer>
     ';
 
 ?>

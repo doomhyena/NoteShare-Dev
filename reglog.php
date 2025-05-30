@@ -89,14 +89,20 @@
        <meta charset='UTF-8'>
        <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
-       <meta name='author' content='Bor Ádám, Csontos Kincső, Szekeres Levente'>
+       <meta name='author' content='Csontos Kincső, Szekeres Levente'>
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel='stylesheet' href='assets/css/styles.css'>
+	   	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	   <script src="assets/js/script.js"></script>
    </head>
    <body>
-        <h1>Regisztráció</h1>
-	    <form id="reg" style="display: none;" method="post">
+   
+		
+	    <form class="reglog active" id="reg" style="display: none;" method="post">
+		
+		<h1>Regisztráció</h1>
+		
             <label for="lastname">Vezetéknév:</label><br>
             <input type="text" name="lastname"><br><br>
             <label for="lastname">Keresztnév:</label><br>
@@ -111,32 +117,42 @@
                 <option name="female" value="female">Nő</option>
                 <option name="other" value="other">Egyéb</option>
             </select><br><br>
+			
             <label for="email">Email:</label><br>
             <input type="email" name="email"><br><br>
             <label for="password">Jelszó:</label><br>
             <input type="password" name="password1"><br><br>
             <label for="password">Jelszó újra:</label><br>
             <input type="password" name="password2"><br><br>
+			
             <p><strong>Biztonsági kérdés:</strong> <?php echo $selected_question; ?></p>
             <input type="hidden" name="security_question" value="<?php echo $selected_question; ?>">
             <label for="security_answer">Válasz:</label><br>
             <input type="text" name="security_answer"><br><br>
-            <input type="submit" name="reg-btn" value="Regisztráció!">
+            <input type="submit" name="reg-btn" value="Regisztráció!"><br><br>
+			
             <label>Már van fiókod? <a href="#" onclick="showForm('login')">Lépj be!</a></label>
         </form>
-        <h1>Bejelentkezés</h1>
-	    <form class="reglog" id="login" method="post">
+		
+	    <form class="reglog active" id="login" method="post">
+		
+		    <h1>Bejelentkezés</h1>
+				
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username"><br><br>
             <label for="password">Jelszó:</label><br>
             <input type="password" name="password"><br><br>
-            <input type="submit" name="login-btn" value="Bejelentkezés!">
+            <input type="submit" name="login-btn" value="Bejelentkezés!"><br><br>
+			
             <label>Még nincs fiókod? <a href="#" onclick="showForm('reg')">Regisztrálj!</a></label>
+			<label>
+			<a href="forgotpass.php" >Elfelejtetted a jelszavad?</a>
+			</label>
         </form>
+		
         <?php
             // Betölti a láblécet
             include 'assets/php/footer.php';
         ?>
-        <script src="assets/js/script.js"></script>
    </body>
 </html>

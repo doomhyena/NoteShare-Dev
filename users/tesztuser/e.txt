@@ -1,1 +1,0 @@
-A tesztuser mappa miatt létrehozott .txt fájl

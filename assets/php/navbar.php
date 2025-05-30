@@ -7,8 +7,12 @@
     $notify_number = $founded_notify ? mysqli_num_rows($founded_notify) : 0;
     // Kiírja a navigációs menüt
     echo '
-    <nav>
-        <ul>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <button class="navbar-toggler" type="button">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
             <li><a href="index.php">Főoldal</a></li>
             <li><a href="upload.php">Feltöltés</a></li>
             <li><a href="profile.php?userid=' . $user['id'] . '">Profilom</a></li>
@@ -22,8 +26,9 @@
                 echo '<li><a href="admin_panel.php">Admin Panel</a></li>';
             }
             echo '<li><a href="assets/php/logout.php">Kijelentkezés</a></li>
-        </ul>
+			</ul>
+    </div>
     </nav>
     ';
-    
+
 ?>

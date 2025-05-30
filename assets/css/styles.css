@@ -1,0 +1,976 @@
+
+/* Külső Google Fonts betűtípust, az 'Inter' nevű modern sans-serif font*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Egy animáció definiálása slideInLeft néven, ami balról jobbra csúsztat be egy elemet */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;                   
+    }
+    to {
+        transform: translateX(0);     
+        opacity: 1;                   
+    }
+}
+
+/* --- Az oldal teljes testének alapstílusai --- */
+body {
+	background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+	font-family: 'Inter', sans-serif;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 16px 12px 40px;
+	padding-top: 50px;
+}
+
+/* Alap formázás minden <form> elemre */
+form {
+    background: #fff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/*a <form> kap egy "active" osztályt,animálódik */
+form.active {
+    animation: slideInLeft 0.4s ease-out;
+}
+
+/* Címszöveg stílusa */
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Minden <label> elem formázása */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Alap input és select mezők formázása */
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Beküldő gomb formázása */
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+
+input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+
+form p {
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Form-on belüli linkek stílusa */
+form a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* Fő tartalom keret */
+.main {
+    max-width: 1000px;
+    margin: 120px auto 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+    color: #222;
+}
+
+/* Alcímek (szekciófejlécek) */
+.main h3 {
+    color: #007bff;
+    margin-top: 30px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+/* Vissza a bejelentkezéshez gomb stílusa */
+.backtologin {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+
+.backtologin:hover {
+    background-color: #0056b3;
+}
+
+/* --- Lábléc (footer) stílus --- */
+footer {
+    background: #f5f7fa;
+    margin: 0;
+    padding: 8px 24px; /* Csökkentett magasság */
+    border-radius: 16px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    width: calc(100% - 20px);
+    top: 30px;
+    left: 10px;
+    right: 10px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Belső konténer a láblécen belül */
+.footer-inner {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    text-align: center;
+    gap: 2px; 
+    color: #555;
+    font-size: 13px; 
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 8px;
+}
+
+/* A footer szövegei és linkje */
+.footer-inner p,
+.footer-inner a {
+    display: block;
+    margin: 3px 0; 
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+
+.footer-inner a {
+    color: #007bff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer-inner a:hover {
+    opacity: 0.8;
+}
+/* --- Fájl-kártyák stílusa a főoldalon(index.php) – itt jelennek meg a feltöltött fájlok. --- */
+.file-entry {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease;
+}
+
+.file-entry:hover {
+    transform: scale(1.01);
+}
+
+.entry-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #343a40;
+}
+
+/* feltöltő neve, dátum */
+.entry-meta {
+    margin: 4px 0;
+    color: #555;
+}
+
+/* Letöltés gomb, jegyzetek közt*/
+.entry-download-btn {
+    align-self: flex-start;
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.entry-download-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Feltöltő nevének dizájna */
+.uploader-name {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #007bff;
+    padding: 4px 10px;
+    margin-top: 5px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.uploader-name:hover {
+    background-color: #bbdefb;
+}
+/* Egy komment kinézete */
+.comment {
+    background-color: #f8f9ff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+	border: 1px solid rgba(0, 123, 255, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.comment:hover {
+    transform: scale(1.01);
+	box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+}
+
+.comment strong {
+    color: #007bff;
+    font-size: 0.95em;
+}
+
+.comment p {
+    margin: 4px 0 0 0;
+    color: #333;
+    line-height: 1.4;
+    font-size: 0.95em;
+}
+/* Komment írására szolgáló űrlap stílusa */
+.comment-form {
+    margin: 20px auto;
+	max-width: 90%;
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f1f8ff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.15);
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.comment-form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+.comment-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+}
+
+.comment-form button[type="submit"]:hover {
+    background-color: #005dc1;
+}
+
+/* Csillagos értékelés Flexbox-szal*/
+
+.rating{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Csillagok jobbról balra vannak rendezve */
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    gap: 0.20rem;
+    font-size: 30px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Ha egy csillag aktív vagy rajta van az egér akkor arany */
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+/* Értékelés gomb */
+.rate-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.rate-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/*--- profile.php ---*/
+
+/* Doboz stílusa feltöltött jegyzetekhez */
+.file-card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* A fájlnév stílusa */
+.file-card h4 {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+/* Címkék és leírás egységes megjelenése */
+.file-meta,
+.file-tags,
+.file-desc {
+    font-size: 15px;
+    color: #444;
+    margin: 6px 0;
+}
+
+/* letöltések a profil oldalán */
+.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.download-link:hover {
+    background-color: #1e7e34;
+}
+
+/* Fájlelőnézeti kép */
+.file-preview {
+    width: 100%;
+    max-height: 400px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+/* profil dizájna */
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.profile-card:hover {
+    transform: scale(1.01);
+}
+
+/* Profilkép stílus a kártyán belül */
+.profile-card .profile-picture {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #007bff;
+}
+
+/* Felhasználó nevének megjelenítése */
+.profile-card h2 {
+    margin: 10px 0;
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+/* Középre igazítás a profilkártyán belül minden űrlaphoz */
+.profile-card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Input mezők */
+.profile-card input[type="file"],
+.profile-card input[type="submit"] {
+    width: 80%;
+    max-width: 280px;
+    text-align: center;
+    margin: 6px 0;
+}
+
+.profile-card input[type="file"] {
+    border: 2px dashed #007bff;
+    padding: 8px;
+    background-color: #eef1f5;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.profile-card input[type="submit"] {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.profile-card input[type="submit"]:hover {
+    transform: scale(1.03);
+}
+
+/* Profil infó */
+.profile-info {
+    margin: 8px 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Profil szerkesztés gomb stílusa */
+.edit-email-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.edit-email-btn:hover {
+    background-color: #005dc1;
+}
+
+/* Teljes profil oldal konténer */
+.profile-container {
+    max-width: 800px;
+    margin: 80px auto 40px;
+    padding: 30px;
+    background: #f8f9fc;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Profil oldal főcím */
+.profile-heading {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff;
+    font-weight: 700;
+}
+
+/* Profilkép feltöltő űrlap */
+.profile-upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Feltöltő mező */
+.profile-upload-form input[type="file"] {
+    padding: 8px;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    background-color: #eef1f5;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.profile-upload-form input[type="file"]:hover {
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+
+/*--- search.php ---*/
+
+/* A keresőmező dizájna */
+.search-box {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    width: 70%;
+    max-width: 500px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+    outline: none;
+}
+
+/* Egy találati kártya stílusa */
+.search-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin: 15px auto;
+	min-width: 100px;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+	gap: 12px;
+}
+
+.search-card:hover {
+    transform: scale(1.01);
+}
+
+/* A találat szöveges része */
+.search-content {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* A találat dizájna */
+.search-content p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.search-text {
+    text-align: center;
+    color: #888;
+    font-size: 15px;
+    font-style: italic;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+/* keresési találat felhasználó */
+.search-user-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.search-user-card p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* Barátjelölő gomb */
+.friend-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ha már hozzáadták barátnak */
+.friend-btn.added {
+    background-color: #28a745 !important;
+    color: transparent;
+}
+
+/* ✔ ikon megjelenítése amikor barátnak lett jelölve */
+.friend-btn.added::after {
+    content: "✔";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: white;
+}
+
+/* Letöltés ikon */
+.download-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+/* Letöltés ikon képe */
+.download-icon img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+}
+
+.download-icon:hover img {
+    transform: scale(1.1);
+}
+
+/* --- NAVIGÁCIÓS SÁV (navbar.php) --- */
+
+.navbar {
+    background: #007bff;
+	margin: 0;
+    padding: 16px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    position: fixed;
+    width: calc(100% - 20px);
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 1000;
+	box-sizing: border-box;
+}
+
+/* A navigációs sáv tartalma: */
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Menülinkeket lista */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+	box-sizing: border-box;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #e0f0ff;
+}
+
+/* Hamburger gomb alapértelmezetten */
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hamburger ikon */
+.hamburger {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background: white;
+    display: inline-block;
+    transition: background 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: white;
+    left: 0;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+.hamburger::before {
+	top: -8px;
+}
+
+.hamburger::after {
+	top: 8px;
+}
+
+/* Hamburger animáció */
+.navbar-toggler.active .hamburger {
+	transform: rotate(90deg);
+	top: 0;
+}
+
+.navbar-toggler.active .hamburger::before {
+    transform: rotate(180deg);
+}
+
+.navbar-toggler.active .hamburger::after {
+    transform: rotate(-180deg);
+}
+
+/* --- RESPONSIVE MOBILNÉZET --- */
+@media (max-width: 900px) {
+	
+	/* Hamburger gomb megjelenik */
+    .navbar-toggler {
+        display: block;
+		width: 40px;
+		height: 40px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 10px;
+		position: relative;
+		z-index: 1100;
+    }
+	
+	/* Menüpontok lenyíló formában jelennek meg */
+    .nav-links {
+        position: absolute;
+        top: 150%;
+        left: 0;
+        right: 0;
+        background: #007bff;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        border-radius: 16px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/*--- FELTÖLTÉS ŰRLAP(upload.php) ---*/
+
+.upload {
+    background: linear-gradient(to bottom right, #ffffff, #f0f4ff);
+    padding: 30px 40px;
+    margin: 50px auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: transform 0.2s ease;
+}
+
+/* Űrlap fejléc */
+.upload .form-header {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Beviteli mezők */
+.upload input[type="text"],
+.upload textarea,
+.upload input[type="file"] {
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.upload input[type="text"]:focus,
+.upload textarea:focus,
+.upload input[type="file"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Fájl mező */
+.upload input[type="file"] {
+    background-color: #eef1f5;
+    border: 2px dashed #007bff;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Fájl kiválasztás */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #eef1f5;
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.file-input-wrapper:hover {
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* A fájlmező maga a konténeren belül */
+.file-input-wrapper input[type="file"] {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Fájl ikon stílusa */
+.file-icon {
+    font-size: 24px;
+    color: #007bff;
+    user-select: none;
+}
+
+/* Feltöltés gomb stílus */
+.upload input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}
+
+/* Reszponzív dizájn */
+@media (max-width: 600px) {
+    form.upload {
+        padding: 20px;
+        margin: 20px;
+    }
+}

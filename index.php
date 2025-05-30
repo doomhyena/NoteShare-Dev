@@ -13,16 +13,20 @@
 
     // Kommentek feldolgozása
     if(isset($_POST['comment-btn'])){
-    
-            $postid = $_GET['postid'];
+            if (isset($_POST['post_id'])) {
+			$postid = $_POST['post_id'];
             $text = $_POST['comment-text'];
             $conn->query("INSERT INTO comments (userid, postid, text) VALUES ('$user[id]', '$postid', '$text')");
+			if (isset($_GET['uploader'])) {
             $uploader = $_GET['uploader'];
             $conn->query("INSERT INTO notifys (fromid, toid, notifytype, readed) VALUES ('$user[id]', '$uploader', 'comment', 0)");
-        
-    } else {
-        echo "<script>alert('Hiba történt a komment írásakor!');</script>";
-    }
+			}
+			header("Location: " . $_SERVER['REQUEST_URI']);
+			exit;
+		} else if (isset($_POST['comment-btn'])) {
+			echo "<script>alert('Hiba történt a komment írásakor!');</script>";
+		}
+	}
 
     // Értékelés feldolgozása
     if (isset($_POST['rate-btn']) && isset($_POST['rate_file_id']) && isset($_POST['rating'])) {
@@ -50,20 +54,22 @@
 <!DOCTYPE html>
 <html lang="hu">
    <head>
-       <title>Főoldal</title>
-       <meta charset='UTF-8'>
-       <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
-       <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
-       <meta name='author' content='Bor Ádám, Csontos Kincső, Szekeres Levente'>
-       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-       <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-       <link rel='stylesheet' href='assets/css/styles.css'>
+		<title>Főoldal</title>
+		<meta charset='UTF-8'>
+		<meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
+		<meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
+        <meta name='author' content='Csontos Kincső, Szekeres Levente'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+		<link rel='stylesheet' href='assets/css/styles.css'>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="assets/js/script.js"></script>
    </head>
    <body>
     <?php
         include 'assets/php/navbar.php';
     ?>
-    <div>
+    <div class = "main">
         <?php
             // Köszöntő üzenet a bejelentkezett felhasználónak
             echo "<h1>Üdv ". $user['firstname'] ." a NoteShare oldalán!</h1>";
@@ -116,12 +122,35 @@
                     $uploader = $uploader_result->fetch_assoc();
 
                     // Jegyzet adatai, letöltési link, feltöltő neve és értékelés megjelenítése
-                    echo "<div>";
-                    echo "<h4>" . $file['name'] . "</h4>";
-                    echo "<p><b>Átlag értékelés:</b> " . number_format($file['avg_rating'], 2) . " (" . $file['rating_count'] . " értékelés)</p>";
-                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
+                    echo "<div class='file-entry'>";
+                    echo "<h4 class='entry-title'>" . $file['name'] . "</h4>";
+                    echo "<p class='entry-meta'><strong>Átlag értékelés:<br></strong>" . number_format($file['avg_rating'], 2, '.', '') . " (" . $file['rating_count'] . " értékelés)</p>";
+                    echo "<a class='entry-download-btn' href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
+                    echo "<p>Feltöltötte: <a class='uploader-name' href='profile.php?userid=" . $file['uploaded_by'] . "'>" . htmlspecialchars($uploader['username']) . "</a></p>";
                     echo "</div>";
+
+                    // Komentek megjelenítése
+                    echo "<h5>Kommentek:</h5>";
+                    $comments_sql = "SELECT c.*, u.username FROM comments c JOIN users u ON c.userid = u.id WHERE c.postid = " . $file['id'] . " ORDER BY c.id DESC";
+                    $comments_result = $conn->query($comments_sql);
+                    if ($comments_result->num_rows > 0) {
+                        while ($comment = $comments_result->fetch_assoc()) {
+                            echo "<div class='comment'>";
+                            echo "<p><strong>" . htmlspecialchars($comment['username']) . ":</strong> " . htmlspecialchars($comment['text']) . "</p>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<p>Nincsenek kommentek.</p>";
+                    }
+                    // Komment írása
+
+                    echo "<form method='post' class='comment-form'>";
+					echo "<h5>Új komment írása:</h5>";
+                    echo "<input type='hidden' name='post_id' value='" . $file['id'] . "'>";
+                    echo "<textarea name='comment-text' required></textarea>";
+                    echo "<button type='submit' name='comment-btn'>Küldés</button>";
+                    echo "</form>";
+
                 }
             } else {
                 // Ha nincs népszerű jegyzet
@@ -152,26 +181,42 @@
                         $user_rating = $user_rating_row['rating'];
                     }
 
-                    // Jegyzet adatai, letöltési link, feltöltő neve, értékelés és értékelő űrlap megjelenítése
-                    echo "<div>";
-                    echo "<h4>" .$file['name'] . "</h4>";
-                    echo "<a href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
-                    echo "<p>Feltöltötte: <a href='profile.php?userid=" . $file['uploaded_by'] . "'>" . $uploader['username'] . "</a></p>";
+					// Jegyzet adatai, letöltési link, feltöltő neve, értékelés és értékelő űrlap megjelenítése
+                    echo "<div class='note-card'>";
+                    echo "<h4>" .htmlspecialchars($file['name']) . "</h4>";
+					echo '  <a class="download-icon" href="assets/php/download.php?id=' . (int)$file['id'] . '" title="Letöltés">';
+					echo '      <img src="assets/img/download-icon.png" alt="Letöltés" />';
+					echo '  </a>';
+                    echo "<p>Feltöltötte: <a class='uploader-name' href='profile.php?userid=" . $file['uploaded_by'] . "'>" . htmlspecialchars($uploader['username']) . "</a></p>";
                     echo "<p><b>Átlag értékelés:</b> " .$avg_data['avg_rating'] . " (" . $avg_data['rating_count'] . " értékelés)</p>";
 
                     // Értékelő űrlap (1-5 csillag)
-                    echo "<form method='post' action=''>";
-                    echo "<input type='hidden' name='rate_file_id' value='" . $file['id'] . "'>";
-                    echo "<label>Értékeld: ";
-                    for ($i = 1; $i <= 5; $i++) {
-                        $checked = ($user_rating == $i) ? "checked" : "";
-                        echo "<input type='radio' name='rating' value='$i' $checked> $i ";
+					echo "<form method='post' action='' class='rating'>";
+					echo "<input type='hidden' name='rate_file_id' value='" . $file['id'] . "'>";
+					echo "<div class='star-rating'>";
+					for ($i = 5; $i >= 1; $i--) {
+						$checked = ($user_rating == $i) ? "checked" : "";
+						echo "<input type='radio' id='star{$i}_{$file['id']}' name='rating' value='{$i}' $checked />";
+						echo "<label for='star{$i}_{$file['id']}' title='{$i} csillag'>★</label>";
+					}
+					echo "</div>";
+					echo "<button type='submit' name='rate-btn' class='rate-btn'>Küldés</button>";
+					echo "</form>";
+					
+					// Komentek megjelenítése
+                    $comments_sql = "SELECT c.*, u.username FROM comments c JOIN users u ON c.userid = u.id WHERE c.postid = " . $file['id'] . " ORDER BY c.id DESC";
+                    $comments_result = $conn->query($comments_sql);
+                    if ($comments_result->num_rows > 0) {
+                        while ($comment = $comments_result->fetch_assoc()) {
+                            echo "<div class='comment'>";
+							echo "<h5>Kommentek:</h5>";
+                            echo "<p><strong>" . htmlspecialchars($comment['username']) . ":</strong> " . htmlspecialchars($comment['text']) . "</p>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<p>Nincsenek kommentek.</p>";
                     }
-                    echo "</label>";
-                    echo "<button type='submit' name='rate-btn'>Küldés</button>";
-                    echo "</form>";
-
-                    echo "</div>";
+					echo "</div>";
                 }
             } else {
                 // Ha nincs új feltöltés

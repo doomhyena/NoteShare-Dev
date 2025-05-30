@@ -22,10 +22,12 @@
        <meta charset='UTF-8'>
        <meta name='description' content='Iskolai jegyzeteket megosztó oldal'>
        <meta name='keywords' content='iskola, jegyzet, megosztás, tanulás'>
-       <meta name='author' content='Bor Ádám, Csontos Kincső, Szekeres Levente'>
+       <meta name='author' content='Csontos Kincső, Szekeres Levente'>
        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
        <link rel='stylesheet' href='assets/css/styles.css'>
+	   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	   <script src="assets/js/script.js"></script>
    </head>
    <body>
         <?php
@@ -39,11 +41,6 @@
                 $conn->query("DELETE FROM notifys WHERE toid = $user[id]");
                 
             }
-
-            // Űrlap megjelenítése az értesítések törléséhez
-            echo "<form method='post'>";
-            echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
-            echo "</form>";
 
             // Lekérdezi az összes értesítést a bejelentkezett felhasználónak, legújabb elöl
             $sql = "SELECT * FROM notifys WHERE toid = $user[id] ORDER BY id DESC";
@@ -62,23 +59,21 @@
                 
                 // Ha az értesítés típusa "friend" (barátjelölés)
                 if($ertesites['notifytype'] == "friend"){
-                    // Kiírja, hogy ki jelölt barátnak
                     echo "<p><b>$notifyer[username]</b> barátnak jelölt!</p>";
                 
-                    // Ellenőrzi, hogy van-e függőben lévő barátjelölés
                     $check = $conn->query("SELECT * FROM friends WHERE fromid = $notifyer[id] AND toid = $user[id] AND status = 0");
+					
                     if ($check->num_rows > 0) {
-                        // Elfogadó űrlap megjelenítése
                         echo "
-                            <form method='post' action='assets/php/accept_friend.php'>
+                            <form class='accept-friend' method='post' action='assets/php/accept_friend.php'>
                                 <input type='hidden' name='fromid' value='$notifyer[id]'>
                                 <input type='submit' value='Elfogadás'>
                             </form>
                         ";
+                    }else {
+                        echo "<p>Már feldolgozott barátjelölés.</p>"; // <-- új sor
                     }
-                } 
-                // Ha az értesítés típusa "comment" (hozzászólás)
-                else if($ertesites['notifytype'] == 'comment'){
+                } else if($ertesites['notifytype'] == 'comment'){
                     
                     // Ha az értesítés még nincs olvasva
                     if($ertesites['readed'] == 0){
@@ -93,10 +88,13 @@
 
             // Az összes értesítést olvasottnak jelöli a felhasználónál
             $conn->query("UPDATE notifys SET readed = 1 WHERE toid = $user[id]");
+			
+			echo "<form method='post'>";
+            echo "	<input type='submit' name='del-notifs-btn' value='Értesítések törlése'>";
+            echo "</form>";
 
             // Betölti a láblécet
             include 'assets/php/footer.php';
         ?>
-        <script src="assets/js/script.js"></script>
    </body>
 </html>

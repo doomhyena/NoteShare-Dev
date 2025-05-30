@@ -15,24 +15,29 @@
     if (isset($_POST['send_message'])) {
         // Lekéri a címzett felhasználó azonosítóját az űrlapból
         $toid = $_POST['toid'];
-        // Hibás: itt a $_POST['message']-et query-vel próbálja lekérdezni, ami nem helyes
-        $message = $_POST['message'];
-        // Lekéri a feladó azonosítóját a cookie-ból
-        $fromid = $_COOKIE['id'];
         
-        // Létrehozza az SQL lekérdezést az üzenet beszúrásához
-        $sql = "INSERT INTO messages (fromid, toid, content, sent_at) VALUES ($fromid, $toid, '$message', NOW())";
-        
-        // Végrehajtja az SQL lekérdezést, és ha sikeres, átirányít az üzenetek oldalra
-        if ($conn->query($sql)) {
-            header("Location: messages.php?friendid=$toid");
-            exit;
+        if (empty($_POST['message'])) {
+            // Ha az üzenet üres, akkor hibaüzenetet jelenít meg
+            echo "<script>alert('Az üzenet nem lehet üres!');</script>";
         } else {
-            // Hiba esetén hibaüzenetet ír ki
-            echo "<p>Hiba történt az üzenet küldése közben.</p>";
+            // Lekéri az üzenet szövegét az űrlapból
+            $message = $_POST['message'];
+            // Lekéri a feladó azonosítóját a cookie-ból
+            $fromid = $_COOKIE['id'];
+                
+            // Létrehozza az SQL lekérdezést az üzenet beszúrásához
+            $sql = "INSERT INTO messages (fromid, toid, content, sent_at) VALUES ($fromid, $toid, '$message', NOW())";
+                
+            // Végrehajtja az SQL lekérdezést, és ha sikeres, átirányít az üzenetek oldalra
+            if ($conn->query($sql)) {
+                header("Location: messages.php?friendid=$toid");
+            } else {
+                // Ha hiba történt az üzenet küldésekor, akkor kiírja a hibát
+                echo "Hiba történt az üzenet küldésekor: " . $conn->error;
+            }
         }
     }
-
+	
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -41,10 +46,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="Iskolai jegyzeteket megosztó oldal">
     <meta name="keywords" content="iskola, jegyzet, megosztás, tanulás">
-    <meta name='author' content='Bor Ádám, Csontos Kincső, Szekeres Levente'>
+    <meta name='author' content='Csontos Kincső, Szekeres Levente'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/script.js"></script>
 </head>
 <body>
     <?php
@@ -79,9 +85,13 @@
             $friend = $found_friend->fetch_assoc();
             // Kiírja a barát felhasználónevét egy <h2> elemben
             echo "<h2>" . $friend['username'] . "</h2>";
+            // Betölti az üzeneteket a kiválasztott baráttal
+            echo "<div id='message-container'>";
+                include 'assets/php/loadmessages.php';
+            echo "</div>";
             // Megjelenít egy űrlapot, ahol üzenetet lehet írni a kiválasztott barátnak
             echo '
-            <form method="post">
+            <form method="post" action="?friendid=' . $friendid . '">
                 <input type="hidden" name="toid" value="' . $friendid . '">
                 <input type="text" name="message" placeholder="Írj egy üzenetet...">
                 <input type="submit" name="send_message" value="Küldés">
@@ -94,6 +104,6 @@
         // Betölti a footer.php fájlt az oldal aljára
         include 'assets/php/footer.php';
     ?>
-    <script src="assets/js/script.js"></script>
+    
 </body>
 </html>
