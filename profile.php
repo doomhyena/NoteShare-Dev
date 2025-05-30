@@ -100,8 +100,7 @@ $notify_number = mysqli_num_rows($founded_notify);
     // Megjeleníti a profilképet.
     echo "<img class='profile-picture' src='" . $profile_picture_path . "' alt='Profilkép'>";
 
-    // Ha a megtekintett profil a bejelentkezett felhasználóé,
-    // akkor megjeleníti a profilkép feltöltő űrlapot.
+    // Ha a megtekintett profil a bejelentkezett felhasználóé, akkor megjeleníti a profilkép feltöltő űrlapot.
     if ($_GET['userid'] == $_COOKIE['id']) {
         echo "<form class='profile-upload-form' method='POST' enctype='multipart/form-data' style='margin-bottom: 15px;'>";
         echo "<label for='profile_picture' class='profile-info'><b>Profilkép feltöltése:</b></label><br>";
@@ -119,8 +118,7 @@ $notify_number = mysqli_num_rows($founded_notify);
     echo "<p class='profile-info'>Név: " . $user['firstname'] . " " . $user['lastname'] . "</p>";
     echo "<p class='profile-info'>Felhasználónév: " . $user['username'] . "</p>";
 
-    // Ha a saját profilját nézi a felhasználó,
-    // akkor kiírja az email címet, szerkesztés gombot és a regisztráció dátumát.
+    // Ha a saját profilját nézi a felhasználó, akkor kiírja az email címet, és a regisztráció dátumát.
     if ($_GET['userid'] == $_COOKIE['id']) {
         echo "<p class='profile-info'>Email: " . $user['email'] . "</p>";
 
