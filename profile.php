@@ -49,15 +49,15 @@
         }
     }
 
-// Ha elküldték az email szerkesztő gombot, átirányít az email szerkesztő oldalra.
-if (isset($_POST['edit-email-btn'])) {
-    header("Location: edit_email.php");
-}
+    // Ha elküldték az email szerkesztő gombot, átirányít az email szerkesztő oldalra.
+    if (isset($_POST['edit-email-btn'])) {
+        header("Location: edit_email.php");
+    }
 
-// Lekérdezi, hogy hány olvasatlan értesítése van a felhasználónak.
-$sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
-$founded_notify = $conn->query($sql);
-$notify_number = mysqli_num_rows($founded_notify);
+    // Lekérdezi, hogy hány olvasatlan értesítése van a felhasználónak.
+    $sql = "SELECT * FROM notifys WHERE toid = $user[id] AND readed = 0";
+    $founded_notify = $conn->query($sql);
+    $notify_number = mysqli_num_rows($founded_notify);
 ?>
 
 <!DOCTYPE html>
@@ -131,8 +131,16 @@ $notify_number = mysqli_num_rows($founded_notify);
             $result = $conn->query($sql);
             // Ellenőrzi, hogy van-e már barátság vagy barátfelkérés a két felhasználó között.
             if ($result->num_rows > 0) {
-                // Ha van, akkor megjeleníti a "Barát" gombot
-                echo "Ti már barátok vagytok!";
+                // Ha van, akkor kiírja, hogy már barátok.
+                $friendship = $result->fetch_assoc();
+                echo "<p class='profile-info'>Barátság státusz: ";
+                if ($friendship['fromid'] == $_COOKIE['id']) {
+                    echo "Te küldted a barátfelkérést.";
+                } elseif ($friendship['toid'] == $_COOKIE['id']) {
+                    echo "A felhasználó küldött neked barátfelkérést.";
+                } else {
+                    echo "Ti már barátok vagytok!";
+                }
             } else {
                 // Ha nincs, akkor megjeleníti a "Barátnak jelölés" űrlapot.
                 if ($_GET['userid'] != $_COOKIE['id']) {

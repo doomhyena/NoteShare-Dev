@@ -25,7 +25,7 @@
             if (file_exists($path)) { // Ha létezik a fájl a szerveren
 
                 unlink($path); // Fájl törlése
-                unlink($tn_path); // (NEM DEFINIÁLT) Bélyegkép törlése
+                unlink($tn_path); // Kép törlése
                 header('Location: myprofile.php'); // Átirányítás a profil oldalra
                 
             } else {
