@@ -22,5 +22,5 @@ A részletes telepítési és használati útmutató megtalálható a projekt do
 Ez a projekt saját projektmunkás licensz alatt áll. A forráskód és a dokumentáció kizárólag oktatási célokra használható fel, kereskedelmi felhasználása nem engedélyezett.
 
 ## Kapott értékelés:
-    - 4 (jó) 200%-s érdemjegy
-    - 5 (jeles) 200%-s érdemjegy
+    - 4 (jó) 200%-s érdemjegy (Asztali Alkalmazások I.)
+    - 5 (jeles) 200%-s érdemjegy (Asztali Alkalmazások I.)
