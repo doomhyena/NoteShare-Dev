@@ -27,7 +27,7 @@
 
                     if ($security_answer == $user['security_answer']) { // Ha helyes a biztonsági válasz
                         // Új email cím megadására szolgáló űrlap megjelenítése
-                        echo "<form method='post' action='forgotemail.php?userid=$user[id]'>";
+                        echo "<form method='post'>";
                         echo '    <input type="email" name="email1" placeholder="Email">';
                         echo '    <input type="email" name="email2" placeholder="Email újra">';
                         echo '    <input type="submit" name="new-email-btn" placeholder="Elküldés">';

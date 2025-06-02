@@ -220,7 +220,6 @@
 			echo "</div>";
             // Betölti a láblécet tartalmazó PHP fájlt.
             include 'assets/php/footer.php';
-
         ?>
    </body>
 </html>

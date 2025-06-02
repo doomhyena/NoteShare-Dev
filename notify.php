@@ -70,7 +70,7 @@
                                 <input type='submit' value='Elfogadás'>
                             </form>
                         ";
-                    }else {
+                    } else {
                         echo "<p>Már feldolgozott barátjelölés.</p>"; // <-- új sor
                     }
                 } else if($ertesites['notifytype'] == 'comment'){
