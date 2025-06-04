@@ -125,6 +125,21 @@
                     echo "<div class='file-entry'>";
                     echo "<h4 class='entry-title'>" . $file['name'] . "</h4>";
                     echo "<p class='entry-meta'><strong>Átlag értékelés:<br></strong>" . number_format($file['avg_rating'], 2, '.', '') . " (" . $file['rating_count'] . " értékelés)</p>";
+                    // Megnézi a fájl kiterjesztését, és annak megfelelően jeleníti meg.
+                    $file_extension = pathinfo($file['file_name'], PATHINFO_EXTENSION);
+                    if ($file_extension === 'docx') {
+                        // Ha docx, figyelmeztet, hogy Word-ben nyisd meg.
+                        echo "<p><b>Ez egy .docx fájl. A megtekintéshez töltsd le és nyisd meg Microsoft Word-ben.</b></p>";
+                    } elseif ($file_extension === 'mp4') {
+                        // Ha mp4, beágyazott videólejátszót jelenít meg.
+                        echo "<video controls class='file-preview'>
+                                <source src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' type='video/mp4'>
+                                A te böngésződ nem támogatja a videocímkét.
+                            </video>";
+                    } elseif ($file_extension === 'pdf') {
+                        // Ha pdf, iframe-ben jeleníti meg.
+                        echo "<iframe src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' width='100%' height='500px'></iframe>";
+                    }
                     echo "<a class='entry-download-btn' href='assets/php/download.php?id=" . $file['id'] . "'>Letöltés</a>";
                     echo "<p>Feltöltötte: <a class='uploader-name' href='profile.php?userid=" . $file['uploaded_by'] . "'>" . htmlspecialchars($uploader['username']) . "</a></p>";
                     echo "</div>";
@@ -184,7 +199,22 @@
 					// Jegyzet adatai, letöltési link, feltöltő neve, értékelés és értékelő űrlap megjelenítése
                     echo "<div class='note-card'>";
                     echo "<h4>" .htmlspecialchars($file['name']) . "</h4>";
-					echo '  <a class="download-icon" href="assets/php/download.php?id=' . (int)$file['id'] . '" title="Letöltés">';
+					// Megnézi a fájl kiterjesztését, és annak megfelelően jeleníti meg.
+                    $file_extension = pathinfo($file['file_name'], PATHINFO_EXTENSION);
+                    if ($file_extension === 'docx') {
+                        // Ha docx, figyelmeztet, hogy Word-ben nyisd meg.
+                        echo "<p><b>Ez egy .docx fájl. A megtekintéshez töltsd le és nyisd meg Microsoft Word-ben.</b></p>";
+                    } elseif ($file_extension === 'mp4') {
+                        // Ha mp4, beágyazott videólejátszót jelenít meg.
+                        echo "<video controls class='file-preview'>
+                                <source src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' type='video/mp4'>
+                                A te böngésződ nem támogatja a videocímkét.
+                            </video>";
+                    } elseif ($file_extension === 'pdf') {
+                        // Ha pdf, iframe-ben jeleníti meg.
+                        echo "<iframe src='users/" . $uploader['username'] . "/" . $file['file_name'] . "' width='100%' height='500px'></iframe>";
+                    }
+                    echo '  <a class="download-icon" href="assets/php/download.php?id=' . (int)$file['id'] . '" title="Letöltés">';
 					echo '      <img src="assets/img/download-icon.png" alt="Letöltés" />';
 					echo '  </a>';
                     echo "<p>Feltöltötte: <a class='uploader-name' href='profile.php?userid=" . $file['uploaded_by'] . "'>" . htmlspecialchars($uploader['username']) . "</a></p>";

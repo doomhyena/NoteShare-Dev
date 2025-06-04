@@ -40,11 +40,21 @@
                 mkdir($target_dir, 0777, true);
             }
 
+            // Ellenőrzi, hogy van-e már profilkép, és ha igen, törli azt
+            if (!empty($logged_in_user['profile_picture'])) {
+            $old_file = $target_dir . $logged_in_user['profile_picture'];
+            if (file_exists($old_file)) {
+                unlink($old_file);
+            }
+            }
+
             // Megpróbálja áthelyezni a feltöltött fájlt a célkönyvtárba.
             if (move_uploaded_file($tmp_name, $target_file)) {
-                $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
+            $conn->query("UPDATE users SET profile_picture='$file_name' WHERE id='$userid'");
             } else {
-                echo "<p> Hiba történt a fájl feltöltésekor.</p>";
+            echo "<p> Hiba történt a fájl feltöltésekor.</p>";
+            // Opcionálisan: lehetőséget ad újra feltölteni
+            echo "<p>Próbáld meg újra feltölteni a profilképet!</p>";
             }
         }
     }
