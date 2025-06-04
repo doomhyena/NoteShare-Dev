@@ -41,29 +41,33 @@
                     echo "<script>alert('Nincs ilyen felhasználó!')</script>";
                 }
             } else if (isset($_POST['new-email-btn'])) { // Ha az új email cím űrlapot küldték el
-                $userid = $_GET['userid']; // Felhasználó azonosítójának lekérése az URL-ből
-
-                if ($_POST['email1'] == $_POST['email2']) { // Ellenőrzi, hogy a két email egyezik-e
-                    $sql = "SELECT * FROM users WHERE id=$userid"; // Felhasználó keresése azonosító alapján
-                    $found_user = $conn->query($sql); // Lekérdezés futtatása
-                    $user = $found_user->fetch_assoc(); // Felhasználó adatainak lekérése
-
-                    if ($_POST['email1'] != $user['email']) { // Ellenőrzi, hogy az új email különbözik-e a régitől
-                        $email = $_POST['email1']; // Új email cím eltárolása
-                        $conn->query("UPDATE users SET email='$email' WHERE id=$userid"); // Email frissítése az adatbázisban
-
-                        // Sikeres módosítás visszajelzése
-                        echo "<script>alert('Az új email címed sikeresen megváltozott!')</script>";
-                        echo "<a href='index.php'>Vissza a főoldalra</a>";
+                if (!isset($_GET['userid'])) {
+                    echo "<script>alert('Hiányzó vagy érvénytelen felhasználó azonosító!')</script>";
                     } else {
-                        // Hibajelzés, ha az új email megegyezik a régivel
-                        echo "<script>alert('Az új email címed nem egyezhet a régivel.')</script>";
+                        $userid = intval($_GET['userid']); // Felhasználó azonosítójának lekérése és biztosítása, hogy szám
+
+                        if ($_POST['email1'] == $_POST['email2']) { // Ellenőrzi, hogy a két email egyezik-e
+                            $sql = "SELECT * FROM users WHERE id=$userid"; // Felhasználó keresése azonosító alapján
+                            $found_user = $conn->query($sql); // Lekérdezés futtatása
+                            $user = $found_user->fetch_assoc(); // Felhasználó adatainak lekérése
+
+                            if ($_POST['email1'] != $user['email']) { // Ellenőrzi, hogy az új email különbözik-e a régitől
+                                $email = $_POST['email1']; // Új email cím eltárolása
+                                $conn->query("UPDATE users SET email='$email' WHERE id=$userid"); // Email frissítése az adatbázisban
+
+                                // Sikeres módosítás visszajelzése
+                                echo "<script>alert('Az új email címed sikeresen megváltozott!')</script>";
+                                echo "<a href='index.php'>Vissza a főoldalra</a>";
+                            } else {
+                                // Hibajelzés, ha az új email megegyezik a régivel
+                                echo "<script>alert('Az új email címed nem egyezhet a régivel.')</script>";
+                            }
+                        } else {
+                            // Hibajelzés, ha a két email nem egyezik
+                            echo "<script>alert('A két email cím nem egyezik!')</script>";
+                        }
                     }
                 } else {
-                    // Hibajelzés, ha a két email nem egyezik
-                    echo "<script>alert('A két email cím nem egyezik!')</script>";
-                }
-            } else {
                 // Az első űrlap megjelenítése, ha még nem történt beküldés
                 echo '<h1>Add meg a felhasználónevedet és a biztonsági kérdésre adott válaszodat!</h1>';
                 echo '<form method="post">';
@@ -72,7 +76,7 @@
                 echo '    <input type="submit" name="forg-btn" value="Elküldés">';
                 echo '</form>';
             }
-
+ 
             include 'assets/php/footer.php'; // Lábjegyzet (footer) beillesztése
         ?>
    </body>

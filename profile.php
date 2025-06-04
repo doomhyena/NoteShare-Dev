@@ -61,7 +61,7 @@
 
     // Ha elküldték az email szerkesztő gombot, átirányít az email szerkesztő oldalra.
     if (isset($_POST['edit-email-btn'])) {
-        header("Location: edit_email.php");
+        header("Location: edit_email.php?userid=" . $user['id']);
     }
 
     // Lekérdezi, hogy hány olvasatlan értesítése van a felhasználónak.
